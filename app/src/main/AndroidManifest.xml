@@ -6,6 +6,14 @@
     <!-- ADR-013: no advertising ID, ever. CI fails on any permission outside the allowlist. -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove" />
 
+    <!-- US-010: asked in context after the first check-in, never at onboarding. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
+    <!-- US-018: lets the share sheet offer a direct WhatsApp button when it's installed. -->
+    <queries>
+        <package android:name="com.whatsapp" />
+    </queries>
+
     <!-- D-017 / ADR-003: core.db and settings are backed up; private.db (moods, notes, names, letters) never is. -->
     <application
         android:name=".StarfolkApp"
@@ -31,5 +39,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!-- ADR-012: Done / Snooze from the commit notification. Not exported. -->
+        <receiver android:name=".notify.DoneReceiver" android:exported="false" />
+
+        <!-- US-018: the share card image, from cacheDir/share only. -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.share"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/share_paths" />
+        </provider>
     </application>
 </manifest>

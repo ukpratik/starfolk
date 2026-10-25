@@ -75,6 +75,8 @@ object Routes {
     const val SHELTER = "shelter"
     const val LETTERS = "shelter/letters"
     const val WHO5 = "who5"
+    const val SETTINGS = "settings"
+    const val ABOUT = "about"
     /** The SOS flow is a full-screen modal with no tabs (S15). */
     const val SOS = "sos"
 }

@@ -27,6 +27,8 @@ import io.github.ukpratik.starfolk.feature.shelter.LettersScreen
 import io.github.ukpratik.starfolk.feature.shelter.linen
 import io.github.ukpratik.starfolk.feature.shelter.ShelterScreen
 import io.github.ukpratik.starfolk.feature.who5.Who5Screen
+import io.github.ukpratik.starfolk.feature.settings.AboutScreen
+import io.github.ukpratik.starfolk.feature.settings.SettingsScreen
 import io.github.ukpratik.starfolk.core.content.TrackId
 import io.github.ukpratik.starfolk.feature.sky.SkyScreen
 import io.github.ukpratik.starfolk.feature.sos.SosScreen
@@ -37,6 +39,14 @@ fun StarfolkNavHost(container: AppContainer, skyDemo: Int) {
     val settings by container.settings.settings.collectAsStateWithLifecycle(initialValue = null)
     val loaded = settings ?: run { Box(Modifier.fillMaxSize().background(Tokens.Paper100)); return }
     val nav = rememberNavController()
+    val systemReduced = remember {
+        android.provider.Settings.Global.getFloat(container.appContextForSettings().contentResolver, android.provider.Settings.Global.ANIMATOR_DURATION_SCALE, 1f) == 0f
+    }
+    val reduced = loaded.reducedMotion == "on" || (loaded.reducedMotion == "system" && systemReduced)
+    androidx.compose.runtime.CompositionLocalProvider(
+        io.github.ukpratik.starfolk.ui.theme.LocalReducedMotion provides reduced,
+        io.github.ukpratik.starfolk.ui.theme.LocalHaptics provides loaded.haptics,
+    ) {
     val entry by nav.currentBackStackEntryAsState()
     val route = entry?.destination?.route
     val openSos = { nav.navigate(Routes.SOS) }
@@ -67,13 +77,15 @@ fun StarfolkNavHost(container: AppContainer, skyDemo: Int) {
                     onSos = openSos,
                 )
             }
-            composable(Routes.TODAY) { TodayScreen(container, skyDemo, onSos = openSos, onShelter = { goTab(Routes.SHELTER) }, onWho5 = { nav.navigate(Routes.WHO5) }) }
+            composable(Routes.TODAY) { TodayScreen(container, skyDemo, onSos = openSos, onShelter = { goTab(Routes.SHELTER) }, onWho5 = { nav.navigate(Routes.WHO5) }, onSettings = { nav.navigate(Routes.SETTINGS) }) }
             composable(Routes.SKY) { SkyScreen(container, skyDemo, onSos = openSos, onOpenMemories = { goTab(Routes.MEMORIES) }) }
             composable(Routes.MEMORIES) { MemoriesScreen(container, onSos = openSos, onConnectAgain = { goTab(Routes.TODAY) }) }
             composable(Routes.SHELTER) {
                 ShelterScreen(container, onSos = openSos, onLetters = { nav.navigate(Routes.LETTERS) }, onBackToQuests = { goTab(Routes.TODAY) })
             }
             composable(Routes.LETTERS) { LettersScreen(container, TrackId.BREAKUP, onBack = { nav.popBackStack() }, onSos = openSos) }
+            composable(Routes.SETTINGS) { SettingsScreen(container, onBack = { nav.popBackStack() }, onSos = openSos, onAbout = { nav.navigate(Routes.ABOUT) }) }
+            composable(Routes.ABOUT) { AboutScreen(onBack = { nav.popBackStack() }, onSos = openSos) }
             composable(Routes.WHO5) {
                 Who5Screen(container, onClose = { nav.popBackStack() }, onSos = openSos, onShelter = { nav.popBackStack(); goTab(Routes.SHELTER) })
             }
@@ -84,5 +96,6 @@ fun StarfolkNavHost(container: AppContainer, skyDemo: Int) {
             val backdrop = when (tab) { Tab.SHELTER -> linen().bg; Tab.SKY -> Tokens.Night900; else -> Tokens.Paper100 }
             NotebookTabs(tab, onSelect = { goTab(it.route) }, backdrop = backdrop, modifier = Modifier.align(Alignment.BottomCenter))
         }
+    }
     }
 }

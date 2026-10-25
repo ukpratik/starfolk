@@ -36,6 +36,19 @@ data class Settings(
     val helplineCountry: String? = null,
     /** US-021: the first-entry Shelter disclaimer was shown. */
     val shelterIntroSeen: Boolean = false,
+    /** US-020: null = not asked yet, true/false = the user's answer. Off until they say yes. */
+    val analyticsConsent: Boolean? = null,
+    /** US-019: separate, explicit consent for the WHO-5 change bucket. */
+    val who5Share: Boolean = false,
+    val notificationsAsked: Boolean = false,
+    /** US-010: "HH:mm" for the daily Spark, or null = no daily reminder. */
+    val reminderTime: String? = null,
+    /** "system" / "on" / "off" (US-022). */
+    val reducedMotion: String = "system",
+    val haptics: Boolean = true,
+    val reviewPrompted: Boolean = false,
+    val referrerChecked: Boolean = false,
+    val firstOpenTracked: Boolean = false,
 )
 
 /** DataStore at files/datastore/settings.preferences_pb: backed up by the include-list rules (LLD §2.3, D-032). */
@@ -56,6 +69,15 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
             who5OfferedOn = p[WHO5_OFFERED]?.let(::AppDay),
             helplineCountry = p[HELPLINE_COUNTRY],
             shelterIntroSeen = p[SHELTER_INTRO] ?: false,
+            analyticsConsent = p[ANALYTICS],
+            who5Share = p[WHO5_SHARE] ?: false,
+            notificationsAsked = p[NOTIF_ASKED] ?: false,
+            reminderTime = p[REMINDER],
+            reducedMotion = p[MOTION] ?: "system",
+            haptics = p[HAPTICS] ?: true,
+            reviewPrompted = p[REVIEW] ?: false,
+            referrerChecked = p[REFERRER] ?: false,
+            firstOpenTracked = p[FIRST_OPEN] ?: false,
         )
     }
 
@@ -81,6 +103,17 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
     suspend fun who5Dismissed() = store.edit { it[WHO5_DISMISSALS] = (it[WHO5_DISMISSALS] ?: 0) + 1 }
     suspend fun setHelplineCountry(country: String?) = store.edit { if (country == null) it.remove(HELPLINE_COUNTRY) else it[HELPLINE_COUNTRY] = country }
     suspend fun shelterIntroSeen() = store.edit { it[SHELTER_INTRO] = true }
+    suspend fun setAnalyticsConsent(on: Boolean) = store.edit { it[ANALYTICS] = on; if (!on) it[WHO5_SHARE] = false }
+    suspend fun setWho5Share(on: Boolean) = store.edit { it[WHO5_SHARE] = on }
+    suspend fun notificationsAsked() = store.edit { it[NOTIF_ASKED] = true }
+    suspend fun setReminderTime(time: String?) = store.edit { if (time == null) it.remove(REMINDER) else it[REMINDER] = time }
+    suspend fun setReducedMotion(mode: String) = store.edit { it[MOTION] = mode }
+    suspend fun setHaptics(on: Boolean) = store.edit { it[HAPTICS] = on }
+    suspend fun reviewPrompted() = store.edit { it[REVIEW] = true }
+    suspend fun referrerChecked() = store.edit { it[REFERRER] = true }
+    suspend fun firstOpenTracked() = store.edit { it[FIRST_OPEN] = true }
+    /** US-024: delete everything. */
+    suspend fun wipe() = store.edit { it.clear() }
 
     private fun <T> androidx.datastore.preferences.core.MutablePreferences.putIfAbsent(key: Preferences.Key<T>, value: T) {
         if (this[key] == null) this[key] = value
@@ -100,5 +133,14 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         val WHO5_OFFERED = longPreferencesKey("who5_offered_on")
         val HELPLINE_COUNTRY = stringPreferencesKey("helpline_country")
         val SHELTER_INTRO = booleanPreferencesKey("shelter_intro_seen")
+        val ANALYTICS = booleanPreferencesKey("analytics_consent")
+        val WHO5_SHARE = booleanPreferencesKey("who5_share")
+        val NOTIF_ASKED = booleanPreferencesKey("notifications_asked")
+        val REMINDER = stringPreferencesKey("reminder_time")
+        val MOTION = stringPreferencesKey("reduced_motion")
+        val HAPTICS = booleanPreferencesKey("haptics")
+        val REVIEW = booleanPreferencesKey("review_prompted")
+        val REFERRER = booleanPreferencesKey("referrer_checked")
+        val FIRST_OPEN = booleanPreferencesKey("first_open_tracked")
     }
 }

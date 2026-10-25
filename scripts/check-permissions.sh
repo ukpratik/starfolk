@@ -31,6 +31,11 @@ while read -r perm; do
   fi
 done < <("$AAPT2" dump permissions "$APK" | sed -n "s/^uses-permission: name='\([^']*\)'.*/\1/p")
 
+# Required, not just allowed: the play build needs INTERNET for opt-in analytics (ADR-006); fdroid must not have it (D-028).
+has_internet=$("$AAPT2" dump permissions "$APK" | grep -c "name='android.permission.INTERNET'" || true)
+if [[ "$FLAVOUR" == "play" && "$has_internet" -eq 0 ]]; then echo "  BLOCK play build is missing android.permission.INTERNET"; status=1; fi
+if [[ "$FLAVOUR" == "fdroid" && "$has_internet" -gt 0 ]]; then echo "  BLOCK fdroid build has android.permission.INTERNET"; status=1; fi
+
 if [[ "$FLAVOUR" == "fdroid" ]]; then
   # D-028: no proprietary Google Play classes in the F-Droid build.
   DEXDUMP=$(ls -d "$SDK"/build-tools/*/dexdump | sort -V | tail -1)

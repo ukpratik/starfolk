@@ -12,6 +12,12 @@ enum class Register { DAY, SHELTER }
 
 val LocalRegister = staticCompositionLocalOf { Register.DAY }
 
+/** US-022 / NFR-008: animations become instant crossfades when true. */
+val LocalReducedMotion = staticCompositionLocalOf { false }
+
+/** US-022: haptics can be switched off. */
+val LocalHaptics = staticCompositionLocalOf { true }
+
 private val ChromeColors = lightColorScheme(
     primary = Tokens.Ink900,
     onPrimary = Tokens.Paper50,

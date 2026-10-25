@@ -72,9 +72,9 @@ fun SosScreen(container: AppContainer, onClose: () -> Unit) {
             SosView.HUB -> {
                 Text(stringResource(R.string.sos_title), style = StarfolkType.ShelterTitle.copy(color = Tokens.Pencil))
                 Text(stringResource(R.string.sos_question), style = StarfolkType.Body.copy(color = Tokens.Pencil))
-                Option(stringResource(R.string.sos_calm)) { step = 0; view = SosView.CALM }
-                Option(stringResource(R.string.sos_reach)) { view = SosView.REACH }
-                Option(stringResource(R.string.sos_lines)) { view = SosView.LINES }
+                Option(stringResource(R.string.sos_calm)) { step = 0; view = SosView.CALM; scope.launch { container.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.SosOpened("calm")) } }
+                Option(stringResource(R.string.sos_reach)) { view = SosView.REACH; scope.launch { container.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.SosOpened("reach")) } }
+                Option(stringResource(R.string.sos_lines)) { view = SosView.LINES; scope.launch { container.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.SosOpened("lines")) } }
                 Text(stringResource(R.string.sos_danger), style = StarfolkType.Body.copy(color = Tokens.Pencil), modifier = Modifier.fillMaxWidth().border(1.dp, Tokens.PencilSoft).padding(14.dp))
             }
             SosView.CALM -> {

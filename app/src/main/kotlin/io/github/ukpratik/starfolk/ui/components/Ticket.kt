@@ -92,8 +92,9 @@ fun Ticket(
 /** The red DONE stamp (design-system §7): slams down from 3× with an overshoot. Never used in the Shelter. */
 @Composable
 private fun RubberStamp(date: String, modifier: Modifier) {
-    val scale = remember { Animatable(3f) }
-    LaunchedEffect(Unit) { scale.animateTo(1f, spring(dampingRatio = 0.5f, stiffness = 400f)) }
+    val reduced = io.github.ukpratik.starfolk.ui.theme.LocalReducedMotion.current
+    val scale = remember { Animatable(if (reduced) 1f else 3f) }
+    LaunchedEffect(Unit) { if (!reduced) scale.animateTo(1f, spring(dampingRatio = 0.5f, stiffness = 400f)) }
     Column(
         modifier
             .graphicsLayer { scaleX = scale.value; scaleY = scale.value; rotationZ = -14f; alpha = (4f - scale.value).coerceIn(0f, 0.9f) }
@@ -169,9 +170,10 @@ private fun HoldToTear(committed: Boolean, onCommit: () -> Unit, modifier: Modif
     val progress = remember { Animatable(0f) }
     val scope = rememberCoroutineScope()
     val haptics = LocalHapticFeedback.current
+    val hapticsOn = io.github.ukpratik.starfolk.ui.theme.LocalHaptics.current
     var done by remember(committed) { mutableStateOf(committed) }
     val label = stringResource(R.string.hold_to_tear)
-    fun commit() { if (!done) { done = true; haptics.performHapticFeedback(HapticFeedbackType.LongPress); onCommit() } }
+    fun commit() { if (!done) { done = true; if (hapticsOn) haptics.performHapticFeedback(HapticFeedbackType.LongPress); onCommit() } }
     Box(
         modifier
             .height(52.dp)

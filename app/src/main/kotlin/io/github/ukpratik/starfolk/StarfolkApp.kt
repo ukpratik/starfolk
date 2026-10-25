@@ -11,5 +11,6 @@ class StarfolkApp : Application() {
     override fun onCreate() {
         super.onCreate()
         container = AppContainer(this)
+        io.github.ukpratik.starfolk.notify.Reminders.createChannels(this)
     }
 }

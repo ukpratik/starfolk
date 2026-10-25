@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!-- ADR-011: only the Play build may use the network, and only for opt-in anonymous analytics (ADR-006, US-020).
+     With consent off, the app makes zero network calls of its own (NFR-006). The F-Droid build has no INTERNET. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

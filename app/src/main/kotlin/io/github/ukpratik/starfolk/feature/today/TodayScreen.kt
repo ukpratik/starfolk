@@ -2,6 +2,19 @@
 package io.github.ukpratik.starfolk.feature.today
 
 import androidx.compose.foundation.background
+import io.github.ukpratik.starfolk.platform.Flavour
+import io.github.ukpratik.starfolk.notify.Reminders
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.clickable
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.compose.rememberLauncherForActivityResult
+import android.os.Build
+import android.Manifest
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -60,11 +73,24 @@ private val STAMP_DATE = DateTimeFormatter.ofPattern("d · MMM · yy", Locale.EN
 
 /** Today (S05, US-003…009): the sky strip, today's Spark and today's ticket, with the whole Done moment. */
 @Composable
-fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShelter: () -> Unit, onWho5: () -> Unit) {
+fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShelter: () -> Unit, onWho5: () -> Unit, onSettings: () -> Unit) {
     val vm: TodayViewModel = viewModel { TodayViewModel(container, skyDemo) }
     val state by vm.state.collectAsStateWithLifecycle()
     val moment by vm.moment.collectAsStateWithLifecycle()
     val offers by vm.offers.collectAsStateWithLifecycle()
+    val ask by vm.ask.collectAsStateWithLifecycle()
+    val askReview by vm.review.collectAsStateWithLifecycle()
+    var sharing by remember { mutableStateOf(false) }
+    val context = LocalContext.current
+    val settingsLabel = stringResource(R.string.settings)
+    // US-005/010: the permission is asked only in context (a reminder time was chosen).
+    val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { }
+    fun askPermissionIfNeeded() {
+        if (Build.VERSION.SDK_INT >= 33 && !Reminders.canPost(context)) permission.launch(Manifest.permission.POST_NOTIFICATIONS)
+    }
+    LaunchedEffect(askReview) {
+        if (askReview) { (context as? android.app.Activity)?.let { Flavour.askForReview(it) }; vm.reviewShown() }
+    }
     var choosingTime by remember { mutableStateOf(false) }
     val snackbar = remember { SnackbarHostState() }
     val undoLabel = stringResource(R.string.undo)
@@ -99,7 +125,14 @@ fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShel
                     )
                     Column(Modifier.statusBarsPadding().padding(start = 22.dp, top = 12.dp).rotate(-3f)) {
                         Text(s.day.date.format(DATE).lowercase(), style = StarfolkType.HandL.copy(color = Tokens.OnNight))
-                        Text("STARFOLK", style = StarfolkType.Tab.copy(color = Tokens.Foil), modifier = Modifier.padding(top = 4.dp).border(1.5.dp, Tokens.Foil).padding(horizontal = 8.dp, vertical = 3.dp))
+                        Row(verticalAlignment = Alignment.CenterVertically) {
+                            Text("STARFOLK", style = StarfolkType.Tab.copy(color = Tokens.Foil), modifier = Modifier.padding(top = 4.dp).border(1.5.dp, Tokens.Foil).padding(horizontal = 8.dp, vertical = 3.dp))
+                            Text(
+                                "⚙", style = StarfolkType.H2.copy(color = Tokens.OnNight),
+                                modifier = Modifier.padding(start = 10.dp).size(48.dp).clickable(role = Role.Button, onClick = onSettings)
+                                    .semantics { contentDescription = settingsLabel }.padding(top = 8.dp, start = 12.dp),
+                            )
+                        }
                     }
                 } else {
                     Box(Modifier.fillMaxSize().background(Tokens.Night700))
@@ -109,7 +142,7 @@ fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShel
             if (s != null) {
                 SparkLine(s.spark)
                 offers.shelter?.let { ShelterTodayCard(it, onShelter, Modifier.padding(start = 16.dp, end = 16.dp, bottom = 14.dp)) }
-                if (offers.lowMood) LowMoodCard(onShelter, onSos, vm::snoozeLowMood, Modifier.padding(start = 16.dp, end = 16.dp, bottom = 14.dp))
+                if (offers.lowMood) LowMoodCard({ vm.lowMoodAccepted(); onShelter() }, onSos, vm::snoozeLowMood, Modifier.padding(start = 16.dp, end = 16.dp, bottom = 14.dp))
                 offers.who5?.let { Who5Card(it, onTake = { vm.dismissWho5(); onWho5() }, onDismiss = vm::dismissWho5, modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 14.dp)) }
                 val done = s.done
                 if (done == null) {
@@ -131,6 +164,7 @@ fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShel
                     onDone = { vm.done(s.quest) },
                     commitLabel = s.commit?.let { commitLabel(it.slot, it.remindAt) },
                     stampedOn = done?.let { s.day.date.format(STAMP_DATE).uppercase() },
+                    doneActions = { PaperButton(stringResource(R.string.pass_it_on), { sharing = true }, Modifier.fillMaxWidth(), filled = true) },
                     modifier = Modifier.padding(horizontal = 16.dp),
                 )
             }
@@ -145,13 +179,32 @@ fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShel
         SnackbarHost(snackbar, Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(bottom = 80.dp))
     }
 
+    if (sharing && state != null) {
+        val s = state!!
+        ShareSheet(s.quest, s.seed, s.sky, s.day, onShared = { vm.shared(s.quest); sharing = false }, onDismiss = { sharing = false })
+    }
+    if (moment !is Moment.Reflect && stamped?.insight == null) when (ask) {
+        Ask.NUDGE -> NudgeSheet { time ->
+            vm.nudgeAnswered(time)
+            if (time != null) { Reminders.scheduleDaily(context, time); askPermissionIfNeeded() }
+        }
+        Ask.CONSENT -> ConsentSheet(vm::consentAnswered)
+        null -> Unit
+    }
     val reflect = moment as? Moment.Reflect
     if (reflect != null) {
         ReflectionSheet(reflect.quest, onSave = vm::reflect, onSkip = { vm.reflect(null, null, null) })
     }
     if (choosingTime && state != null) {
         WhenSheet(
-            onPick = { choice -> choosingTime = false; vm.commit(state!!.quest.id, choice.slot, choice.remindAt) },
+            onPick = { choice ->
+                choosingTime = false
+                val s = state!!
+                vm.commit(s.quest.id, choice.slot, choice.remindAt) { at ->
+                    Reminders.scheduleCommit(context, s.quest.id, s.day.epochDay, at)
+                    askPermissionIfNeeded()
+                }
+            },
             onDismiss = { choosingTime = false },
         )
     }

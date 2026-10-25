@@ -48,16 +48,19 @@ class ShelterViewModel(private val c: AppContainer) : ViewModel() {
 
     fun refreshDay() { today.value = c.appDayClock.today() }
     fun introSeen() = viewModelScope.launch { c.settings.shelterIntroSeen() }
-    fun start(track: TrackId) = viewModelScope.launch { c.shelter.start(track) }
+    fun start(track: TrackId) = viewModelScope.launch { c.shelter.start(track); c.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.ShelterTrackStarted(track.name)) }
 
     fun markDone(track: Track) = viewModelScope.launch {
-        if (c.shelter.markDone(track.track, track.length)) {
+        val day = c.shelter.active()?.currentDay
+        val graduated = c.shelter.markDone(track.track, track.length)
+        if (day != null) c.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.ShelterDayDone(track.track.name, day))
+        if (graduated) {
             val finished = c.shelter.states.first().first { it.track == track.track }
             _graduated.value = track to finished
         }
     }
 
-    fun slip(track: TrackId, choice: SlipChoice, reachedOut: Boolean = false) = viewModelScope.launch { c.shelter.slip(track, choice, reachedOut) }
+    fun slip(track: TrackId, choice: SlipChoice, reachedOut: Boolean = false) = viewModelScope.launch { c.shelter.slip(track, choice, reachedOut); if (!reachedOut) c.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.ShelterSlip(track.name)) }
     fun setNoContact(track: TrackId, on: Boolean) = viewModelScope.launch { c.shelter.setNoContact(track, on) }
     fun journal(track: TrackId, day: Int) = c.shelter.journal(track, day)
     fun saveJournal(track: TrackId, day: Int, body: String) = viewModelScope.launch { c.shelter.saveJournal(track, day, body) }

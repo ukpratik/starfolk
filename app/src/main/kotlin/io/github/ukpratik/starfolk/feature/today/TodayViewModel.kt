@@ -55,6 +55,9 @@ data class Offers(
 data class ShelterCard(val title: String, val day: Int, val doneToday: Boolean)
 enum class Who5Prompt { BASELINE, RECHECK }
 
+/** One-time asks after the first check-in, in order (US-010, US-020): never at onboarding. */
+enum class Ask { NUDGE, CONSENT }
+
 sealed interface Moment {
     data object None : Moment
     /** The reflection sheet is open for this completion. */
@@ -87,11 +90,21 @@ class TodayViewModel(private val c: AppContainer, private val skyDemo: Int) : Vi
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
+    private val _ask = MutableStateFlow<Ask?>(null)
+    val ask: StateFlow<Ask?> = _ask.asStateFlow()
+
+    private val _review = MutableStateFlow(false)
+    /** True once: the UI asks Play for a review (US-025), then calls [reviewShown]. */
+    val review: StateFlow<Boolean> = _review.asStateFlow()
+
     private val _offers = MutableStateFlow(Offers())
     val offers: StateFlow<Offers> = _offers.asStateFlow()
 
     init {
-        viewModelScope.launch { c.quests.recordOpen(); c.quests.ensureToday(); refreshOffers(afterCheckin = false) }
+        viewModelScope.launch {
+            c.quests.recordOpen(); c.quests.ensureToday(); refreshOffers(afterCheckin = false)
+            c.analytics.checkMilestones()
+        }
     }
 
     /** Re-evaluates the Shelter card, the low-mood offer and the WHO-5 prompts (deterministic rules, :core). */
@@ -107,7 +120,7 @@ class TodayViewModel(private val c: AppContainer, private val skyDemo: Int) : Vi
         val baseline = who5.firstOrNull { it.kind == Who5Repository.BASELINE }
         val latestPct = who5.lastOrNull()?.percent
         val lowMood = SafetyRules.lowMoodOffer(c.quests.recentMoods(), latestPct, active != null, s.lowMoodSnoozedUntil, s.lowMoodLastShown, today)
-        if (lowMood) c.settings.lowMoodShown(today)
+        if (lowMood) { c.settings.lowMoodShown(today); c.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.ShelterOfferShown) }
         val appDayIndex = s.installAppDay?.let { today.daysSince(it) } ?: 0
         val prompt = when {
             SafetyRules.who5RecheckDue(baseline?.let { AppDay(it.appDay) }, who5.any { it.kind == Who5Repository.RECHECK }, today) -> Who5Prompt.RECHECK
@@ -140,12 +153,31 @@ class TodayViewModel(private val c: AppContainer, private val skyDemo: Int) : Vi
 
     fun swap() = viewModelScope.launch { c.quests.swap() }
 
-    fun commit(questId: String, slot: String, remindAt: Long?) = viewModelScope.launch { c.quests.commit(questId, slot, remindAt) }
+    /** Returns true when the UI should request notification permission for this reminder (US-005). */
+    fun commit(questId: String, slot: String, remindAt: Long?, schedule: (Long) -> Unit) = viewModelScope.launch {
+        c.quests.commit(questId, slot, remindAt)
+        if (remindAt != null) schedule(remindAt)
+    }
 
     fun done(quest: Quest) = viewModelScope.launch {
         val id = c.quests.complete(quest, source = "app")
+        c.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.QuestCompleted(quest.realm.name, quest.level.name, "app"))
         _moment.value = Moment.Reflect(id, quest)
     }
+
+    fun nudgeAnswered(time: String?) = viewModelScope.launch {
+        c.settings.notificationsAsked()
+        c.settings.setReminderTime(time)
+        _ask.value = if (c.analytics.available && c.settings.current().analyticsConsent == null) Ask.CONSENT else null
+    }
+
+    fun consentAnswered(yes: Boolean) = viewModelScope.launch { c.analytics.setConsent(yes); _ask.value = null }
+
+    fun reviewShown() = viewModelScope.launch { c.settings.reviewPrompted(); _review.value = false }
+
+    fun shared(quest: Quest) = viewModelScope.launch { c.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.QuestShared(quest.realm.name)) }
+
+    fun lowMoodAccepted() = viewModelScope.launch { c.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.ShelterOfferAccepted) }
 
     fun reflect(mood: Int?, note: String?, name: String?) = viewModelScope.launch {
         val m = _moment.value as? Moment.Reflect ?: return@launch
@@ -155,6 +187,15 @@ class TodayViewModel(private val c: AppContainer, private val skyDemo: Int) : Vi
             ?: Insight(id = "", title = WHY_FALLBACK_TITLE, body = m.quest.why, cite = m.quest.evidence.joinToString("; "))
         _moment.value = Moment.Stamped(m.completionId, insight)
         refreshOffers(afterCheckin = true)
+        val st = c.settings.current()
+        _ask.value = when {
+            !st.notificationsAsked -> Ask.NUDGE
+            c.analytics.available && st.analyticsConsent == null -> Ask.CONSENT
+            else -> null
+        }
+        // US-025: once, after the 5th quest, on a good day; never in the Shelter.
+        val count = c.quests.completions().first().size
+        if (count >= 5 && (mood ?: 0) >= 4 && !st.reviewPrompted && c.shelter.active() == null) _review.value = true
     }
 
     fun undo() = viewModelScope.launch {

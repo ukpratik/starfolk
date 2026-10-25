@@ -21,6 +21,10 @@ aboutLibraries = "15.2.0"
 profileinstaller = "1.4.1"
 # Play flavour only (US-025, ADR-011): the In-App Review API
 playReview = "2.0.2"
+# Play flavour only (US-018, ADR-011): share attribution
+installReferrer = "2.2"
+# Reminders (US-005/010, ADR-012)
+work = "2.12.0"
 # Baseline profile + startup macrobenchmark (:baselineprofile, NFR-001); device-only, never in the unit-test run
 benchmark = "1.5.0"
 uiautomator = "2.4.0"
@@ -45,6 +49,9 @@ androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref =
 androidx-room-testing = { module = "androidx.room:room-testing", version.ref = "room" }
 kotlinx-coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+androidx-work-runtime-ktx = { module = "androidx.work:work-runtime-ktx", version.ref = "work" }
+androidx-work-testing = { module = "androidx.work:work-testing", version.ref = "work" }
+play-installreferrer = { module = "com.android.installreferrer:installreferrer", version.ref = "installReferrer" }
 play-review-ktx = { module = "com.google.android.play:review-ktx", version.ref = "playReview" }
 androidx-profileinstaller = { module = "androidx.profileinstaller:profileinstaller", version.ref = "profileinstaller" }
 androidx-benchmark-macro = { module = "androidx.benchmark:benchmark-macro-junit4", version.ref = "benchmark" }

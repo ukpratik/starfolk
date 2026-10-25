@@ -11,6 +11,7 @@ import androidx.room.RoomDatabase
     entities = [
         CompletionEntity::class, DailyPickEntity::class, CommitEntity::class, AppOpenEntity::class,
         ShelterTrackEntity::class, ShelterDayDoneEntity::class, SlipEntity::class,
+        EventQueueEntity::class, MilestoneSentEntity::class,
     ],
     version = 1,
     exportSchema = true,
@@ -18,6 +19,7 @@ import androidx.room.RoomDatabase
 abstract class CoreDatabase : RoomDatabase() {
     abstract fun dao(): CoreDao
     abstract fun shelter(): ShelterDao
+    abstract fun analytics(): AnalyticsDao
 
     companion object {
         const val NAME = "core.db"

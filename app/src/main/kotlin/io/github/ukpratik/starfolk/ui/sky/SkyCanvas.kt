@@ -44,8 +44,9 @@ fun SkyCanvas(
     /** A just-earned star or stamp pops in (US-007): scale 0 → 1 with a spring. */
     fresh: Long? = null,
 ) {
-    val pop = remember(fresh) { Animatable(if (fresh == null) 1f else 0f) }
-    LaunchedEffect(fresh) { if (fresh != null) pop.animateTo(1f, spring(dampingRatio = 0.45f, stiffness = 180f)) }
+    val reduced = io.github.ukpratik.starfolk.ui.theme.LocalReducedMotion.current
+    val pop = remember(fresh) { Animatable(if (fresh == null || reduced) 1f else 0f) }
+    LaunchedEffect(fresh) { if (fresh != null && !reduced) pop.animateTo(1f, spring(dampingRatio = 0.45f, stiffness = 180f)) }
     val density = LocalDensity.current
     val atlas = remember(density.density) { StickerAtlas.forDensity(density.density) }
     val measurer = rememberTextMeasurer()

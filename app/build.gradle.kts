@@ -55,10 +55,15 @@ android {
             dimension = "store"
             signingConfigs.findByName("upload")?.let { signingConfig = it }
             buildConfigField("boolean", "ANALYTICS_AVAILABLE", "true")
+            // LLD §7: the Aptabase app key comes from ~/.gradle/gradle.properties; empty = analytics stays off.
+            buildConfigField("String", "APTABASE_KEY", "\"${providers.gradleProperty("starfolk.aptabase.key").getOrElse("")}\"")
+            buildConfigField("String", "STORE_URL", "\"https://play.google.com/store/apps/details?id=io.github.ukpratik.starfolk\"")
         }
         create("fdroid") {
             dimension = "store"
             buildConfigField("boolean", "ANALYTICS_AVAILABLE", "false")
+            buildConfigField("String", "APTABASE_KEY", "\"\"")
+            buildConfigField("String", "STORE_URL", "\"https://f-droid.org/packages/io.github.ukpratik.starfolk/\"")
         }
     }
 
@@ -132,7 +137,8 @@ aboutLibraries {
         allowedLicenses.addAll("Apache-2.0", "MIT", "BSD-2-Clause", "BSD-3-Clause", "OFL-1.1")
         allowedLicensesMap = mapOf(
             "PCSDKToS" to listOf("com.google.android.play"),
-            "ASDKL" to listOf("com.google.android.gms"),
+            // ADR-013: Install Referrer (play flavour only, US-018) is under the Android SDK License.
+            "ASDKL" to listOf("com.google.android.gms", "com.android.installreferrer"),
         )
     }
 }
@@ -151,6 +157,10 @@ dependencies {
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
     implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.work.runtime.ktx)
+    // ADR-011: proprietary Play code only in the play flavour; fdroid binds no-ops.
+    "playImplementation"(libs.play.review.ktx)
+    "playImplementation"(libs.play.installreferrer)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.profileinstaller)
     baselineProfile(project(":baselineprofile"))
@@ -161,6 +171,7 @@ dependencies {
     testImplementation(libs.androidx.test.core)
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.androidx.room.testing)
+    testImplementation(libs.androidx.work.testing)
     testImplementation(libs.compose.ui.test.junit4)
     debugImplementation(libs.compose.ui.test.manifest)
 }

@@ -88,7 +88,7 @@ fun OnboardingScreen(container: AppContainer, onDone: () -> Unit, onShelter: () 
                         stringResource(R.string.welcome_shelter),
                         style = StarfolkType.Hand.copy(color = Tokens.Ink700),
                         modifier = Modifier.padding(top = 20.dp).heightIn(min = 48.dp).clickable(role = Role.Button) {
-                            scope.launch { container.settings.startFromShelter(seed, today); withContext(Dispatchers.Main) { onShelter() } }
+                            scope.launch { container.settings.startFromShelter(seed, today); container.firstOpen(); withContext(Dispatchers.Main) { onShelter() } }
                         },
                     )
                     Text(stringResource(R.string.welcome_privacy), style = StarfolkType.Body.copy(color = Tokens.Ink500), modifier = Modifier.padding(top = 24.dp))
@@ -136,6 +136,8 @@ fun OnboardingScreen(container: AppContainer, onDone: () -> Unit, onShelter: () 
                             PaperButton(stringResource(label), modifier = Modifier.fillMaxWidth(), onClick = {
                                 scope.launch {
                                     container.settings.completeOnboarding(palette, realm ?: Realm.CONNECT, e, seed, today)
+                                    container.firstOpen()
+                                    container.analytics.track(io.github.ukpratik.starfolk.core.metrics.Event.OnboardingCompleted((realm ?: Realm.CONNECT).name, e.name))
                                     // Navigation must run on the main thread; DataStore resumes us wherever it finished.
                                     withContext(Dispatchers.Main) { onDone() }
                                 }
