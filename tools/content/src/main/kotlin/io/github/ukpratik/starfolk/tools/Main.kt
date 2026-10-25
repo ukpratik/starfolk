@@ -12,7 +12,10 @@ private const val USAGE = """starfolk-content <command>
   validate <dir> [--release] [--date=YYYY-MM-DD]   check content against the rules (LLD §3.2)
   pack <dir> <out>                                 write asset packs + manifest.json
   report <dir>                                     counts by realm × level and by track
-  lock <dir>                                       append new ids to content/ids.lock (ids are never reused)"""
+  lock <dir>                                       append new ids to content/ids.lock (ids are never reused)
+  review-pack <dir> <out.md>                       Shelter + SOS as one document for the expert review (US-026)
+  sign-review <dir> --by="Name, credential" --on=YYYY-MM-DD <ids…|all>   stamp reviewed_by/on on reviewed items
+  verify-helpline <dir> <CC> --on=YYYY-MM-DD         stamp verified_on after checking a country's numbers"""
 
 fun main(args: Array<String>) {
     val code = try {
@@ -62,6 +65,23 @@ fun run(args: List<String>, out: (String) -> Unit, err: (String) -> Unit): Int {
             if (added.isNotEmpty()) lockFile.appendText(added.joinToString("\n", postfix = "\n"))
             out("added ${added.size} id(s) to ids.lock")
             0
+        }
+        "review-pack" -> {
+            val target = args.getOrNull(2)?.let(::File) ?: return 2.also { err(USAGE) }
+            target.writeText(ReviewTools.reviewPack(loader.load()))
+            out("wrote $target"); 0
+        }
+        "sign-review" -> {
+            val by = args.firstOrNull { it.startsWith("--by=") }?.substringAfter('=') ?: return 2.also { err("--by is required") }
+            val on = args.firstOrNull { it.startsWith("--on=") }?.substringAfter('=')?.let(LocalDate::parse) ?: return 2.also { err("--on is required") }
+            val ids = args.drop(2).filterNot { it.startsWith("--") }.toSet()
+            if (ids.isEmpty()) return 2.also { err("list ids, or 'all'") }
+            out("signed ${ReviewTools.sign(dir, ids, by, on)} item(s)"); 0
+        }
+        "verify-helpline" -> {
+            val cc = args.getOrNull(2)?.uppercase() ?: return 2.also { err(USAGE) }
+            val on = args.firstOrNull { it.startsWith("--on=") }?.substringAfter('=')?.let(LocalDate::parse) ?: return 2.also { err("--on is required") }
+            if (ReviewTools.verifyHelpline(dir, cc, on)) { out("$cc verified on $on"); 0 } else { err("no entry for $cc"); 1 }
         }
         else -> 2.also { err(USAGE) }
     }

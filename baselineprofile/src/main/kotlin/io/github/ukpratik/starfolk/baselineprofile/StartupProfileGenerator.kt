@@ -20,6 +20,13 @@ class StartupProfileGenerator {
     @Test fun generate() = rule.collect(packageName = PACKAGE, includeInStartupProfile = true) {
         pressHome()
         startActivityAndWait()
+        // A fresh install starts at onboarding (US-001): walk the 3 taps once, so Today is profiled too.
+        if (device.wait(Until.hasObject(By.text("Begin")), 3_000)) {
+            device.findObject(By.text("Begin"))?.click()
+            device.wait(Until.hasObject(By.text("Next")), TIMEOUT_MS); device.findObject(By.text("Next"))?.click()
+            device.wait(Until.hasObject(By.textContains("People")), TIMEOUT_MS); device.findObject(By.textContains("People"))?.click()
+            device.wait(Until.hasObject(By.textContains("small push")), TIMEOUT_MS); device.findObject(By.textContains("small push"))?.click()
+        }
         device.wait(Until.hasObject(By.text("TODAY")), TIMEOUT_MS)
         for (tab in listOf("SKY", "MEMORIES", "SHELTER", "TODAY")) {
             device.findObject(By.text(tab))?.click()

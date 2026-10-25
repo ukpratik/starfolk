@@ -1,0 +1,32 @@
+# Draft F-Droid metadata (ADR-011, D-028). Submitted to fdroiddata at the release candidate, once the repo is public.
+Categories:
+  - Sports & Health
+License: GPL-3.0-or-later
+AuthorName: Pratik Ukey
+WebSite: https://ukpratik.github.io/starfolk-site/
+SourceCode: https://github.com/ukpratik/starfolk
+IssueTracker: https://github.com/ukpratik/starfolk/issues
+Changelog: https://github.com/ukpratik/starfolk/releases
+
+AutoName: Starfolk
+
+# The written content (content/) is CC BY-NC-ND 4.0 (ADR-015, D-030).
+AntiFeatures:
+  NonFreeAssets:
+    en-US: The quests and Shelter texts are licensed CC BY-NC-ND 4.0 (shareable, not for commercial use or edits).
+
+RepoType: git
+Repo: https://github.com/ukpratik/starfolk.git
+
+Builds:
+  - versionName: 1.0.0
+    versionCode: 10000
+    commit: v1.0.0
+    subdir: app
+    gradle:
+      - fdroid
+
+AutoUpdateMode: Version
+UpdateCheckMode: Tags
+CurrentVersion: 1.0.0
+CurrentVersionCode: 10000

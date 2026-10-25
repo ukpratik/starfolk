@@ -16,6 +16,7 @@ android {
         // versionCode = MAJOR × 10000 + MINOR × 100 + PATCH (ADR-011).
         versionCode = 100
         versionName = "0.1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildFeatures {
@@ -174,4 +175,11 @@ dependencies {
     testImplementation(libs.androidx.work.testing)
     testImplementation(libs.compose.ui.test.junit4)
     debugImplementation(libs.compose.ui.test.manifest)
+
+    // NFR-006: the no-network instrumented test (nightly / before release, needs an emulator or device).
+    androidTestImplementation(libs.androidx.test.runner)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.compose.ui.test.junit4)
 }

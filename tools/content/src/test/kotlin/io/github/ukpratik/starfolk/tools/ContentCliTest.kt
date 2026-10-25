@@ -46,6 +46,21 @@ class ContentCliTest {
         }
     }
 
+    @Test fun `signing and verifying turn release validation green for those items`() {
+        val copy = Files.createTempDirectory("content").toFile()
+        content.parentFile.copyRecursively(copy)
+        val v1 = copy.resolve("v1")
+        assertThat(run("sign-review", v1.path, "--by=Dr Test, PsyD", "--on=2026-10-20", "all").first).isEqualTo(0)
+        for (cc in listOf("US", "CA", "GB", "IE", "AU", "NZ", "IN", "PH", "NG", "ZA", "SG", "KE")) run("verify-helpline", v1.path, cc, "--on=2026-10-20")
+        val (_, _, err) = run("validate", v1.path, "--release", "--date=2026-10-25")
+        // Only the two countries without verified lines remain (NG, KE): a content task, not a review one.
+        assertThat(err.filter { "reviewed_by" in it || "not verified" in it }).isEmpty()
+        assertThat(err.all { "helpline:NG" in it || "helpline:KE" in it }).isTrue()
+        val pack = Files.createTempFile("pack", ".md").toFile()
+        assertThat(run("review-pack", v1.path, pack.path).first).isEqualTo(0)
+        assertThat(pack.readText()).contains("s-breakup-21")
+    }
+
     @Test fun `bad usage exits 2`() {
         assertThat(run().first).isEqualTo(2)
         assertThat(run("explode", content.path).first).isEqualTo(2)
