@@ -8,12 +8,16 @@ import androidx.room.RoomDatabase
 
 /** core.db: backed up (D-017). TRUNCATE journal, so Auto Backup copies one consistent file with no -wal side file (D-032). */
 @Database(
-    entities = [CompletionEntity::class, DailyPickEntity::class, CommitEntity::class, AppOpenEntity::class],
+    entities = [
+        CompletionEntity::class, DailyPickEntity::class, CommitEntity::class, AppOpenEntity::class,
+        ShelterTrackEntity::class, ShelterDayDoneEntity::class, SlipEntity::class,
+    ],
     version = 1,
     exportSchema = true,
 )
 abstract class CoreDatabase : RoomDatabase() {
     abstract fun dao(): CoreDao
+    abstract fun shelter(): ShelterDao
 
     companion object {
         const val NAME = "core.db"

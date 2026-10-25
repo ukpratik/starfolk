@@ -23,7 +23,11 @@ import io.github.ukpratik.starfolk.ui.theme.Tokens
 import androidx.compose.foundation.background
 import androidx.compose.runtime.remember
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import io.github.ukpratik.starfolk.feature.shelter.LettersScreen
+import io.github.ukpratik.starfolk.feature.shelter.linen
 import io.github.ukpratik.starfolk.feature.shelter.ShelterScreen
+import io.github.ukpratik.starfolk.feature.who5.Who5Screen
+import io.github.ukpratik.starfolk.core.content.TrackId
 import io.github.ukpratik.starfolk.feature.sky.SkyScreen
 import io.github.ukpratik.starfolk.feature.sos.SosScreen
 import io.github.ukpratik.starfolk.feature.today.TodayScreen
@@ -38,7 +42,9 @@ fun StarfolkNavHost(container: AppContainer, skyDemo: Int) {
     val openSos = { nav.navigate(Routes.SOS) }
     // Light status-bar icons over night paper (Today, Sky); dark icons over day paper and linen.
     val view = LocalView.current
-    val nightTop = route == Routes.TODAY || route == Routes.SKY
+    // Dark linen (Shelter, SOS, letters) in system dark mode also needs light icons.
+    val darkLinen = linen().dark && (route == Routes.SHELTER || route == Routes.LETTERS || route == Routes.SOS)
+    val nightTop = route == Routes.TODAY || route == Routes.SKY || darkLinen
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
@@ -61,15 +67,22 @@ fun StarfolkNavHost(container: AppContainer, skyDemo: Int) {
                     onSos = openSos,
                 )
             }
-            composable(Routes.TODAY) { TodayScreen(container, skyDemo, onSos = openSos) }
+            composable(Routes.TODAY) { TodayScreen(container, skyDemo, onSos = openSos, onShelter = { goTab(Routes.SHELTER) }, onWho5 = { nav.navigate(Routes.WHO5) }) }
             composable(Routes.SKY) { SkyScreen(container, skyDemo, onSos = openSos, onOpenMemories = { goTab(Routes.MEMORIES) }) }
             composable(Routes.MEMORIES) { MemoriesScreen(container, onSos = openSos, onConnectAgain = { goTab(Routes.TODAY) }) }
-            composable(Routes.SHELTER) { ShelterScreen(container, onSos = openSos) }
+            composable(Routes.SHELTER) {
+                ShelterScreen(container, onSos = openSos, onLetters = { nav.navigate(Routes.LETTERS) }, onBackToQuests = { goTab(Routes.TODAY) })
+            }
+            composable(Routes.LETTERS) { LettersScreen(container, TrackId.BREAKUP, onBack = { nav.popBackStack() }, onSos = openSos) }
+            composable(Routes.WHO5) {
+                Who5Screen(container, onClose = { nav.popBackStack() }, onSos = openSos, onShelter = { nav.popBackStack(); goTab(Routes.SHELTER) })
+            }
             composable(Routes.SOS) { SosScreen(container, onClose = { nav.popBackStack() }) }
         }
         val tab = Tab.entries.firstOrNull { it.route == route }
         if (tab != null) {
-            NotebookTabs(tab, onSelect = { goTab(it.route) }, Modifier.align(Alignment.BottomCenter))
+            val backdrop = when (tab) { Tab.SHELTER -> linen().bg; Tab.SKY -> Tokens.Night900; else -> Tokens.Paper100 }
+            NotebookTabs(tab, onSelect = { goTab(it.route) }, backdrop = backdrop, modifier = Modifier.align(Alignment.BottomCenter))
         }
     }
 }

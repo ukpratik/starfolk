@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- SPDX-License-Identifier: GPL-3.0-or-later -->
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Starfolk</string>
     <string name="sos_note">Need help now? →</string>
     <string name="sos_note_a11y">Need help now?</string>
@@ -72,4 +72,90 @@
     <string name="memories_title">Memories</string>
     <string name="memory_again">Do something with them again →</string>
     <string name="memory_close">Close</string>
+    <string name="disclaimer">Starfolk is for wellbeing and self-help. It is not a medical device and does not diagnose, treat, cure, or prevent any medical condition. If you\'re struggling, please talk to a professional.</string>
+    <string name="disclaimer_short">Starfolk is for wellbeing and self-help. It isn\'t a medical device or a substitute for professional care.</string>
+    <string name="shelter_intro_body">This is a quieter corner of Starfolk. One small step a day, at your pace. Miss a day and nothing is lost. Slip and you can start again, no shame.</string>
+    <string name="shelter_continue">Come in</string>
+    <plurals name="shelter_walked">
+        <item quantity="one">%1$d day walked so far · paused</item>
+        <item quantity="other">%1$d days walked so far · paused</item>
+    </plurals>
+    <plurals name="shelter_walked_done">
+        <item quantity="one">Walked all the way · %1$d day</item>
+        <item quantity="other">Walked all the way · %1$d days</item>
+    </plurals>
+    <string name="shelter_switch_title">Pause %1$s and start %2$s?</string>
+    <plurals name="shelter_switch_body">
+        <item quantity="one">Your %1$d day walked stays saved. You can come back any time.</item>
+        <item quantity="other">Your %1$d days walked stay saved. You can come back any time.</item>
+    </plurals>
+    <string name="shelter_switch_yes">Pause and switch</string>
+    <string name="shelter_done_today" tools:ignore="PluralsCandidate">Done for today. Day %1$d opens tomorrow.</string>
+    <string name="shelter_missing_day">Take today gently. This day is still being written.</string>
+    <plurals name="shelter_days_walked">
+        <item quantity="one">%1$d day walked</item>
+        <item quantity="other">%1$d days walked</item>
+    </plurals>
+    <string name="shelter_step">ONE SMALL STEP</string>
+    <string name="shelter_did_this">I did this</string>
+    <string name="shelter_done_mark">done today</string>
+    <string name="shelter_write">IF YOU WANT TO WRITE</string>
+    <string name="shelter_private">Only on this phone. Never shared, never read by anyone, including us.</string>
+    <string name="shelter_slipped">I slipped today</string>
+    <string name="shelter_switch">Going through something else? Switch track</string>
+    <string name="slip_title">Day 1 again is still progress.</string>
+    <plurals name="slip_body">
+        <item quantity="one">Slips are part of every recovery, not proof you\'re failing. Your %1$d day walked stays with you either way.</item>
+        <item quantity="other">Slips are part of every recovery, not proof you\'re failing. Your %1$d days walked stay with you either way.</item>
+    </plurals>
+    <string name="slip_keep">Keep my place</string>
+    <string name="slip_restart">Start the track again</string>
+    <string name="nc_off">Want to count the days you choose not to reach out?</string>
+    <string name="nc_start">Start a no-contact counter</string>
+    <string name="nc_days">days of choosing yourself</string>
+    <string name="nc_reached">I reached out</string>
+    <string name="nc_stop">Turn off</string>
+    <string name="nc_reached_title">That happens.</string>
+    <string name="nc_reached_body">Reaching out doesn\'t undo anything you\'ve done. The counter starts again from today; your days walked stay.</string>
+    <string name="letters_title">UNSENT LETTERS</string>
+    <string name="letters_entry">Things you\'ll never send →</string>
+    <string name="letters_title_full">Unsent letters</string>
+    <string name="letters_explain">Say everything you can\'t say to them. These letters can\'t be sent from here, ever.</string>
+    <string name="letters_new">Write a letter</string>
+    <string name="letters_empty">No letters yet.</string>
+    <string name="letters_write_title">Dear…</string>
+    <string name="letters_private">Sealed in this phone. Never sent, never read by anyone, including us.</string>
+    <string name="letters_keep">Keep it</string>
+    <string name="letters_release">Release this letter</string>
+    <string name="letters_release_title">Let it go?</string>
+    <string name="letters_release_body">Releasing deletes this letter for good. Some people find that part helps.</string>
+    <string name="letters_release_yes">Release</string>
+    <string name="save">Save</string>
+    <string name="grad_title">You walked the whole %1$s track.</string>
+    <plurals name="grad_body">
+        <item quantity="one">%1$d day walked. Whatever today feels like, you kept showing up for yourself. That counts.</item>
+        <item quantity="other">%1$d days walked. Whatever today feels like, you kept showing up for yourself. That counts.</item>
+    </plurals>
+    <string name="grad_back">Back to everyday quests</string>
+    <string name="today_shelter_waiting">Today\'s small step is waiting for you →</string>
+    <string name="today_shelter_done">Done for today ✓ The quest below is optional.</string>
+    <string name="lowmood_title">Seems like a heavy stretch. Want a quieter space for a while?</string>
+    <string name="lowmood_shelter">Open the Shelter</string>
+    <string name="not_now">Not now</string>
+    <string name="who5_offer">How have the last two weeks been? A 1-minute check.</string>
+    <string name="who5_recheck_offer">Two weeks on: see how far you\'ve come.</string>
+    <string name="who5_take">Take it</string>
+    <string name="who5_title">A 1-minute check of how you\'ve been</string>
+    <string name="who5_intro">Five short statements about the last two weeks. It\'s optional, it isn\'t a test, and your answers stay on this phone. In two weeks we\'ll ask again so you can see how far you\'ve come.</string>
+    <string name="who5_start">Start</string>
+    <string name="who5_baseline_done">That\'s your starting point. We\'ll offer the same check again in two weeks.</string>
+    <string name="who5_delta">%1$s points since your first check</string>
+    <string name="who5_neutral">This is a wellbeing check, not a diagnosis. It moves up and down with life.</string>
+    <string name="who5_low">The last two weeks sound really hard. It may help to talk to a professional, or to someone you trust.</string>
+    <string name="sos_no_lines">We don\'t have a verified crisis line for your country yet. findahelpline.com lists lines in 170+ countries.</string>
+    <string name="sos_findahelpline">Find a helpline: findahelpline.com (needs internet)</string>
+    <string name="sos_country">Showing lines for: %1$s</string>
+    <string name="sos_change_country">Not right? Change country</string>
+    <string name="sos_pick_country">Your country</string>
+    <string name="sos_auto">Automatic (from your SIM)</string>
 </resources>

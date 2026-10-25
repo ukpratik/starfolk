@@ -32,9 +32,11 @@ import io.github.ukpratik.starfolk.ui.theme.Tokens
 
 /** Paper notebook tabs along the bottom edge (D-024): the selected tab is taller and joined to the page. */
 @Composable
-fun NotebookTabs(current: Tab, onSelect: (Tab) -> Unit, modifier: Modifier = Modifier) {
+fun NotebookTabs(current: Tab, onSelect: (Tab) -> Unit, backdrop: Color, modifier: Modifier = Modifier) {
+    // The page's own paper sits behind the tabs, so scrolled content never shows through them.
     Row(
-        modifier.fillMaxWidth().navigationBarsPadding().padding(start = 12.dp, end = 12.dp, bottom = 10.dp).height(56.dp).selectableGroup(),
+        modifier.fillMaxWidth().background(androidx.compose.ui.graphics.Brush.verticalGradient(0f to backdrop.copy(alpha = 0f), 0.18f to backdrop, 1f to backdrop))
+            .navigationBarsPadding().padding(top = 14.dp).padding(start = 12.dp, end = 12.dp, bottom = 10.dp).height(56.dp).selectableGroup(),
         horizontalArrangement = Arrangement.spacedBy(6.dp),
         verticalAlignment = Alignment.Bottom,
     ) {
@@ -71,6 +73,8 @@ object Routes {
     const val SKY = "sky"
     const val MEMORIES = "memories"
     const val SHELTER = "shelter"
+    const val LETTERS = "shelter/letters"
+    const val WHO5 = "who5"
     /** The SOS flow is a full-screen modal with no tabs (S15). */
     const val SOS = "sos"
 }

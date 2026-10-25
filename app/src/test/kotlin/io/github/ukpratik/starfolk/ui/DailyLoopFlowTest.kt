@@ -11,6 +11,7 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import io.github.ukpratik.starfolk.MainActivity
 import org.junit.Rule
 import org.junit.Test
@@ -41,6 +42,21 @@ class DailyLoopFlowTest {
         rule.onNodeWithContentDescription("Need help now?").performClick()
         waitFor("Talk to a crisis line")
         rule.onNodeWithText("Calm my body", substring = true).assertIsDisplayed()
+    }
+
+    @Test fun `the Shelter fast path, a step done, and no racing ahead`() {
+        waitFor("Going through something")
+        rule.onNodeWithText("Going through something", substring = true).performClick()
+        waitFor("Come in")
+        rule.onNodeWithText("Come in").performClick()
+        waitFor("BREAKUP")
+        rule.onNodeWithText("BREAKUP", substring = true).performClick()
+        waitFor("BREAKUP · DAY 1")
+        rule.onNodeWithText("I did this").performScrollTo().performClick()
+        waitFor("done today")
+        waitFor("Day 2 opens tomorrow")
+        rule.onNodeWithText("I slipped today").performScrollTo().performClick()
+        waitFor("Day 1 again is still progress.")
     }
 
     @Test fun `three taps reach the first ticket, which can be swapped twice`() {

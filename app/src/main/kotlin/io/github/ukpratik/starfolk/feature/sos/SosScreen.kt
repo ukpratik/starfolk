@@ -18,6 +18,13 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
+import kotlinx.coroutines.launch
+import io.github.ukpratik.starfolk.help.HelplineResult
+import io.github.ukpratik.starfolk.help.HelplineResolver
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
@@ -26,7 +33,6 @@ import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.net.toUri
 import androidx.compose.ui.res.stringResource
@@ -51,6 +57,7 @@ fun SosScreen(container: AppContainer, onClose: () -> Unit) {
     var view by remember { mutableStateOf(SosView.HUB) }
     var step by remember { mutableIntStateOf(0) }
     val context = LocalContext.current
+    val scope = rememberCoroutineScope()
     Column(
         Modifier.fillMaxSize().background(Tokens.Linen).verticalScroll(rememberScrollState()).statusBarsPadding().navigationBarsPadding().padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp),
@@ -89,14 +96,19 @@ fun SosScreen(container: AppContainer, onClose: () -> Unit) {
                 Text("Starfolk doesn't see who you message or what you send.", style = StarfolkType.Body.copy(color = Tokens.PencilSoft))
             }
             SosView.LINES -> {
-                val country = LocalConfiguration.current.locales[0].country.uppercase(Locale.ROOT)
-                val entry = content.helplines.firstOrNull { it.country == country }
+                val override by container.settings.settings.collectAsStateWithLifecycle(initialValue = null)
+                var choosing by remember { mutableStateOf(false) }
+                val country = HelplineResolver.countryOf(context, override?.helplineCountry)
+                val result = HelplineResolver.resolve(country, content.helplines)
+                val entry = (result as? HelplineResult.Found)?.entry
                 Text("Free, confidential, in your country.", style = StarfolkType.ShelterTitle.copy(color = Tokens.Pencil))
                 if (entry != null && entry.lines.isNotEmpty()) {
                     entry.lines.forEach { line ->
                         line.phone?.let { phone -> Option("${line.name} · call $phone (${line.hours})") { dial(context, phone) } }
                         line.sms?.let { sms -> Option("${line.name} · text $sms") { context.startActivity(Intent(Intent.ACTION_SENDTO, "smsto:${sms.replace(" ", "")}".toUri())) } }
                     }
+                } else {
+                    Text(stringResource(R.string.sos_no_lines), style = StarfolkType.Body.copy(color = Tokens.Pencil))
                 }
                 val emergency = entry?.emergency
                 Text(
@@ -104,11 +116,35 @@ fun SosScreen(container: AppContainer, onClose: () -> Unit) {
                     style = StarfolkType.Body.copy(color = Tokens.Pencil),
                 )
                 if (emergency != null) Option("Call $emergency") { dial(context, emergency) }
-                Text("More helplines worldwide: findahelpline.com (needs internet).", style = StarfolkType.Body.copy(color = Tokens.PencilSoft))
+                Option(stringResource(R.string.sos_findahelpline)) {
+                    runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, "https://findahelpline.com".toUri())) }
+                }
+                Text(stringResource(R.string.sos_country, countryName(country)), style = StarfolkType.Body.copy(color = Tokens.PencilSoft))
+                Text(
+                    stringResource(R.string.sos_change_country), style = StarfolkType.Hand.copy(color = Tokens.Pencil),
+                    modifier = Modifier.heightIn(min = 48.dp).clickable(role = Role.Button) { choosing = true }.padding(vertical = 10.dp),
+                )
+                if (choosing) AlertDialog(
+                    onDismissRequest = { choosing = false },
+                    title = { Text(stringResource(R.string.sos_pick_country)) },
+                    text = {
+                        Column(Modifier.verticalScroll(rememberScrollState())) {
+                            Text(stringResource(R.string.sos_auto), modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).clickable { scope.launch { container.settings.setHelplineCountry(null) }; choosing = false }.padding(12.dp))
+                            for (c in content.helplines.sortedBy { countryName(it.country) }) {
+                                Text(countryName(c.country), modifier = Modifier.fillMaxWidth().heightIn(min = 48.dp).clickable { scope.launch { container.settings.setHelplineCountry(c.country) }; choosing = false }.padding(12.dp))
+                            }
+                        }
+                    },
+                    confirmButton = { TextButton({ choosing = false }) { Text(stringResource(R.string.cancel)) } },
+                    containerColor = Tokens.LinenCard,
+                )
             }
         }
     }
 }
+
+private fun countryName(code: String?): String =
+    code?.let { Locale.Builder().setRegion(it).build().getDisplayCountry(Locale.ENGLISH).ifBlank { it } } ?: "unknown"
 
 /** ACTION_DIAL only: opens the dialer with the number filled in, needs no permission (US-015). */
 private fun dial(context: android.content.Context, number: String) =
@@ -127,9 +163,10 @@ private fun Option(text: String, onClick: () -> Unit) {
 /** The Shelter's plain "Need help now?" pill (design-system §5): no sticky-note playfulness in the quiet register. */
 @Composable
 fun ShelterSosPill(onClick: () -> Unit, modifier: Modifier = Modifier) {
+    val l = io.github.ukpratik.starfolk.feature.shelter.linen()
     Text(
         stringResource(R.string.sos_note_a11y),
-        style = StarfolkType.Body.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.Bold, color = Tokens.Paper50),
-        modifier = modifier.heightIn(min = 48.dp).background(Tokens.Ink900, RoundedCornerShape(6.dp)).clickable(role = Role.Button, onClick = onClick).padding(horizontal = 14.dp, vertical = 13.dp),
+        style = StarfolkType.Body.copy(fontWeight = androidx.compose.ui.text.font.FontWeight.Bold, color = l.bg),
+        modifier = modifier.heightIn(min = 48.dp).background(l.pencil, RoundedCornerShape(6.dp)).clickable(role = Role.Button, onClick = onClick).padding(horizontal = 14.dp, vertical = 13.dp),
     )
 }

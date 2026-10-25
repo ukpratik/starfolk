@@ -18,6 +18,201 @@
         "Sonnentag & Fritz 2007 (psychological detachment)",
         "Maslach & Leiter 2016"
       ]
+    },
+    {
+      "id": "s-work-02",
+      "day": 2,
+      "title": "Today, plan nothing. Just get through it.",
+      "insight": "When you're burned out, even making a plan to recover can feel like another job. So today, lower the bar on purpose. Do the minimum work asks of you, and nothing extra. Exhaustion is a signal, not a character flaw, and the first step is to stop adding weight.",
+      "step": {
+        "title": "Pick one task you can drop, delay or do “good enough” today.",
+        "detail": "Notice that nothing falls apart when one thing waits."
+      },
+      "journalPrompt": "What would “good enough” look like for today?",
+      "evidence": [
+        "Maslach & Leiter 2016",
+        "Demerouti et al. 2001 (job demands-resources)"
+      ]
+    },
+    {
+      "id": "s-work-03",
+      "day": 3,
+      "title": "Give your workday a clear ending.",
+      "insight": "When work has no clear end, your mind keeps chewing on it all evening. A short shutdown ritual signals that the day is done. Research on recovery finds that mentally switching off from work is linked to better mood and energy the next day.",
+      "step": {
+        "title": "At the end of today, write tomorrow's top three tasks, close the laptop and say “done for today.”",
+        "detail": "Writing the list down helps your mind let go of it."
+      },
+      "journalPrompt": "What does your mind keep carrying home from work?",
+      "evidence": [
+        "Sonnentag & Fritz 2007 (psychological detachment)",
+        "Brosschot et al. 2006 (perseverative cognition)"
+      ]
+    },
+    {
+      "id": "s-work-04",
+      "day": 4,
+      "title": "Find twenty minutes of real rest.",
+      "insight": "Rest isn't the same as scrolling. Relaxation, one of the four recovery experiences researchers study, means doing something that lowers your stress: a walk outside, music, a bath, slow breathing. A walk in nature has been shown to quiet the repetitive negative thinking that keeps stress going.",
+      "step": {
+        "title": "Take a 20-minute walk somewhere green, without your phone if you can.",
+        "detail": "No goal, no pace. Just walk and look around."
+      },
+      "journalPrompt": "What actually helps you relax, as opposed to just passing time?",
+      "evidence": [
+        "Sonnentag & Fritz 2007 (recovery experiences)",
+        "Bratman et al. 2015 (nature and rumination)"
+      ]
+    },
+    {
+      "id": "s-work-05",
+      "day": 5,
+      "title": "Do something you're getting better at, that isn't work.",
+      "insight": "Mastery, another recovery experience, means a gentle challenge outside work: learning a few chords, a new recipe, a language app, a puzzle. It builds a sense of competence that work may be draining away. Keep it small and low-stakes, so it gives energy instead of taking it.",
+      "step": {
+        "title": "Spend 15 minutes on something you're learning that has nothing to do with your job.",
+        "detail": "Pick something with no deadline and no one to impress."
+      },
+      "journalPrompt": "When did you last feel good at something outside of work?",
+      "evidence": [
+        "Sonnentag & Fritz 2007 (recovery experiences)",
+        "Bennett et al. 2018 (recovery meta-analysis)"
+      ]
+    },
+    {
+      "id": "s-work-06",
+      "day": 6,
+      "title": "Claim one hour that's fully yours.",
+      "insight": "Control, the fourth recovery experience, means deciding for yourself how you spend your free time. When work controls so much of the day, choosing one hour on your own terms is restoring. If you notice the exhaustion isn't easing at all, that matters too. If the heaviness won't lift for two weeks, or you have thoughts of not wanting to be here, please talk to a professional or tap Need help now.",
+      "step": {
+        "title": "Block one hour this week in your calendar, and decide what to do with it only when it comes.",
+        "detail": "Protect it like you'd protect a meeting."
+      },
+      "journalPrompt": "If you had one free hour with no obligations, what would you do?",
+      "evidence": [
+        "Sonnentag & Fritz 2007 (recovery experiences)",
+        "Maslach & Leiter 2016"
+      ]
+    },
+    {
+      "id": "s-work-07",
+      "day": 7,
+      "title": "Make a plan for the Monday dread.",
+      "insight": "Dread often peaks the evening before the work week. An if-then plan, deciding in advance what you'll do when a moment comes, makes it easier to act when you're low. It turns a vague worry into one small, concrete step.",
+      "step": {
+        "title": "Write one if-then plan: “If I start dreading Monday on Sunday evening, then I will ___.”",
+        "detail": "Try something calming and specific, like a call, a walk or a show you love."
+      },
+      "journalPrompt": "What part of Monday do you dread most?",
+      "evidence": [
+        "Gollwitzer 1999 (implementation intentions)",
+        "Sonnentag & Fritz 2007 (psychological detachment)"
+      ]
+    },
+    {
+      "id": "s-work-08",
+      "day": 8,
+      "title": "Try a boundary script you can actually say.",
+      "insight": "Saying no at work can feel risky, so many people say yes and quietly sink. A clear, polite script helps. Name the situation, say what you can do, and offer a choice. Being direct and respectful tends to work better than either overcommitting or snapping.",
+      "step": {
+        "title": "Practice this line: “I can get X done by Thursday, or Y done today. Which matters more?”",
+        "detail": "Change the details to fit your work. Saying it out loud once makes it easier later."
+      },
+      "journalPrompt": "Where at work do you most need a boundary?",
+      "evidence": [
+        "Linehan 1993 (DEAR MAN)",
+        "Speed, Goldstein & Goldfried 2018 (assertiveness)"
+      ]
+    },
+    {
+      "id": "s-work-09",
+      "day": 9,
+      "title": "Not every message needs an instant reply.",
+      "insight": "Feeling pressure to respond to work messages right away is common, and it's linked to worse sleep and more burnout. Often the expectation is louder in our heads than in our team's. A short note about when you'll reply can lift a lot of that weight.",
+      "step": {
+        "title": "Set a status or auto-reply for after hours: “Off for the day. I'll reply tomorrow morning.”",
+        "detail": "If that isn't possible, try turning off notifications for one evening."
+      },
+      "journalPrompt": "What do you fear will happen if you don't reply right away?",
+      "evidence": [
+        "Barber & Santuzzi 2015 (workplace telepressure)",
+        "Sonnentag & Fritz 2007 (psychological detachment)"
+      ]
+    },
+    {
+      "id": "s-work-10",
+      "day": 10,
+      "title": "Catch the harshest thought and look at it again.",
+      "insight": "Burnout often comes with harsh thoughts, like “I'm useless” or “I'll never get on top of this.” Thoughts feel like facts, but they're often exaggerated by exhaustion. Looking at a thought again, asking what a fair friend would say, can take some of its sting away.",
+      "step": {
+        "title": "Write down one harsh thought about work, then write a fairer, kinder version below it.",
+        "detail": "For example: “I'm failing” becomes “I'm stretched thin and doing what I can.”"
+      },
+      "journalPrompt": "Which thought about work weighs on you most?",
+      "evidence": [
+        "Beck et al. 1979 (cognitive therapy)",
+        "Gross 2002 (reappraisal)"
+      ]
+    },
+    {
+      "id": "s-work-11",
+      "day": 11,
+      "title": "Check what matters to you at work.",
+      "insight": "Burnout isn't only about long hours. It also comes from a mismatch between what you value and what your job asks of you. Naming your values, like learning, fairness, care or independence, can show you which parts of work drain you and which still feel right.",
+      "step": {
+        "title": "Write down three things you value in work, and rate 1–5 how much your job lets you live them.",
+        "detail": "Low scores aren't failures. They point at what might need to change."
+      },
+      "journalPrompt": "When did work last feel meaningful to you?",
+      "evidence": [
+        "Hayes et al. 2006 (ACT)",
+        "Maslach & Leiter 2016"
+      ]
+    },
+    {
+      "id": "s-work-12",
+      "day": 12,
+      "title": "Change one small thing about how you work.",
+      "insight": "You can't always change your job, but you can often reshape parts of it: which tasks you lean into, who you work with, or how you think about what you do. Researchers call this job crafting, and it's linked to more engagement and less burnout.",
+      "step": {
+        "title": "Pick one small change you could try this week: a task to swap, a person to work with more, a meeting to drop.",
+        "detail": "Small and doable beats big and stuck."
+      },
+      "journalPrompt": "Which part of your job gives you the most energy?",
+      "evidence": [
+        "Wrzesniewski & Dutton 2001 (job crafting)",
+        "Tims, Bakker & Derks 2012"
+      ]
+    },
+    {
+      "id": "s-work-13",
+      "day": 13,
+      "title": "Change it, ask for it, or start planning to leave.",
+      "insight": "When a job keeps draining you, there are three paths: change what you can, ask for what you need, or begin planning an exit. All three are valid. Sorting your frustrations into these buckets makes the next step clearer and less overwhelming. Talking it through with someone you trust helps too.",
+      "step": {
+        "title": "Make three columns: “I can change”, “I can ask for”, “I may need to leave”. Put one frustration in each.",
+        "detail": "You don't have to act on any of it yet. Just see where things fall."
+      },
+      "journalPrompt": "If a friend had your job, what would you hope they'd do?",
+      "evidence": [
+        "Maslach & Leiter 2016",
+        "Cohen & Wills 1985 (social support)"
+      ]
+    },
+    {
+      "id": "s-work-14",
+      "day": 14,
+      "title": "Build a week you could keep up.",
+      "insight": "Recovering from a work storm isn't about one great weekend. It's built from small, regular habits: a clear end to the day, real breaks, some movement, time with people. Short breaks during the day also help with energy. Two weeks in, think about which pieces you want to keep.",
+      "step": {
+        "title": "Write your sustainable week: one daily stop time, one break habit and one thing just for you.",
+        "detail": "Pick only what you could keep up on a busy week."
+      },
+      "journalPrompt": "Looking back at these two weeks, what helped most?",
+      "evidence": [
+        "Bennett et al. 2018 (recovery meta-analysis)",
+        "Albulescu et al. 2022 (micro-breaks)"
+      ]
     }
   ]
 }

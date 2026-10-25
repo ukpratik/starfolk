@@ -60,10 +60,11 @@ private val STAMP_DATE = DateTimeFormatter.ofPattern("d · MMM · yy", Locale.EN
 
 /** Today (S05, US-003…009): the sky strip, today's Spark and today's ticket, with the whole Done moment. */
 @Composable
-fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit) {
+fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShelter: () -> Unit, onWho5: () -> Unit) {
     val vm: TodayViewModel = viewModel { TodayViewModel(container, skyDemo) }
     val state by vm.state.collectAsStateWithLifecycle()
     val moment by vm.moment.collectAsStateWithLifecycle()
+    val offers by vm.offers.collectAsStateWithLifecycle()
     var choosingTime by remember { mutableStateOf(false) }
     val snackbar = remember { SnackbarHostState() }
     val undoLabel = stringResource(R.string.undo)
@@ -107,6 +108,9 @@ fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit) {
             }
             if (s != null) {
                 SparkLine(s.spark)
+                offers.shelter?.let { ShelterTodayCard(it, onShelter, Modifier.padding(start = 16.dp, end = 16.dp, bottom = 14.dp)) }
+                if (offers.lowMood) LowMoodCard(onShelter, onSos, vm::snoozeLowMood, Modifier.padding(start = 16.dp, end = 16.dp, bottom = 14.dp))
+                offers.who5?.let { Who5Card(it, onTake = { vm.dismissWho5(); onWho5() }, onDismiss = vm::dismissWho5, modifier = Modifier.padding(start = 16.dp, end = 16.dp, bottom = 14.dp)) }
                 val done = s.done
                 if (done == null) {
                     Box(Modifier.fillMaxWidth().padding(horizontal = 16.dp)) {

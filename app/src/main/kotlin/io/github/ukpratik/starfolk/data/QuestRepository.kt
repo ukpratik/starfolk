@@ -31,6 +31,8 @@ class QuestRepository(
     private val content: ContentSource,
     private val settings: SettingsRepository,
     private val appDayClock: AppDayClock,
+    /** D-031: while a Shelter track is active, the daily ticket is a Care-leaning Spark. */
+    private val shelterActive: suspend () -> Boolean = { false },
     private val nowMillis: () -> Long,
 ) {
     private val mutex = Mutex()
@@ -40,6 +42,9 @@ class QuestRepository(
     fun checkins() = personal.checkins()
     fun pickFlow(day: AppDay): Flow<DailyPickEntity?> = core.dailyPickFlow(day.epochDay)
     fun commitFlow(day: AppDay, questId: String): Flow<CommitEntity?> = core.commitFlow(day.epochDay, questId)
+
+    /** The last three non-null moods, newest first (US-016). */
+    suspend fun recentMoods(): List<Int> = personal.recentMoods()
 
     suspend fun recordOpen() = core.recordOpen(AppOpenEntity(appDayClock.today().epochDay))
 
@@ -100,7 +105,7 @@ class QuestRepository(
             PickInput(
                 appDay = today, seed = s.skySeed, quests = content.bundle().quests, recent = shown,
                 preferredRealm = s.preferredRealm, energy = s.energy, lastMood = personal.recentMoods().firstOrNull(),
-                lastCompletion = last, excludeToday = exclude,
+                lastCompletion = last, excludeToday = exclude, shelterActive = shelterActive(),
             ),
         )
     }

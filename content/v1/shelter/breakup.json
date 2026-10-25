@@ -62,6 +62,262 @@
         "Fisher et al. 2010 (rejection and craving)",
         "stimulus control"
       ]
+    },
+    {
+      "id": "s-breakup-05",
+      "day": 5,
+      "title": "Tonight, protect your sleep like it matters, because it does.",
+      "insight": "After a breakup, nights are often the hardest part: the house is quiet and the mind gets loud. Poor sleep makes everything feel heavier the next day, so a little care here pays back fast. You don't need a perfect routine. A steady wake-up time, a screen-free last half hour and a dim room give your body a better chance.",
+      "step": {
+        "title": "Put your phone across the room 30 minutes before bed tonight.",
+        "detail": "If your mind races, jot the thought on paper and tell it you'll pick it up tomorrow."
+      },
+      "journalPrompt": "What tends to keep you awake right now?",
+      "evidence": [
+        "Irish et al. 2015 (sleep hygiene)",
+        "Sbarra & Emery 2005 (emotional recovery after breakups)"
+      ]
+    },
+    {
+      "id": "s-breakup-06",
+      "day": 6,
+      "title": "Let people in, even if they say the wrong thing.",
+      "insight": "Friends often don't know what to say after a breakup, so some go quiet and some offer clumsy advice. Still, people who feel supported recover from hard times better, and the support doesn't need to be wise to help. Being near someone who cares about you counts. A walk, a meal or a silly show together is enough.",
+      "step": {
+        "title": "Say yes to one plan this week, or make one: “Want to grab food on Thursday?”",
+        "detail": "It can be short. Just being around someone matters."
+      },
+      "journalPrompt": "Who has shown up for you so far, even in a small way?",
+      "evidence": [
+        "Cohen & Wills 1985 (social support)",
+        "Holt-Lunstad et al. 2010"
+      ]
+    },
+    {
+      "id": "s-breakup-07",
+      "day": 7,
+      "title": "Grief comes in waves. A bad day isn't going backwards.",
+      "insight": "You might feel almost okay one morning and flattened by a song that afternoon. That's how grief works, in waves rather than a straight line. Most people do recover from breakups, often faster than they expect. Still, it helps to know where the edge is. If the heaviness won't lift for two weeks, or you have thoughts of not wanting to be here, please talk to a professional or tap Need help now.",
+      "step": {
+        "title": "Write down two names you could text on a rough night, and save them where you can find them.",
+        "detail": "Add Need help now to that list too. Having a plan ready makes it easier to use."
+      },
+      "journalPrompt": "What does a wave feel like for you, and what helps it pass?",
+      "evidence": [
+        "Sbarra & Emery 2005 (emotional recovery after breakups)",
+        "Bonanno 2004 (resilience)",
+        "Stanley & Brown 2012 (safety planning)"
+      ]
+    },
+    {
+      "id": "s-breakup-08",
+      "day": 8,
+      "title": "If you reached out to them, it's day one again. No shame.",
+      "insight": "Cravings for an ex are real and strong, and slips are part of how almost everyone breaks a habit, not proof you've failed. What matters most is what happens next. People who see a slip as information, rather than a verdict on themselves, get back on track faster. Notice what set it off, and plan for that moment next time.",
+      "step": {
+        "title": "Write one line: “Next time I feel the pull to contact them, I'll ___ instead.”",
+        "detail": "Pick something you can do in two minutes, like texting a friend or stepping outside."
+      },
+      "journalPrompt": "What was happening right before the urge got loud?",
+      "evidence": [
+        "Marlatt & Gordon 1985 (relapse prevention)",
+        "Gollwitzer 1999 (implementation intentions)",
+        "Fisher et al. 2010 (rejection and craving)"
+      ]
+    },
+    {
+      "id": "s-breakup-09",
+      "day": 9,
+      "title": "Write the letter you'll never send.",
+      "insight": "Some things need saying even when no one will hear them. Writing about a painful experience, honestly and for your eyes only, helps many people make sense of it and feel less stuck. You can be angry, sad, grateful or all three. Nothing you write has to be fair or polite, because it isn't going anywhere.",
+      "step": {
+        "title": "Write an unsent letter to them for 15 minutes. Then close it, delete it or tuck it away.",
+        "detail": "Don't send it. This one is just for you."
+      },
+      "journalPrompt": "What did you most need to say?",
+      "evidence": [
+        "Pennebaker 1997 (expressive writing)",
+        "Pennebaker & Beall 1986"
+      ]
+    },
+    {
+      "id": "s-breakup-10",
+      "day": 10,
+      "title": "Missing them doesn't mean you need to go back.",
+      "insight": "Trying hard not to think about someone often makes them pop up more. That's a well-studied quirk of the mind. A gentler approach works better: notice the thought, name it (“there's the missing again”) and let it pass without arguing or acting. Missing someone is a feeling, not an instruction.",
+      "step": {
+        "title": "The next time they come to mind, say quietly, “I'm having the thought that I miss them,” and take one slow breath.",
+        "detail": "You don't have to push the thought away. Just let it be there and carry on."
+      },
+      "journalPrompt": "What do you think missing them is really about, the person or what they gave you?",
+      "evidence": [
+        "Wegner et al. 1987 (thought suppression)",
+        "Hayes et al. 2006 (ACT)"
+      ]
+    },
+    {
+      "id": "s-breakup-11",
+      "day": 11,
+      "title": "Who were you before “we”?",
+      "insight": "Breakups can leave people unsure who they are, because a relationship slowly blends two lives. Research shows that this foggy sense of self is one of the main reasons breakups hurt so much. The good news is that it can be rebuilt, piece by piece, by noticing what is still yours: your tastes, your friends, your quirks, your plans.",
+      "step": {
+        "title": "List five things that are true about you that have nothing to do with the relationship.",
+        "detail": "Small ones count: a food you love, a song, a skill, a place."
+      },
+      "journalPrompt": "Which parts of you got quieter during the relationship?",
+      "evidence": [
+        "Slotter et al. 2010 (self-concept after breakups)",
+        "Aron & Aron 1986 (self-expansion)"
+      ]
+    },
+    {
+      "id": "s-breakup-12",
+      "day": 12,
+      "title": "Bring back one thing you set aside.",
+      "insight": "In most relationships we drop a few things: a hobby, a friend, a kind of music, a way of spending Sundays. People who rediscover those parts of themselves after a breakup tend to feel more positive emotion and more growth. Picking one up again isn't about proving anything. It's about making room for yourself.",
+      "step": {
+        "title": "Spend 20 minutes on something you used to love and let go of.",
+        "detail": "It doesn't have to be done well. You're just saying hello to it again."
+      },
+      "journalPrompt": "What did it feel like to do it again?",
+      "evidence": [
+        "Lewandowski & Bizzoco 2007 (post-breakup growth)"
+      ]
+    },
+    {
+      "id": "s-breakup-13",
+      "day": 13,
+      "title": "Talk to yourself the way you'd talk to a friend.",
+      "insight": "After a breakup, many people turn on themselves with a harsh inner voice. Self-compassion means meeting your pain with the same kindness you'd offer someone you love. In one study of people going through divorce, those who were kinder to themselves recovered better over time. It isn't letting yourself off the hook. It's how people find their footing.",
+      "step": {
+        "title": "Put a hand on your chest and say, “This is hard. Lots of people feel this. I can be kind to myself right now.”",
+        "detail": "Change the words until they sound like you."
+      },
+      "journalPrompt": "What would you say to a friend going through exactly this?",
+      "evidence": [
+        "Neff 2003",
+        "Sbarra, Smith & Mehl 2012 (self-compassion after divorce)"
+      ]
+    },
+    {
+      "id": "s-breakup-14",
+      "day": 14,
+      "title": "Two weeks in. Try one new thing, just for you.",
+      "insight": "Relationships often make life feel bigger: new people, new places, new ideas. When one ends, things can feel smaller. You can bring some of that growth back on your own. New experiences, even small ones, give your brain a lift and a fresh piece of who you are becoming.",
+      "step": {
+        "title": "Do one small new thing this week: a new café, a new route home, a new recipe.",
+        "detail": "Small is fine. What matters is that it's new and it's yours."
+      },
+      "journalPrompt": "What did you notice while doing something new?",
+      "evidence": [
+        "Aron & Aron 1986 (self-expansion)",
+        "Lewandowski & Bizzoco 2007 (post-breakup growth)"
+      ]
+    },
+    {
+      "id": "s-breakup-15",
+      "day": 15,
+      "title": "Take yourself somewhere, on your own.",
+      "insight": "Doing things alone can feel awkward at first, especially when you're used to going everywhere as two. But people tend to enjoy solo outings more than they expect to. A trip to a museum, a park or a film on your own is a quiet way to learn that your own company is good company.",
+      "step": {
+        "title": "Plan a solo outing for this week and put it in your calendar.",
+        "detail": "Keep it easy: an hour somewhere you'd enjoy, with no need to explain it to anyone."
+      },
+      "journalPrompt": "What surprised you about spending time alone?",
+      "evidence": [
+        "Ratner & Hamilton 2015 (solo activities)",
+        "Dimidjian et al. 2011 (behavioural activation)"
+      ]
+    },
+    {
+      "id": "s-breakup-16",
+      "day": 16,
+      "title": "Reach out to someone you drifted from.",
+      "insight": "It's common to lose touch with friends during a relationship. Many people feel awkward reaching back out, but they usually underestimate how glad the other person will be. A short, warm message is often all it takes to reopen a door.",
+      "step": {
+        "title": "Send one message to someone you've drifted from: “Thought of you today. How have you been?”",
+        "detail": "No need to explain the gap. Warmth is enough."
+      },
+      "journalPrompt": "Who do you miss that isn't your ex?",
+      "evidence": [
+        "Liu et al. 2023 (reaching out is appreciated more than expected)",
+        "Holt-Lunstad et al. 2010"
+      ]
+    },
+    {
+      "id": "s-breakup-17",
+      "day": 17,
+      "title": "Start telling the story in your own words.",
+      "insight": "Early on, a breakup feels like chaos. Over time, putting it into a story, what happened, what it meant and where you are now, helps the mind file it away. In one study, people who reflected on their breakup regularly ended up with a clearer sense of who they were. You don't need the ending yet. Just the next chapter.",
+      "step": {
+        "title": "Write three sentences: “What happened was… What I've learned is… Where I am now is…”",
+        "detail": "Keep it rough. You can rewrite it as often as you like."
+      },
+      "journalPrompt": "How has the story changed since day one?",
+      "evidence": [
+        "Larson & Sbarra 2015 (reflection after breakups)",
+        "Pennebaker 1997 (expressive writing)"
+      ]
+    },
+    {
+      "id": "s-breakup-18",
+      "day": 18,
+      "title": "Something good may be growing here too.",
+      "insight": "It can sound odd while you're hurting, but many people report real growth after a breakup: more independence, clearer ideas about what they want, stronger friendships. This doesn't mean the pain was worth it or that you need to feel grateful. It just means both can be true at once.",
+      "step": {
+        "title": "Write down one way you've grown, even slightly, since the relationship ended.",
+        "detail": "If nothing comes yet, write one thing you hope will grow."
+      },
+      "journalPrompt": "What do you know now that you didn't know a month ago?",
+      "evidence": [
+        "Tashiro & Frazier 2003 (growth after breakups)",
+        "Tedeschi & Calhoun 2004 (posttraumatic growth)"
+      ]
+    },
+    {
+      "id": "s-breakup-19",
+      "day": 19,
+      "title": "What matters to you, now that it's your call?",
+      "insight": "Values are the things you care about most, like honesty, adventure, kindness or creativity. Unlike goals, you never finish them; they're directions to walk in. After a breakup, coming back to your values can give you a compass when the map feels gone, and it gives tomorrow a reason.",
+      "step": {
+        "title": "Pick two words for what matters most to you right now, and one small thing that lives each of them out this week.",
+        "detail": "For example: “Creativity: sketch for 10 minutes. Friendship: call my sister.”"
+      },
+      "journalPrompt": "What kind of person do you want to be in the next chapter?",
+      "evidence": [
+        "Hayes et al. 2006 (ACT)",
+        "Wilson & Murrell 2004 (values work)"
+      ]
+    },
+    {
+      "id": "s-breakup-20",
+      "day": 20,
+      "title": "Look at how much you've carried.",
+      "insight": "Three weeks ago, getting through a single day might have felt like a lot. Most people are more resilient than they realize, and noticing your own strength helps it grow. Look back at what you've done: the days you got up, the plans you kept, the times you reached out instead of shutting down.",
+      "step": {
+        "title": "Write down three things you did in the last three weeks that took courage.",
+        "detail": "Getting out of bed on a hard morning counts."
+      },
+      "journalPrompt": "What helped you most through the hardest days?",
+      "evidence": [
+        "Bonanno 2004 (resilience)",
+        "Neff 2003"
+      ]
+    },
+    {
+      "id": "s-breakup-21",
+      "day": 21,
+      "title": "Today, a gentle look forward.",
+      "insight": "You've made it to the last day of this track. That doesn't mean everything is healed; some days will still hurt. But imagining a good future, in real detail, is a simple exercise that lifts mood and helps people move toward what they want. Picture your life a year from now, going as well as it reasonably could.",
+      "step": {
+        "title": "Write for 10 minutes about your life one year from now, as if things went well.",
+        "detail": "Include small details: where you live, who you see, what a good Saturday looks like."
+      },
+      "journalPrompt": "What's one step toward that life you could take this month?",
+      "evidence": [
+        "King 2001 (best possible self)",
+        "Tashiro & Frazier 2003 (growth after breakups)"
+      ]
     }
   ]
 }

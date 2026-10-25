@@ -60,7 +60,7 @@ class QuestRepositoryTest {
         val file = File(app.filesDir, "test-${System.nanoTime()}.preferences_pb")
         settings = SettingsRepository(PreferenceDataStoreFactory.create(scope = scope) { file })
         settings.completeOnboarding(palette = 2, realm = Realm.CONNECT, energy = Energy.OK, seed = 99L, today = AppDayClock(clock).today())
-        repo = QuestRepository(core.dao(), personal.dao(), content, settings, AppDayClock(clock)) { now.toEpochMilli() }
+        repo = QuestRepository(core.dao(), personal.dao(), content, settings, AppDayClock(clock), nowMillis = { now.toEpochMilli() })
     }
 
     @After fun tearDown() { scope.cancel(); core.close(); personal.close() }

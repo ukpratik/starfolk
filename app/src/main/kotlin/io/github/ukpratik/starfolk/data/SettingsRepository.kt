@@ -27,6 +27,15 @@ data class Settings(
     val energy: Energy,
     val entryPath: EntryPath?,
     val installAppDay: AppDay?,
+    /** US-016: "Not now" on the low-mood card snoozes it until this app-day. */
+    val lowMoodSnoozedUntil: AppDay? = null,
+    val lowMoodLastShown: AppDay? = null,
+    val who5Dismissals: Int = 0,
+    val who5OfferedOn: AppDay? = null,
+    /** US-015: manual helpline country (ISO alpha-2); null = automatic. */
+    val helplineCountry: String? = null,
+    /** US-021: the first-entry Shelter disclaimer was shown. */
+    val shelterIntroSeen: Boolean = false,
 )
 
 /** DataStore at files/datastore/settings.preferences_pb: backed up by the include-list rules (LLD §2.3, D-032). */
@@ -41,6 +50,12 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
             energy = p[ENERGY]?.let { runCatching { Energy.valueOf(it) }.getOrNull() } ?: Energy.OK,
             entryPath = p[ENTRY]?.let { runCatching { EntryPath.valueOf(it) }.getOrNull() },
             installAppDay = p[INSTALL_DAY]?.let(::AppDay),
+            lowMoodSnoozedUntil = p[LOWMOOD_SNOOZE]?.let(::AppDay),
+            lowMoodLastShown = p[LOWMOOD_SHOWN]?.let(::AppDay),
+            who5Dismissals = p[WHO5_DISMISSALS] ?: 0,
+            who5OfferedOn = p[WHO5_OFFERED]?.let(::AppDay),
+            helplineCountry = p[HELPLINE_COUNTRY],
+            shelterIntroSeen = p[SHELTER_INTRO] ?: false,
         )
     }
 
@@ -60,6 +75,12 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
     }
 
     suspend fun setEnergy(energy: Energy) = store.edit { it[ENERGY] = energy.name }
+    suspend fun lowMoodShown(today: AppDay) = store.edit { it[LOWMOOD_SHOWN] = today.epochDay }
+    suspend fun snoozeLowMood(until: AppDay) = store.edit { it[LOWMOOD_SNOOZE] = until.epochDay }
+    suspend fun who5Offered(today: AppDay) = store.edit { it[WHO5_OFFERED] = today.epochDay }
+    suspend fun who5Dismissed() = store.edit { it[WHO5_DISMISSALS] = (it[WHO5_DISMISSALS] ?: 0) + 1 }
+    suspend fun setHelplineCountry(country: String?) = store.edit { if (country == null) it.remove(HELPLINE_COUNTRY) else it[HELPLINE_COUNTRY] = country }
+    suspend fun shelterIntroSeen() = store.edit { it[SHELTER_INTRO] = true }
 
     private fun <T> androidx.datastore.preferences.core.MutablePreferences.putIfAbsent(key: Preferences.Key<T>, value: T) {
         if (this[key] == null) this[key] = value
@@ -73,5 +94,11 @@ class SettingsRepository(private val store: DataStore<Preferences>) {
         val ENERGY = stringPreferencesKey("energy_last")
         val ENTRY = stringPreferencesKey("entry_path")
         val INSTALL_DAY = longPreferencesKey("install_app_day")
+        val LOWMOOD_SNOOZE = longPreferencesKey("lowmood_offer_snoozed_until")
+        val LOWMOOD_SHOWN = longPreferencesKey("lowmood_offer_last_shown")
+        val WHO5_DISMISSALS = intPreferencesKey("who5_offer_dismissals")
+        val WHO5_OFFERED = longPreferencesKey("who5_offered_on")
+        val HELPLINE_COUNTRY = stringPreferencesKey("helpline_country")
+        val SHELTER_INTRO = booleanPreferencesKey("shelter_intro_seen")
     }
 }

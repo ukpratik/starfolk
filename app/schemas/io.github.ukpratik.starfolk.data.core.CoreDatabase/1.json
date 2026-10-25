@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "34a440c52ccdac08bf4cfe6f8c6672bc",
+    "identityHash": "f83e64d8f38dea432c63bd24c77e66e1",
     "entities": [
       {
         "tableName": "completion",
@@ -179,11 +179,143 @@
             "appDay"
           ]
         }
+      },
+      {
+        "tableName": "shelter_track",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`track` TEXT NOT NULL, `status` TEXT NOT NULL, `currentDay` INTEGER NOT NULL, `daysWalked` INTEGER NOT NULL, `lastDoneDay` INTEGER, `noContactSince` INTEGER, `startedAt` INTEGER NOT NULL, PRIMARY KEY(`track`))",
+        "fields": [
+          {
+            "fieldPath": "track",
+            "columnName": "track",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "status",
+            "columnName": "status",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentDay",
+            "columnName": "currentDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "daysWalked",
+            "columnName": "daysWalked",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastDoneDay",
+            "columnName": "lastDoneDay",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "noContactSince",
+            "columnName": "noContactSince",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "startedAt",
+            "columnName": "startedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "track"
+          ]
+        }
+      },
+      {
+        "tableName": "shelter_day_done",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`track` TEXT NOT NULL, `day` INTEGER NOT NULL, `appDay` INTEGER NOT NULL, `doneAt` INTEGER NOT NULL, PRIMARY KEY(`track`, `day`, `appDay`))",
+        "fields": [
+          {
+            "fieldPath": "track",
+            "columnName": "track",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "day",
+            "columnName": "day",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "appDay",
+            "columnName": "appDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "doneAt",
+            "columnName": "doneAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "track",
+            "day",
+            "appDay"
+          ]
+        }
+      },
+      {
+        "tableName": "shelter_slip",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `track` TEXT NOT NULL, `appDay` INTEGER NOT NULL, `choice` TEXT NOT NULL, `kind` TEXT NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "track",
+            "columnName": "track",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "appDay",
+            "columnName": "appDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "choice",
+            "columnName": "choice",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "kind",
+            "columnName": "kind",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        }
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '34a440c52ccdac08bf4cfe6f8c6672bc')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'f83e64d8f38dea432c63bd24c77e66e1')"
     ]
   }
 }

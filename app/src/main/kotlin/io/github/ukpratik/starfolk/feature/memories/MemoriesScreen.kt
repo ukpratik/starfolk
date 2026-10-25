@@ -41,6 +41,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import io.github.ukpratik.starfolk.AppContainer
 import io.github.ukpratik.starfolk.R
+import io.github.ukpratik.starfolk.ui.components.StatusBarScrim
 import io.github.ukpratik.starfolk.core.content.Realm
 import io.github.ukpratik.starfolk.core.time.AppDay
 import io.github.ukpratik.starfolk.ui.components.MoodFaceIcon
@@ -98,6 +99,7 @@ fun MemoriesScreen(container: AppContainer, onSos: () -> Unit, onConnectAgain: (
                 }
             }
         }
+        StatusBarScrim(Tokens.Paper100)
         SosNote(onSos, Modifier.align(Alignment.TopEnd).statusBarsPadding().padding(top = 8.dp, end = 20.dp))
     }
     open?.let { m ->

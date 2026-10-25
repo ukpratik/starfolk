@@ -18,6 +18,199 @@
         "Carleton 2016 (intolerance of uncertainty)",
         "Dugas et al. 1998"
       ]
+    },
+    {
+      "id": "s-health-02",
+      "day": 2,
+      "title": "Notice the urge to search, and pause.",
+      "insight": "When you're worried about your health, looking up symptoms can feel like it'll help. Often it does the opposite, turning up rare worst cases and leaving you more anxious. The urge is natural: it's your mind trying to get rid of uncertainty. Your doctor knows your situation in a way a search engine never will.",
+      "step": {
+        "title": "Next time you want to search a symptom, write the question down for your doctor instead.",
+        "detail": "Keep a running list on your phone or in a notebook."
+      },
+      "journalPrompt": "What are you most hoping to find out?",
+      "evidence": [
+        "Starcevic & Berle 2013 (cyberchondria)",
+        "Carleton 2016 (intolerance of uncertainty)"
+      ]
+    },
+    {
+      "id": "s-health-03",
+      "day": 3,
+      "title": "Give your worry a set time each day.",
+      "insight": "Worry tends to spread across the whole day. Setting aside a short, fixed time for it, and gently putting worries off until then, helps many people feel less consumed by them. It isn't about ignoring your fears. It's about giving them a place to go.",
+      "step": {
+        "title": "Choose a 15-minute worry time for today. When a worry pops up before then, jot it down and save it.",
+        "detail": "At worry time, go through the list. Afterwards, do something calming."
+      },
+      "journalPrompt": "Which worry keeps coming back the most?",
+      "evidence": [
+        "Borkovec et al. 1983 (worry postponement)",
+        "Dugas et al. 1998"
+      ]
+    },
+    {
+      "id": "s-health-04",
+      "day": 4,
+      "title": "Write down your questions for your doctor.",
+      "insight": "Appointments can feel rushed, and it's easy to forget what you meant to ask. Writing your questions down beforehand helps people ask more and understand more. No question is silly. Your doctor is the right person to help you make sense of what's happening.",
+      "step": {
+        "title": "List your top three questions for your next appointment, most important first.",
+        "detail": "Ideas: “What do we know so far?”, “What happens next?”, “What can I do while I wait?”"
+      },
+      "journalPrompt": "What would you most like to understand better?",
+      "evidence": [
+        "Brandes et al. 2015 (question prompt lists)"
+      ]
+    },
+    {
+      "id": "s-health-05",
+      "day": 5,
+      "title": "After the appointment, write down what you heard.",
+      "insight": "People forget much of what they're told in medical appointments, especially when they're anxious. That's normal. Writing it down soon after, or bringing someone with you, helps you remember. If something isn't clear, it's always okay to ask your doctor to explain it again.",
+      "step": {
+        "title": "After your next appointment, take 5 minutes to write the key points and next steps.",
+        "detail": "If anything is unclear, add it to your question list for your doctor."
+      },
+      "journalPrompt": "What did you hear that you want to hold on to?",
+      "evidence": [
+        "Kessels 2003 (memory for medical information)",
+        "Wolff & Roter 2011 (companions in medical visits)"
+      ]
+    },
+    {
+      "id": "s-health-06",
+      "day": 6,
+      "title": "Decide who you want to tell, and how much.",
+      "insight": "You don't owe anyone your health news, and you don't have to tell everyone at once. Sharing with a few trusted people tends to ease the load, while carrying it completely alone can make it heavier. You get to choose who, when and how much.",
+      "step": {
+        "title": "Make a short list: who you want to tell now, who later and who not at all.",
+        "detail": "It's your news. Your list can change any time."
+      },
+      "journalPrompt": "Who would you feel safest telling first?",
+      "evidence": [
+        "Rimé 2009 (social sharing of emotion)",
+        "Cohen & Wills 1985 (social support)"
+      ]
+    },
+    {
+      "id": "s-health-07",
+      "day": 7,
+      "title": "Use a script for telling someone.",
+      "insight": "Starting the conversation is often the hardest part. A few prepared words can make it easier. It also helps to tell people what you need: a listener, practical help or just normal chat. Most people want to help but don't know how.",
+      "step": {
+        "title": "Adapt this: “I wanted to let you know I'm dealing with a health worry. I don't need advice, just you being around.”",
+        "detail": "Change it to say what you actually need right now."
+      },
+      "journalPrompt": "What kind of support helps you most?",
+      "evidence": [
+        "Taylor 2011 (social support)",
+        "Rimé 2009 (social sharing of emotion)"
+      ]
+    },
+    {
+      "id": "s-health-08",
+      "day": 8,
+      "title": "Some days the fear will be big. That's allowed.",
+      "insight": "Fear about your health is a normal response to something serious. Fighting it often makes it louder. Making room for it, noticing it and letting it be there while you carry on with something small, can help. Still, if it starts taking over, please don't carry it alone. If the heaviness won't lift for two weeks, or you have thoughts of not wanting to be here, please talk to a professional or tap Need help now.",
+      "step": {
+        "title": "When fear shows up today, name it (“This is fear”), take three slow breaths and do one small thing.",
+        "detail": "Making tea or stepping outside counts."
+      },
+      "journalPrompt": "What does the fear say to you, and what would you say back?",
+      "evidence": [
+        "Hayes et al. 2006 (ACT)",
+        "Mishel 1988 (uncertainty in illness)"
+      ]
+    },
+    {
+      "id": "s-health-09",
+      "day": 9,
+      "title": "Spend your energy like it's a budget.",
+      "insight": "When your body is tired or unwell, it's tempting to push hard on good days and crash after. Pacing means spreading your energy more evenly: doing a bit less than you could on good days, and resting before you're wiped out. Your doctor or care team can help you work out what's right for you.",
+      "step": {
+        "title": "Pick one task today and do it in two shorter parts with a rest in between.",
+        "detail": "Stop before you feel drained, not after."
+      },
+      "journalPrompt": "What uses the most energy in your day right now?",
+      "evidence": [
+        "Goudsmit et al. 2012 (pacing)"
+      ]
+    },
+    {
+      "id": "s-health-10",
+      "day": 10,
+      "title": "Stay connected, even on low-energy days.",
+      "insight": "Staying connected to people is one of the strongest supports for well-being, but it doesn't have to take much energy. A voice note, a short text or watching a show “together” over messages all count. Small contact still reminds you that you're not alone.",
+      "step": {
+        "title": "Send a two-line voice note or text to someone you care about.",
+        "detail": "No need to share health news unless you want to."
+      },
+      "journalPrompt": "Which kind of contact feels easiest for you right now?",
+      "evidence": [
+        "Holt-Lunstad et al. 2010",
+        "Cohen & Wills 1985 (social support)"
+      ]
+    },
+    {
+      "id": "s-health-11",
+      "day": 11,
+      "title": "Be kind to your body, even when it scares you.",
+      "insight": "When your body isn't doing what you hoped, it's easy to feel angry at it or at yourself. Self-compassion means meeting yourself with the warmth you'd offer a friend. People who are kinder to themselves tend to take better care of their health too.",
+      "step": {
+        "title": "Put a hand somewhere comforting and say, “This is hard. I'm doing my best.”",
+        "detail": "Use words that feel natural to you."
+      },
+      "journalPrompt": "What would you say to a friend whose body was going through this?",
+      "evidence": [
+        "Neff 2003",
+        "Sirois et al. 2015 (self-compassion and health behaviours)"
+      ]
+    },
+    {
+      "id": "s-health-12",
+      "day": 12,
+      "title": "It's okay to grieve what's changed.",
+      "insight": "Health news can bring loss: plans, routines or a sense of how your body used to feel. Grief is a natural response to that. Acknowledging it, instead of rushing to be positive, can help you make space for what still matters.",
+      "step": {
+        "title": "Write down one thing you miss, and one thing that still matters to you just as much.",
+        "detail": "Both can sit on the same page."
+      },
+      "journalPrompt": "What has changed that you haven't said out loud yet?",
+      "evidence": [
+        "Hayes et al. 2006 (ACT)",
+        "Pennebaker 1997 (expressive writing)"
+      ]
+    },
+    {
+      "id": "s-health-13",
+      "day": 13,
+      "title": "Find one small good thing today.",
+      "insight": "Even during a hard time, small pleasant moments still happen: sunlight, a good cup of tea, a message from a friend. Savoring means pausing to really notice them. It doesn't cancel the worry, but it reminds you that good moments still exist.",
+      "step": {
+        "title": "Notice one small good moment today and stay with it for 30 seconds.",
+        "detail": "Pay attention to what you see, hear or feel."
+      },
+      "journalPrompt": "What small good thing happened today?",
+      "evidence": [
+        "Bryant & Veroff 2007 (savoring)"
+      ]
+    },
+    {
+      "id": "s-health-14",
+      "day": 14,
+      "title": "Living alongside uncertainty, one day at a time.",
+      "insight": "Some health questions take a long time to answer, and some never fully do. Learning to live alongside uncertainty, instead of waiting for it to end, can bring some peace. Focus on what you can do today, keep talking to your doctor, and keep leaning on the people who care about you.",
+      "step": {
+        "title": "Write three things you can do this week that matter to you, whatever news comes.",
+        "detail": "Keep them small and within your control."
+      },
+      "journalPrompt": "Looking back over these two weeks, what has helped you most?",
+      "evidence": [
+        "Carleton 2016 (intolerance of uncertainty)",
+        "Hayes et al. 2006 (ACT)",
+        "Kabat-Zinn 1990"
+      ]
     }
   ]
 }

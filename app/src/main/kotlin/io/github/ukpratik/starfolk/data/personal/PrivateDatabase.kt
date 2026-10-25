@@ -7,9 +7,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 /** private.db: excluded from backup and device transfer by the include-list rules (D-017, D-032). */
-@Database(entities = [CheckinEntity::class, StarNameEntity::class], version = 1, exportSchema = true)
+@Database(
+    entities = [CheckinEntity::class, StarNameEntity::class, LetterEntity::class, JournalEntity::class, Who5Entity::class],
+    version = 1,
+    exportSchema = true,
+)
 abstract class PrivateDatabase : RoomDatabase() {
     abstract fun dao(): PrivateDao
+    abstract fun shelter(): ShelterPrivateDao
 
     companion object {
         const val NAME = "private.db"

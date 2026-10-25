@@ -12,6 +12,9 @@ import io.github.ukpratik.starfolk.core.content.Spark
 import io.github.ukpratik.starfolk.core.sky.CompletionLite
 import io.github.ukpratik.starfolk.core.time.AppDay
 import io.github.ukpratik.starfolk.data.QuestRepository
+import io.github.ukpratik.starfolk.data.Who5Repository
+import io.github.ukpratik.starfolk.core.safety.SafetyRules
+import io.github.ukpratik.starfolk.core.shelter.ShelterProgress
 import io.github.ukpratik.starfolk.data.core.CommitEntity
 import io.github.ukpratik.starfolk.data.core.CompletionEntity
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -20,6 +23,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.flow
@@ -42,6 +46,15 @@ data class TodayUiState(
 )
 
 /** The reflection → stamp → why-card → undo moment after "Done" (US-006/007/009). */
+/** Gentle, never-forced offers on Today (US-016/019, D-031). */
+data class Offers(
+    val shelter: ShelterCard? = null,
+    val lowMood: Boolean = false,
+    val who5: Who5Prompt? = null,
+)
+data class ShelterCard(val title: String, val day: Int, val doneToday: Boolean)
+enum class Who5Prompt { BASELINE, RECHECK }
+
 sealed interface Moment {
     data object None : Moment
     /** The reflection sheet is open for this completion. */
@@ -74,14 +87,55 @@ class TodayViewModel(private val c: AppContainer, private val skyDemo: Int) : Vi
         }
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
+    private val _offers = MutableStateFlow(Offers())
+    val offers: StateFlow<Offers> = _offers.asStateFlow()
+
     init {
-        viewModelScope.launch { c.quests.recordOpen(); c.quests.ensureToday() }
+        viewModelScope.launch { c.quests.recordOpen(); c.quests.ensureToday(); refreshOffers(afterCheckin = false) }
+    }
+
+    /** Re-evaluates the Shelter card, the low-mood offer and the WHO-5 prompts (deterministic rules, :core). */
+    private suspend fun refreshOffers(afterCheckin: Boolean) {
+        val today = c.appDayClock.today()
+        val s = c.settings.current()
+        val active = c.shelter.active()
+        val tracks = c.content.bundle().tracks
+        val card = active?.let { a ->
+            ShelterCard(tracks.first { it.track == a.track }.title, ShelterProgress.dayToShow(a, today), ShelterProgress.doneToday(a, today))
+        }
+        val who5 = c.who5.all.first()
+        val baseline = who5.firstOrNull { it.kind == Who5Repository.BASELINE }
+        val latestPct = who5.lastOrNull()?.percent
+        val lowMood = SafetyRules.lowMoodOffer(c.quests.recentMoods(), latestPct, active != null, s.lowMoodSnoozedUntil, s.lowMoodLastShown, today)
+        if (lowMood) c.settings.lowMoodShown(today)
+        val appDayIndex = s.installAppDay?.let { today.daysSince(it) } ?: 0
+        val prompt = when {
+            SafetyRules.who5RecheckDue(baseline?.let { AppDay(it.appDay) }, who5.any { it.kind == Who5Repository.RECHECK }, today) -> Who5Prompt.RECHECK
+            afterCheckin && SafetyRules.who5BaselineOffer(baseline != null, c.appDayClock.localHour(), appDayIndex, s.who5OfferedOn == today, s.who5Dismissals) ->
+                Who5Prompt.BASELINE.also { c.settings.who5Offered(today) }
+            else -> _offers.value.who5.takeIf { it == Who5Prompt.BASELINE && s.who5OfferedOn == today }
+        }
+        // Keep the low-mood card up for the rest of the day once it has been shown.
+        _offers.value = Offers(card, lowMood || (_offers.value.lowMood && s.lowMoodLastShown == today && active == null), prompt)
+    }
+
+    fun snoozeLowMood() = viewModelScope.launch {
+        c.settings.snoozeLowMood(c.appDayClock.today() + SafetyRules.SNOOZE_DAYS)
+        _offers.update { it.copy(lowMood = false) }
+    }
+
+    fun dismissWho5() = viewModelScope.launch {
+        if (_offers.value.who5 == Who5Prompt.BASELINE) c.settings.who5Dismissed()
+        _offers.update { it.copy(who5 = null) }
     }
 
     /** Called on resume: a new app-day (04:00, travel, DST) deals a new ticket (US-003). */
     fun refreshDay() {
         val today = c.appDayClock.today()
-        if (today != day.value) viewModelScope.launch { c.quests.ensureToday(); day.value = today }
+        viewModelScope.launch {
+            if (today != day.value) { c.quests.ensureToday(); day.value = today }
+            refreshOffers(afterCheckin = false)
+        }
     }
 
     fun swap() = viewModelScope.launch { c.quests.swap() }
@@ -100,6 +154,7 @@ class TodayViewModel(private val c: AppContainer, private val skyDemo: Int) : Vi
         val insight = m.quest.insightId?.let { c.content.bundle().insights.firstOrNull { i -> i.id == it } }
             ?: Insight(id = "", title = WHY_FALLBACK_TITLE, body = m.quest.why, cite = m.quest.evidence.joinToString("; "))
         _moment.value = Moment.Stamped(m.completionId, insight)
+        refreshOffers(afterCheckin = true)
     }
 
     fun undo() = viewModelScope.launch {
