@@ -1,0 +1,93 @@
+[
+  {
+    "id": "q-purpose-0001",
+    "realm": "purpose",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Finish this sentence: “If nothing stopped me, this year I'd…”",
+    "why": "Imagining your best possible future makes it feel more reachable.",
+    "insightId": "i-best-possible-self",
+    "evidence": [
+      "King 2001"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0002",
+    "realm": "purpose",
+    "level": "flame",
+    "minutes": 20,
+    "title": "Spend 20 minutes on something you loved as a kid. Rate your energy after, 1 to 5.",
+    "why": "Old loves are clues to what still lights you up.",
+    "evidence": [
+      "Csikszentmihalyi 1990 (flow)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0003",
+    "realm": "purpose",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Pick one value, like curiosity, courage or kindness, and do one thing today that shows it.",
+    "why": "Living by your values, in small acts, is what makes a life feel meaningful.",
+    "evidence": [
+      "Hayes et al. 2006 (ACT values)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0004",
+    "realm": "purpose",
+    "level": "flame",
+    "minutes": 25,
+    "title": "Do the first lesson of a skill you keep saying you'll learn.",
+    "why": "Starting is the hardest part, and one lesson is a real start.",
+    "evidence": [
+      "Bandura 1997 (self-efficacy)"
+    ],
+    "tags": [
+      "solo"
+    ]
+  },
+  {
+    "id": "q-purpose-0005",
+    "realm": "purpose",
+    "level": "wildfire",
+    "minutes": 120,
+    "title": "Make something and show one person: a page, a sketch, a recipe, a song.",
+    "why": "Sharing what you make turns a hobby into a thread of meaning.",
+    "groupable": true,
+    "evidence": [
+      "Csikszentmihalyi 1990"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0006",
+    "realm": "purpose",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Decide when and where you'll do your next Purpose quest: “At [time] in [place], I will…”",
+    "why": "A specific plan beats willpower.",
+    "insightId": "i-if-then",
+    "evidence": [
+      "Gollwitzer 1999"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  }
+]

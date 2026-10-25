@@ -1,0 +1,43 @@
+{
+  "templates": [
+    {
+      "id": "sos-reach-01",
+      "text": "Hey, I'm having a rough time. Can you call me when you're free?"
+    },
+    {
+      "id": "sos-reach-02",
+      "text": "Are you around tonight? I don't really want to be on my own."
+    },
+    {
+      "id": "sos-reach-03",
+      "text": "Not an emergency, but could you check in on me tomorrow?"
+    }
+  ],
+  "grounding": [
+    {
+      "id": "sos-ground-01",
+      "title": "Name 5 things you can see.",
+      "body": "Look around slowly. Say them out loud or in your head: a colour, a shape, something small."
+    },
+    {
+      "id": "sos-ground-02",
+      "title": "Name 4 things you can feel.",
+      "body": "Your feet on the floor. The fabric on your arms. The air on your face. Something in your hand."
+    },
+    {
+      "id": "sos-ground-03",
+      "title": "Name 3 things you can hear.",
+      "body": "Near or far. A hum, a voice, your own breath."
+    },
+    {
+      "id": "sos-ground-04",
+      "title": "Name 2 things you can smell.",
+      "body": "If nothing comes, think of two smells you like."
+    },
+    {
+      "id": "sos-ground-05",
+      "title": "Name 1 thing you can taste.",
+      "body": "Then take one slow breath: in for 4, hold for 4, out for 4."
+    }
+  ]
+}

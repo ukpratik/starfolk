@@ -1,0 +1,148 @@
+[
+  {
+    "country": "US",
+    "lines": [
+      {
+        "name": "988 Suicide & Crisis Lifeline",
+        "phone": "988",
+        "sms": "988",
+        "hours": "24/7"
+      }
+    ],
+    "emergency": "911",
+    "source": "https://988lifeline.org"
+  },
+  {
+    "country": "CA",
+    "lines": [
+      {
+        "name": "9-8-8 Suicide Crisis Helpline",
+        "phone": "988",
+        "sms": "988",
+        "hours": "24/7"
+      }
+    ],
+    "emergency": "911",
+    "source": "https://988.ca"
+  },
+  {
+    "country": "GB",
+    "lines": [
+      {
+        "name": "Samaritans",
+        "phone": "116 123",
+        "hours": "24/7"
+      },
+      {
+        "name": "Shout",
+        "sms": "85258",
+        "hours": "24/7"
+      }
+    ],
+    "emergency": "999",
+    "source": "https://www.samaritans.org"
+  },
+  {
+    "country": "IE",
+    "lines": [
+      {
+        "name": "Samaritans",
+        "phone": "116 123",
+        "hours": "24/7"
+      },
+      {
+        "name": "Text About It",
+        "sms": "50808",
+        "hours": "24/7"
+      }
+    ],
+    "emergency": "112",
+    "source": "https://www.samaritans.org/ireland"
+  },
+  {
+    "country": "AU",
+    "lines": [
+      {
+        "name": "Lifeline",
+        "phone": "13 11 14",
+        "sms": "0477 13 11 14",
+        "hours": "24/7"
+      }
+    ],
+    "emergency": "000",
+    "source": "https://www.lifeline.org.au"
+  },
+  {
+    "country": "NZ",
+    "lines": [
+      {
+        "name": "Need to talk? 1737",
+        "phone": "1737",
+        "sms": "1737",
+        "hours": "24/7"
+      }
+    ],
+    "emergency": "111",
+    "source": "https://1737.org.nz"
+  },
+  {
+    "country": "IN",
+    "lines": [
+      {
+        "name": "Tele-MANAS",
+        "phone": "14416",
+        "hours": "24/7"
+      }
+    ],
+    "emergency": "112",
+    "source": "https://telemanas.mohfw.gov.in"
+  },
+  {
+    "country": "PH",
+    "lines": [
+      {
+        "name": "NCMH Crisis Hotline",
+        "phone": "1553",
+        "hours": "24/7"
+      }
+    ],
+    "emergency": "911",
+    "source": "https://ncmh.gov.ph"
+  },
+  {
+    "country": "ZA",
+    "lines": [
+      {
+        "name": "SADAG Suicide Crisis Helpline",
+        "phone": "0800 567 567",
+        "hours": "24/7"
+      }
+    ],
+    "emergency": "112",
+    "source": "https://www.sadag.org"
+  },
+  {
+    "country": "SG",
+    "lines": [
+      {
+        "name": "Samaritans of Singapore",
+        "phone": "1767",
+        "hours": "24/7"
+      }
+    ],
+    "emergency": "995",
+    "source": "https://www.sos.org.sg"
+  },
+  {
+    "country": "NG",
+    "lines": [],
+    "emergency": "112",
+    "source": "https://findahelpline.com/countries/ng"
+  },
+  {
+    "country": "KE",
+    "lines": [],
+    "emergency": "999",
+    "source": "https://findahelpline.com/countries/ke"
+  }
+]

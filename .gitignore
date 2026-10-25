@@ -1,0 +1,20 @@
+# Gradle / build
+.gradle/
+build/
+.kotlin/
+local.properties
+captures/
+*.apk
+*.aab
+*.ap_
+*.dex
+# IDE
+.idea/
+*.iml
+.DS_Store
+# Signing: never commit keys or passwords (ADR-012)
+*.jks
+*.keystore
+keystore.properties
+# Generated content assets (built by :tools:content pack, LLD §1)
+app/src/main/assets/content/

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<resources>
+    <color name="paper_100">#FFF3EBDD</color>
+    <color name="night_700">#FF16213F</color>
+</resources>

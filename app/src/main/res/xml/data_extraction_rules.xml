@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<!-- API 31+ (LLD §2.4, D-017): the same include-list for cloud backup and device transfer. -->
+<data-extraction-rules>
+    <cloud-backup>
+        <include domain="database" path="core.db" />
+        <include domain="file" path="datastore/settings.preferences_pb" />
+    </cloud-backup>
+    <device-transfer>
+        <include domain="database" path="core.db" />
+        <include domain="file" path="datastore/settings.preferences_pb" />
+    </device-transfer>
+</data-extraction-rules>

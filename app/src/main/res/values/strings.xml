@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<resources>
+    <string name="app_name">Starfolk</string>
+    <string name="sos_note">Need help now? →</string>
+    <string name="sos_note_a11y">Need help now?</string>
+    <string name="tab_today">TODAY</string>
+    <string name="tab_sky">SKY</string>
+    <string name="tab_memories">MEMORIES</string>
+    <string name="tab_shelter">SHELTER</string>
+    <plurals name="swap">
+        <item quantity="one">⇄ Swap · %1$d left</item>
+        <item quantity="other">⇄ Swap · %1$d left</item>
+    </plurals>
+    <string name="hold_to_tear">Hold to tear</string>
+    <string name="stamp_it">Stamp it ✓</string>
+    <string name="memories_empty_title">Your first memory is one quest away.</string>
+    <string name="memories_empty_body">Every quest you stamp lands here, with how it felt and who it was with. It stays on your phone.</string>
+    <string name="shelter_title">Going through something?</string>
+    <string name="shelter_body">The Shelter is a quieter space. Pick what you\'re going through, and take one small step a day.</string>
+    <string name="sos_title">You don\'t have to get through this alone.</string>
+    <string name="sos_question">What would help most right now?</string>
+    <string name="sos_calm">Calm my body (60 s)</string>
+    <string name="sos_reach">Reach someone I know</string>
+    <string name="sos_lines">Talk to a crisis line</string>
+    <string name="sos_danger">If you\'re in immediate danger, call your local emergency number.</string>
+    <string name="close">Close</string>
+</resources>

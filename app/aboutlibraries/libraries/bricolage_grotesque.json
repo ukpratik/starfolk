@@ -1,0 +1,14 @@
+{
+  "uniqueId": "com.github.ateliertriay:bricolage-grotesque",
+  "name": "Bricolage Grotesque",
+  "description": "Display typeface (headlines), bundled as a Latin subset of the 500 and 800 instances. Copyright 2022 The Bricolage Grotesque Project Authors.",
+  "website": "https://github.com/ateliertriay/bricolage",
+  "developers": [
+    {
+      "name": "The Bricolage Grotesque Project Authors"
+    }
+  ],
+  "licenses": [
+    "OFL-1.1"
+  ]
+}

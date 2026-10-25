@@ -1,0 +1,23 @@
+{
+  "track": "health",
+  "title": "Health scare",
+  "summary": "14 days for waiting on results, unsettling news or a body that's changed.",
+  "length": 14,
+  "days": [
+    {
+      "id": "s-health-01",
+      "day": 1,
+      "title": "Waiting is its own kind of hard.",
+      "insight": "Not knowing about your health can feel worse than bad news. Your mind fills the gap with worst cases, because that's how brains handle the unknown. You can't make the waiting shorter, but you can make it a little smaller by writing down what you actually know, apart from what you fear.",
+      "step": {
+        "title": "Fold a page in two: “What I know” and “What I'm afraid of”. Fill both sides.",
+        "detail": "Seeing them apart often makes the first column feel steadier."
+      },
+      "journalPrompt": "Who could sit with you through the waiting?",
+      "evidence": [
+        "Carleton 2016 (intolerance of uncertainty)",
+        "Dugas et al. 1998"
+      ]
+    }
+  ]
+}

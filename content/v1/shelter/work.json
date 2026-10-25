@@ -1,0 +1,23 @@
+{
+  "track": "work",
+  "title": "Work storm",
+  "summary": "14 days for burnout, a brutal boss or a job that's draining you.",
+  "length": 14,
+  "days": [
+    {
+      "id": "s-work-01",
+      "day": 1,
+      "title": "First, stop the drain.",
+      "insight": "When work has emptied you, the instinct is to fix everything at once: a new plan, a new routine, a new job. Recovery starts smaller. Time when your mind is genuinely off work is one of the strongest protections there is. Tonight the goal is just one boundary.",
+      "step": {
+        "title": "Pick a time tonight after which you won't check work messages.",
+        "detail": "If you can, mute work notifications until morning."
+      },
+      "journalPrompt": "What drained you most this week?",
+      "evidence": [
+        "Sonnentag & Fritz 2007 (psychological detachment)",
+        "Maslach & Leiter 2016"
+      ]
+    }
+  ]
+}

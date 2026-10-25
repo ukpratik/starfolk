@@ -1,0 +1,98 @@
+[
+  {
+    "id": "q-care-0001",
+    "realm": "care",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Put a hand on your chest and say one kind sentence to yourself, the way you'd say it to a friend.",
+    "why": "Self-kindness is linked to more resilience, not less drive.",
+    "insightId": "i-self-compassion",
+    "evidence": [
+      "Neff 2003",
+      "Breines & Chen 2012"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0002",
+    "realm": "care",
+    "level": "flame",
+    "minutes": 20,
+    "title": "Walk outside for 20 minutes, no headphones.",
+    "why": "Walking in green places quiets the replaying thoughts.",
+    "evidence": [
+      "Bratman et al. 2015"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "safety": {
+      "night": "daylight",
+      "cost": 0
+    }
+  },
+  {
+    "id": "q-care-0003",
+    "realm": "care",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Keep your phone in another room for the first 30 minutes after you wake up.",
+    "why": "A slower start gives your attention back to you.",
+    "evidence": [
+      "Sonnentag & Fritz 2007 (detachment)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0004",
+    "realm": "care",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Write down three things that went well today, and why.",
+    "why": "Noticing what went right, a few nights in a row, lifts mood for weeks.",
+    "evidence": [
+      "Seligman et al. 2005"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0005",
+    "realm": "care",
+    "level": "flame",
+    "minutes": 15,
+    "title": "Tidy one small corner: a drawer, a desk, a shelf. Stop at 15 minutes.",
+    "why": "Small, finished tasks are an antidote to feeling stuck.",
+    "evidence": [
+      "Dimidjian et al. 2011 (behavioural activation)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0006",
+    "realm": "care",
+    "level": "wildfire",
+    "minutes": 120,
+    "title": "Block two hours with nothing productive in them. Protect them like a meeting.",
+    "why": "Real rest is how you recover, not a reward for finishing.",
+    "evidence": [
+      "Sonnentag & Fritz 2007"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  }
+]

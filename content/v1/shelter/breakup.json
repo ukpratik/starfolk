@@ -1,0 +1,67 @@
+{
+  "track": "breakup",
+  "title": "Breakup",
+  "summary": "21 days of small steps for the weeks after a relationship ends.",
+  "length": 21,
+  "days": [
+    {
+      "id": "s-breakup-01",
+      "day": 1,
+      "title": "Today, just get through today.",
+      "insight": "Breakups hurt in the body, not just the heart. Romantic rejection lights up some of the same brain systems as physical pain, so feeling wrecked isn't overreacting. For today the only job is basic care: eat something, drink water, rest if you can, and let one person know it's a hard time.",
+      "step": {
+        "title": "Tell one person you trust: “Going through a breakup. Could use a check-in this week.”",
+        "detail": "You don't have to explain everything. Letting someone know is enough."
+      },
+      "journalPrompt": "What's the heaviest thing you're carrying right now?",
+      "evidence": [
+        "Kross et al. 2011",
+        "Cohen & Wills 1985 (social support)"
+      ]
+    },
+    {
+      "id": "s-breakup-02",
+      "day": 2,
+      "title": "The questions will loop. That's normal.",
+      "insight": "Your mind will replay conversations and ask “why” on repeat. That's your brain trying to solve something that can't be solved tonight. Giving the loop a set time and place, fifteen minutes on paper, often quiets it for the rest of the day.",
+      "step": {
+        "title": "Set a 15-minute timer and write down every question in your head. When it rings, close the notebook.",
+        "detail": "Short, contained bouts of writing help people make sense of painful events."
+      },
+      "journalPrompt": "Which question keeps coming back?",
+      "evidence": [
+        "Pennebaker 1997 (expressive writing)",
+        "Borkovec et al. 1983 (worry postponement)"
+      ]
+    },
+    {
+      "id": "s-breakup-03",
+      "day": 3,
+      "title": "Your routine is a railing. Hold on to it.",
+      "insight": "When everything feels heavy, structure helps more than motivation. A few anchors, like a wake-up time, a real meal and a short walk, give your body proof that life is still going, even while your heart catches up.",
+      "step": {
+        "title": "Write down three anchors for tomorrow: a time to wake, one meal, one walk.",
+        "detail": "Make them small enough to do on a bad day."
+      },
+      "journalPrompt": "What used to make an ordinary day feel good?",
+      "evidence": [
+        "Dimidjian et al. 2011 (behavioural activation)"
+      ]
+    },
+    {
+      "id": "s-breakup-04",
+      "day": 4,
+      "title": "Tonight the urge to check their profile might be loud.",
+      "insight": "That pull isn't weakness. Your brain learned to look for them, and it's asking for something familiar. Every time you don't feed it, the pull gets a little quieter. Not tonight, maybe, but soon.",
+      "step": {
+        "title": "Mute or archive their profile for 7 days.",
+        "detail": "You're not erasing them. You're giving your nervous system a week off."
+      },
+      "journalPrompt": "What do you miss, and what don't you miss?",
+      "evidence": [
+        "Fisher et al. 2010 (rejection and craving)",
+        "stimulus control"
+      ]
+    }
+  ]
+}

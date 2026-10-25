@@ -1,0 +1,202 @@
+[
+  {
+    "id": "q-connect-0001",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Text someone you haven't talked to in a month. Just: “thought of you.”",
+    "why": "Tiny reach-outs keep friendships alive through busy years.",
+    "insightId": "i-liking-gap",
+    "namesStar": true,
+    "evidence": [
+      "Hall 2018",
+      "Boothby et al. 2018"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0002",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Reply to the message you've been meaning to answer. Imperfect is fine.",
+    "why": "An unanswered message quietly costs closeness. A quick reply wins it back.",
+    "namesStar": true,
+    "evidence": [
+      "Reis & Shaver 1988 (responsiveness)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0003",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Send a voice note instead of a text to one friend today.",
+    "why": "Hearing a voice builds more closeness than reading words.",
+    "insightId": "i-voice-over-text",
+    "namesStar": true,
+    "evidence": [
+      "Kumar & Epley 2021"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0004",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Ask a coworker one real question: “What's been the best part of your week?”",
+    "why": "Small, sincere questions are how acquaintances start becoming friends.",
+    "insightId": "i-liking-gap",
+    "namesStar": true,
+    "evidence": [
+      "Huang et al. 2017 (question asking and liking)"
+    ],
+    "tags": [
+      "work",
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0005",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 20,
+    "title": "Call a family member and ask them something you've never asked before.",
+    "why": "Curiosity turns a routine call into a real conversation.",
+    "namesStar": true,
+    "evidence": [
+      "Aron et al. 1997"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0006",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Invite one person to a 20-minute coffee or walk this week. Name the day.",
+    "why": "Friendships grow from time together, and a specific plan is far likelier to happen.",
+    "insightId": "i-fifty-hours",
+    "namesStar": true,
+    "evidence": [
+      "Hall 2018",
+      "Gollwitzer 1999"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0007",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 15,
+    "title": "Tell a friend one specific thing you appreciate about them.",
+    "why": "Appreciation strengthens a friendship more than most people expect.",
+    "insightId": "i-gratitude-underestimate",
+    "namesStar": true,
+    "evidence": [
+      "Kumar & Epley 2018"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0008",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Say yes to the next invitation you'd normally skip.",
+    "why": "Showing up is most of friendship.",
+    "insightId": "i-fifty-hours",
+    "namesStar": true,
+    "evidence": [
+      "Hall 2018"
+    ]
+  },
+  {
+    "id": "q-connect-0009",
+    "realm": "connect",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Host something small: three people, one easy dish or game. Send the invites today.",
+    "why": "Being the one who gathers people is a skill anyone can learn.",
+    "insightId": "i-fifty-hours",
+    "groupable": true,
+    "namesStar": true,
+    "evidence": [
+      "Hall 2018"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 15
+    }
+  },
+  {
+    "id": "q-connect-0010",
+    "realm": "connect",
+    "level": "wildfire",
+    "minutes": 120,
+    "title": "Go to a class, club or meetup you've been curious about, and stay for the chat after.",
+    "why": "Seeing the same faces again and again is how adult friendships form.",
+    "insightId": "i-fifty-hours",
+    "namesStar": true,
+    "evidence": [
+      "Festinger et al. 1950 (propinquity)",
+      "Hall 2018"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-connect-0011",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Share a song, photo or meme with someone it reminded you of.",
+    "why": "“Saw this and thought of you” moments keep bonds warm with almost no effort.",
+    "namesStar": true,
+    "evidence": [
+      "Oswald et al. 2004 (friendship maintenance)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0012",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Start a recurring thing with one friend: a weekly call or a monthly walk. Put the first one in both calendars.",
+    "why": "Rituals carry friendships through the busy weeks.",
+    "insightId": "i-if-then",
+    "groupable": true,
+    "namesStar": true,
+    "evidence": [
+      "Oswald et al. 2004",
+      "Hall 2018"
+    ],
+    "tags": [
+      "free"
+    ]
+  }
+]

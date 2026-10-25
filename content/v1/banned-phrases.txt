@@ -1,0 +1,22 @@
+# Whole phrases, case-insensitive (LLD §3.2 rule 7). A trailing * matches word forms.
+# Wellness claims only: never promise to treat or cure (FDA general-wellness guidance, Play Health policy).
+cure your
+cures
+treats depression
+treat depression
+treat anxiety
+treats anxiety
+treat burnout
+treat your
+diagnos*
+# Shame and "should" language (PRD §5)
+you should have
+you should be
+your fault
+just get over
+man up
+# Never depict methods of self-harm (Play sensitive-content policy)
+overdose
+lethal dose
+suicide method*
+how to kill

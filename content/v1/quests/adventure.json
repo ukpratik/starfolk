@@ -1,0 +1,205 @@
+[
+  {
+    "id": "q-adventure-0001",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Take a different route home today and notice one new thing.",
+    "why": "Small doses of novelty make days feel fuller and more memorable.",
+    "evidence": [
+      "Heller et al. 2020 (novelty and positive affect)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 0
+  },
+  {
+    "id": "q-adventure-0002",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Eat somewhere you've never eaten. Order something you've never tried.",
+    "why": "New experiences are linked to brighter moods the same day.",
+    "evidence": [
+      "Heller et al. 2020"
+    ],
+    "stamp": 3,
+    "safety": {
+      "night": "ok",
+      "cost": 15
+    }
+  },
+  {
+    "id": "q-adventure-0003",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Watch the sunset from somewhere high: a hill, a rooftop, a top-floor café.",
+    "why": "Moments of awe shrink everyday worries and make people kinder.",
+    "insightId": "i-awe",
+    "groupable": true,
+    "evidence": [
+      "Keltner & Haidt 2003",
+      "Piff et al. 2015"
+    ],
+    "tags": [
+      "free"
+    ],
+    "stamp": 0
+  },
+  {
+    "id": "q-adventure-0004",
+    "realm": "adventure",
+    "level": "wildfire",
+    "minutes": 240,
+    "title": "Plan a no-phone half-day somewhere new within an hour of home.",
+    "why": "Unplugged novelty is one of the fastest ways back to feeling present.",
+    "groupable": true,
+    "evidence": [
+      "Heller et al. 2020"
+    ],
+    "stamp": 4,
+    "safety": {
+      "night": "daylight",
+      "cost": 20
+    }
+  },
+  {
+    "id": "q-adventure-0005",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Get near open water: a lake, a river, the sea. Feet in if you can.",
+    "why": "Time by water is consistently linked to calmer moods.",
+    "evidence": [
+      "White et al. 2020 (blue space)"
+    ],
+    "tags": [
+      "free"
+    ],
+    "stamp": 1,
+    "safety": {
+      "night": "daylight",
+      "cost": 0
+    }
+  },
+  {
+    "id": "q-adventure-0006",
+    "realm": "adventure",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "See live music by someone you've never heard of.",
+    "why": "Shared live music builds a sense of connection, even among strangers.",
+    "groupable": true,
+    "evidence": [
+      "Tarr et al. 2014 (music and social bonding)"
+    ],
+    "stamp": 2,
+    "safety": {
+      "night": "ok",
+      "cost": 20
+    }
+  },
+  {
+    "id": "q-adventure-0007",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 20,
+    "title": "Draw, paint or collage something for 20 minutes, badly on purpose.",
+    "why": "Making art, at any skill level, lowers stress.",
+    "evidence": [
+      "Kaimal et al. 2016"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 5
+  },
+  {
+    "id": "q-adventure-0008",
+    "realm": "adventure",
+    "level": "wildfire",
+    "minutes": 120,
+    "title": "Sunrise mission: be outside when the sun comes up. Bring someone if you can.",
+    "why": "Starting a day with awe changes how the rest of it feels.",
+    "insightId": "i-awe",
+    "groupable": true,
+    "evidence": [
+      "Keltner & Haidt 2003"
+    ],
+    "tags": [
+      "free"
+    ],
+    "stamp": 0
+  },
+  {
+    "id": "q-adventure-0009",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Try a way of moving you've never done: a climbing wall, a dance video, a skate park.",
+    "why": "Learning a new physical skill gives a quick, real hit of mastery.",
+    "evidence": [
+      "Sonnentag & Fritz 2007 (mastery experiences)"
+    ],
+    "stamp": 6,
+    "safety": {
+      "night": "ok",
+      "cost": 15
+    }
+  },
+  {
+    "id": "q-adventure-0010",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Take a night walk somewhere safe and well lit. Find three stars or one constellation.",
+    "why": "The night sky is everyday awe, free and always there.",
+    "insightId": "i-awe",
+    "groupable": true,
+    "evidence": [
+      "Keltner & Haidt 2003"
+    ],
+    "tags": [
+      "free"
+    ],
+    "stamp": 7
+  },
+  {
+    "id": "q-adventure-0011",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Look up for one full minute: clouds, birds, the sky between buildings.",
+    "why": "Even tiny moments of awe ease stress.",
+    "insightId": "i-awe",
+    "evidence": [
+      "Bai et al. 2021 (daily awe)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 0
+  },
+  {
+    "id": "q-adventure-0012",
+    "realm": "adventure",
+    "level": "wildfire",
+    "minutes": 300,
+    "title": "Day trip: pick a town on the map you've never visited and go.",
+    "why": "Novel places are where memories get made.",
+    "groupable": true,
+    "evidence": [
+      "Heller et al. 2020"
+    ],
+    "stamp": 4,
+    "safety": {
+      "night": "daylight",
+      "cost": 30
+    }
+  }
+]

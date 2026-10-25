@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: GPL-3.0-or-later -->
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Day paper stays cream in system dark mode (D-026); only the Shelter follows the system theme. -->
+    <style name="Theme.Starfolk" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/paper_100</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+    </style>
+</resources>

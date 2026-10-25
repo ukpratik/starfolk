@@ -1,0 +1,53 @@
+// SPDX-License-Identifier: GPL-3.0-or-later
+package io.github.ukpratik.starfolk.tools
+
+import com.google.common.truth.Truth.assertThat
+import io.github.ukpratik.starfolk.core.content.ContentJson
+import io.github.ukpratik.starfolk.core.content.Manifest
+import java.io.File
+import java.nio.file.Files
+import org.junit.Test
+
+/** Runs the CLI against the real content/v1 (path from the build, see build.gradle.kts). */
+class ContentCliTest {
+    private val content = File(System.getProperty("starfolk.content"))
+
+    private fun run(vararg args: String): Triple<Int, List<String>, List<String>> {
+        val out = mutableListOf<String>(); val err = mutableListOf<String>()
+        val code = run(args.toList(), { out += it }, { err += it })
+        return Triple(code, out, err)
+    }
+
+    @Test fun `the committed content passes draft validation`() {
+        val (code, out, err) = run("validate", content.path, "--date=2026-10-25")
+        assertThat(err).isEmpty()
+        assertThat(code).isEqualTo(0)
+        assertThat(out.last()).startsWith("draft validation: 0 error(s)")
+    }
+
+    @Test fun `release validation fails until reviews and helplines are done`() {
+        val (code, _, err) = run("validate", content.path, "--release", "--date=2026-10-25")
+        assertThat(code).isEqualTo(1)
+        assertThat(err.any { "reviewed_by" in it }).isTrue()
+        assertThat(err.any { "not verified" in it }).isTrue()
+    }
+
+    @Test fun `pack is deterministic and the manifest hashes match the files`() {
+        val a = Files.createTempDirectory("packA").toFile()
+        val b = Files.createTempDirectory("packB").toFile()
+        assertThat(run("pack", content.path, a.path).first).isEqualTo(0)
+        assertThat(run("pack", content.path, b.path).first).isEqualTo(0)
+        val manifest = ContentJson.decodeFromString(Manifest.serializer(), a.resolve("manifest.json").readText())
+        assertThat(manifest.packs.map { it.id }).containsAtLeast("quests", "shelter-breakup", "shelter-work", "shelter-health", "sparks", "insights", "helplines", "sos")
+        for (p in manifest.packs) {
+            val text = a.resolve(p.file).readText()
+            assertThat(Packer.sha256(text)).isEqualTo(p.sha256)
+            assertThat(b.resolve(p.file).readText()).isEqualTo(text)
+        }
+    }
+
+    @Test fun `bad usage exits 2`() {
+        assertThat(run().first).isEqualTo(2)
+        assertThat(run("explode", content.path).first).isEqualTo(2)
+    }
+}

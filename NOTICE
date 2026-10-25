@@ -1,0 +1,13 @@
+Starfolk
+Copyright (C) 2026 Pratik Ukey
+
+The source code in this repository is licensed under the GNU General Public License v3.0 or later (see LICENSE).
+
+The written content in content/ (quests, Shelter tracks, Sparks, "why this works" insights, SOS text) and the packs
+built from it into app assets are licensed separately under Creative Commons Attribution-NonCommercial-NoDerivatives
+4.0 International (see content/LICENSE): you may share it with credit, but not sell it or publish edited versions
+(ADR-015, D-030).
+
+Fonts: Bricolage Grotesque, Courier Prime and Caveat are under the SIL Open Font License 1.1.
+The WHO-5 Well-Being Index items (when added) are © World Health Organization, 1998, used unmodified with attribution.
+Helpline numbers are factual listings, verified against each source before every release (content/v1/helplines.json).

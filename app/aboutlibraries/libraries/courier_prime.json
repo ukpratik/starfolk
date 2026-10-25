@@ -1,0 +1,14 @@
+{
+  "uniqueId": "com.github.quoteunquoteapps:courier-prime",
+  "name": "Courier Prime",
+  "description": "Body typeface (typewriter), bundled as a Latin subset. Copyright 2015 The Courier Prime Project Authors.",
+  "website": "https://github.com/quoteunquoteapps/CourierPrime",
+  "developers": [
+    {
+      "name": "The Courier Prime Project Authors"
+    }
+  ],
+  "licenses": [
+    "OFL-1.1"
+  ]
+}
