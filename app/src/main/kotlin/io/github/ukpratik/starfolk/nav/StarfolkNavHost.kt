@@ -18,6 +18,11 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import io.github.ukpratik.starfolk.AppContainer
 import io.github.ukpratik.starfolk.feature.memories.MemoriesScreen
+import io.github.ukpratik.starfolk.feature.onboarding.OnboardingScreen
+import io.github.ukpratik.starfolk.ui.theme.Tokens
+import androidx.compose.foundation.background
+import androidx.compose.runtime.remember
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import io.github.ukpratik.starfolk.feature.shelter.ShelterScreen
 import io.github.ukpratik.starfolk.feature.sky.SkyScreen
 import io.github.ukpratik.starfolk.feature.sos.SosScreen
@@ -25,13 +30,15 @@ import io.github.ukpratik.starfolk.feature.today.TodayScreen
 
 @Composable
 fun StarfolkNavHost(container: AppContainer, skyDemo: Int) {
+    val settings by container.settings.settings.collectAsStateWithLifecycle(initialValue = null)
+    val loaded = settings ?: run { Box(Modifier.fillMaxSize().background(Tokens.Paper100)); return }
     val nav = rememberNavController()
     val entry by nav.currentBackStackEntryAsState()
     val route = entry?.destination?.route
     val openSos = { nav.navigate(Routes.SOS) }
     // Light status-bar icons over night paper (Today, Sky); dark icons over day paper and linen.
     val view = LocalView.current
-    val nightTop = route == Routes.TODAY || route == Routes.SKY || route == null
+    val nightTop = route == Routes.TODAY || route == Routes.SKY
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
@@ -39,22 +46,30 @@ fun StarfolkNavHost(container: AppContainer, skyDemo: Int) {
         }
     }
     Box(Modifier.fillMaxSize()) {
-        NavHost(nav, startDestination = Routes.TODAY, modifier = Modifier.fillMaxSize()) {
+        val start = remember { if (loaded.onboarded || skyDemo > 0) Routes.TODAY else Routes.ONBOARDING }
+        fun goTab(route: String) = nav.navigate(route) {
+            popUpTo(nav.graph.findStartDestination().id) { saveState = true }
+            launchSingleTop = true
+            restoreState = true
+        }
+        NavHost(nav, startDestination = start, modifier = Modifier.fillMaxSize()) {
+            composable(Routes.ONBOARDING) {
+                OnboardingScreen(
+                    container,
+                    onDone = { nav.navigate(Routes.TODAY) { popUpTo(Routes.ONBOARDING) { inclusive = true } } },
+                    onShelter = { nav.navigate(Routes.TODAY) { popUpTo(Routes.ONBOARDING) { inclusive = true } }; nav.navigate(Routes.SHELTER) },
+                    onSos = openSos,
+                )
+            }
             composable(Routes.TODAY) { TodayScreen(container, skyDemo, onSos = openSos) }
-            composable(Routes.SKY) { SkyScreen(container, skyDemo, onSos = openSos) }
-            composable(Routes.MEMORIES) { MemoriesScreen(onSos = openSos) }
+            composable(Routes.SKY) { SkyScreen(container, skyDemo, onSos = openSos, onOpenMemories = { goTab(Routes.MEMORIES) }) }
+            composable(Routes.MEMORIES) { MemoriesScreen(container, onSos = openSos, onConnectAgain = { goTab(Routes.TODAY) }) }
             composable(Routes.SHELTER) { ShelterScreen(container, onSos = openSos) }
             composable(Routes.SOS) { SosScreen(container, onClose = { nav.popBackStack() }) }
         }
         val tab = Tab.entries.firstOrNull { it.route == route }
         if (tab != null) {
-            NotebookTabs(tab, onSelect = { selected ->
-                nav.navigate(selected.route) {
-                    popUpTo(nav.graph.findStartDestination().id) { saveState = true }
-                    launchSingleTop = true
-                    restoreState = true
-                }
-            }, Modifier.align(Alignment.BottomCenter))
+            NotebookTabs(tab, onSelect = { goTab(it.route) }, Modifier.align(Alignment.BottomCenter))
         }
     }
 }

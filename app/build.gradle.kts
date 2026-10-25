@@ -3,6 +3,7 @@ plugins {
     id("starfolk.android.application")
     id("starfolk.android.compose")
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.ksp)
     alias(libs.plugins.aboutlibraries.android)
     alias(libs.plugins.baselineprofile)
 }
@@ -68,6 +69,13 @@ android {
     }
 
     testOptions.unitTests.isIncludeAndroidResources = true
+}
+
+// LLD §2: Room schemas for both databases are exported and committed. Pre-release they stay at version 1;
+// from the first release every change ships a Migration and a MigrationTestHelper test.
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+    arg("room.generateKotlin", "true")
 }
 
 // ADR-008: content/v1 is validated and packed into assets/content at build time by :tools:content (never in git).
@@ -139,6 +147,10 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.room.runtime)
+    implementation(libs.androidx.room.ktx)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.datastore.preferences)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.androidx.profileinstaller)
     baselineProfile(project(":baselineprofile"))
@@ -148,6 +160,7 @@ dependencies {
     testImplementation(libs.robolectric)
     testImplementation(libs.androidx.test.core)
     testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.androidx.room.testing)
     testImplementation(libs.compose.ui.test.junit4)
     debugImplementation(libs.compose.ui.test.manifest)
 }

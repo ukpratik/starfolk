@@ -1,0 +1,189 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "34a440c52ccdac08bf4cfe6f8c6672bc",
+    "entities": [
+      {
+        "tableName": "completion",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `questId` TEXT NOT NULL, `realm` TEXT NOT NULL, `level` TEXT NOT NULL, `appDay` INTEGER NOT NULL, `completedAt` INTEGER NOT NULL, `source` TEXT NOT NULL, `stamp` INTEGER)",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "questId",
+            "columnName": "questId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "realm",
+            "columnName": "realm",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "level",
+            "columnName": "level",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "appDay",
+            "columnName": "appDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "completedAt",
+            "columnName": "completedAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "source",
+            "columnName": "source",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "stamp",
+            "columnName": "stamp",
+            "affinity": "INTEGER"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": true,
+          "columnNames": [
+            "id"
+          ]
+        },
+        "indices": [
+          {
+            "name": "index_completion_questId_appDay",
+            "unique": true,
+            "columnNames": [
+              "questId",
+              "appDay"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_completion_questId_appDay` ON `${TABLE_NAME}` (`questId`, `appDay`)"
+          },
+          {
+            "name": "index_completion_appDay",
+            "unique": false,
+            "columnNames": [
+              "appDay"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_completion_appDay` ON `${TABLE_NAME}` (`appDay`)"
+          }
+        ]
+      },
+      {
+        "tableName": "daily_pick",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`appDay` INTEGER NOT NULL, `questId` TEXT NOT NULL, `swapsUsed` INTEGER NOT NULL, `shownIds` TEXT NOT NULL, PRIMARY KEY(`appDay`))",
+        "fields": [
+          {
+            "fieldPath": "appDay",
+            "columnName": "appDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "questId",
+            "columnName": "questId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "swapsUsed",
+            "columnName": "swapsUsed",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shownIds",
+            "columnName": "shownIds",
+            "affinity": "TEXT",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "appDay"
+          ]
+        }
+      },
+      {
+        "tableName": "quest_commit",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`appDay` INTEGER NOT NULL, `questId` TEXT NOT NULL, `slot` TEXT NOT NULL, `remindAt` INTEGER, `createdAt` INTEGER NOT NULL, PRIMARY KEY(`appDay`, `questId`))",
+        "fields": [
+          {
+            "fieldPath": "appDay",
+            "columnName": "appDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "questId",
+            "columnName": "questId",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slot",
+            "columnName": "slot",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "remindAt",
+            "columnName": "remindAt",
+            "affinity": "INTEGER"
+          },
+          {
+            "fieldPath": "createdAt",
+            "columnName": "createdAt",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "appDay",
+            "questId"
+          ]
+        }
+      },
+      {
+        "tableName": "app_open",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`appDay` INTEGER NOT NULL, PRIMARY KEY(`appDay`))",
+        "fields": [
+          {
+            "fieldPath": "appDay",
+            "columnName": "appDay",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "appDay"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '34a440c52ccdac08bf4cfe6f8c6672bc')"
+    ]
+  }
+}

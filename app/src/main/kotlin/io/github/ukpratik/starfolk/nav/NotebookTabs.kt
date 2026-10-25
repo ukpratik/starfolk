@@ -66,6 +66,7 @@ enum class Tab(val route: String, val label: Int, val paper: Color) {
 }
 
 object Routes {
+    const val ONBOARDING = "onboarding"
     const val TODAY = "today"
     const val SKY = "sky"
     const val MEMORIES = "memories"

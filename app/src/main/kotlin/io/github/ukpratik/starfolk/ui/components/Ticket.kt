@@ -28,6 +28,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -68,11 +69,52 @@ private const val HOLD_MS = 1200
  * TalkBack "Commit" action as the gesture-free path. [onCommit] fires once the stub tears.
  */
 @Composable
-fun Ticket(quest: Quest, number: Int, committed: Boolean, onCommit: () -> Unit, onDone: () -> Unit, modifier: Modifier = Modifier) {
+fun Ticket(
+    quest: Quest,
+    number: Int,
+    committed: Boolean,
+    onCommit: () -> Unit,
+    onDone: () -> Unit,
+    modifier: Modifier = Modifier,
+    /** Handwritten commit time on the ticket ("tonight 7 pm"). */
+    commitLabel: String? = null,
+    /** The rubber stamp's date line ("25 · OCT · 26") once the quest is done; null = not done. */
+    stampedOn: String? = null,
+    /** Shown instead of the action row once done (e.g. "Pass it on" in M-D). */
+    doneActions: @Composable (() -> Unit)? = null,
+) {
+    Box(modifier) {
+        TicketBody(quest, number, committed, onCommit, onDone, commitLabel, stampedOn, doneActions)
+        if (stampedOn != null) RubberStamp(stampedOn, Modifier.align(Alignment.BottomEnd).padding(end = 18.dp, bottom = 70.dp))
+    }
+}
+
+/** The red DONE stamp (design-system §7): slams down from 3× with an overshoot. Never used in the Shelter. */
+@Composable
+private fun RubberStamp(date: String, modifier: Modifier) {
+    val scale = remember { Animatable(3f) }
+    LaunchedEffect(Unit) { scale.animateTo(1f, spring(dampingRatio = 0.5f, stiffness = 400f)) }
+    Column(
+        modifier
+            .graphicsLayer { scaleX = scale.value; scaleY = scale.value; rotationZ = -14f; alpha = (4f - scale.value).coerceIn(0f, 0.9f) }
+            .border(4.dp, Tokens.StampRed, RoundedCornerShape(8.dp))
+            .padding(horizontal = 12.dp, vertical = 6.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        Text("DONE", style = StarfolkType.H1.copy(color = Tokens.StampRed, letterSpacing = StarfolkType.Tab.letterSpacing))
+        Text(date, style = StarfolkType.Label.copy(color = Tokens.StampRed))
+    }
+}
+
+@Composable
+private fun TicketBody(
+    quest: Quest, number: Int, committed: Boolean, onCommit: () -> Unit, onDone: () -> Unit,
+    commitLabel: String?, stampedOn: String?, doneActions: @Composable (() -> Unit)?,
+) {
     val realm = quest.realm.colors()
     val stubTilt by animateFloatAsState(if (committed) -8f else 0f, spring(dampingRatio = Spring.DampingRatioMediumBouncy), label = "stub")
     Row(
-        modifier
+        Modifier
             .fillMaxWidth()
             .shadow(10.dp, RoundedCornerShape(6.dp))
             .clip(RoundedCornerShape(6.dp))
@@ -106,10 +148,17 @@ fun Ticket(quest: Quest, number: Int, committed: Boolean, onCommit: () -> Unit, 
                 modifier = Modifier.padding(top = 10.dp, bottom = 8.dp),
             )
             Text(quest.why, style = StarfolkType.Body.copy(color = Tokens.Ink700))
+            if (commitLabel != null && stampedOn == null) {
+                Text("$commitLabel ✎", style = StarfolkType.Hand.copy(color = Tokens.HandwritingInk), modifier = Modifier.align(Alignment.End).padding(top = 6.dp))
+            }
             Spacer(Modifier.height(14.dp))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                HoldToTear(committed, onCommit, Modifier.weight(1.5f))
-                PaperButton(stringResource(R.string.stamp_it), onDone, Modifier.weight(1.1f), border = BorderStroke(2.dp, Tokens.StampRed), textColor = Tokens.StampRed)
+            if (stampedOn != null) {
+                doneActions?.invoke()
+            } else {
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    HoldToTear(committed, onCommit, Modifier.weight(1.5f))
+                    PaperButton(stringResource(R.string.stamp_it), onDone, Modifier.weight(1.1f), border = BorderStroke(2.dp, Tokens.StampRed), textColor = Tokens.StampRed)
+                }
             }
         }
     }
@@ -120,7 +169,7 @@ private fun HoldToTear(committed: Boolean, onCommit: () -> Unit, modifier: Modif
     val progress = remember { Animatable(0f) }
     val scope = rememberCoroutineScope()
     val haptics = LocalHapticFeedback.current
-    var done by remember { mutableStateOf(committed) }
+    var done by remember(committed) { mutableStateOf(committed) }
     val label = stringResource(R.string.hold_to_tear)
     fun commit() { if (!done) { done = true; haptics.performHapticFeedback(HapticFeedbackType.LongPress); onCommit() } }
     Box(
