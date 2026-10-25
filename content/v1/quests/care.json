@@ -94,5 +94,354 @@
       "solo",
       "free"
     ]
+  },
+  {
+    "id": "q-care-0007",
+    "realm": "care",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Breathe slowly for 2 minutes: in for 4, out for 6.",
+    "why": "Slow breathing with longer exhales helps your body shift into a calmer gear.",
+    "evidence": [
+      "Zaccaro et al. 2018 (slow breathing)",
+      "Balban et al. 2023"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0008",
+    "realm": "care",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Drink a full glass of water, slowly, before your next coffee or scroll.",
+    "why": "Even mild dehydration can drag on mood and energy.",
+    "evidence": [
+      "Pross et al. 2014 (water intake and mood)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0009",
+    "realm": "care",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Walk up and down some stairs, or around the room, for 2 minutes.",
+    "why": "A short burst of movement lifts energy more than a sugary snack.",
+    "insightId": "i-exercise-mood",
+    "evidence": [
+      "Thayer 1987 (short walks and energy)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0010",
+    "realm": "care",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Write down the worry that keeps looping, then one small thing you could do about it.",
+    "why": "Putting a worry on paper turns a loop into something you can work with.",
+    "insightId": "i-expressive-writing",
+    "evidence": [
+      "Pennebaker & Beall 1986"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0011",
+    "realm": "care",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Notice one pleasant thing right now and stay with it 30 seconds longer than usual.",
+    "why": "Savoring good moments makes them lift you more.",
+    "insightId": "i-savoring",
+    "evidence": [
+      "Jose et al. 2012",
+      "Bryant & Veroff 2007"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0012",
+    "realm": "care",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Set a wind-down alarm for 30 minutes before you want to be asleep tonight.",
+    "why": "A cue to start winding down makes rest easier to protect.",
+    "evidence": [
+      "Irish et al. 2015 (sleep hygiene)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0013",
+    "realm": "care",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Get 2 minutes of daylight: step outside or stand by a bright window.",
+    "why": "Daylight helps set your body clock, which supports sleep and mood.",
+    "evidence": [
+      "Blume et al. 2019 (light, sleep and mood)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0014",
+    "realm": "care",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Name what you're feeling in one or two words. That's the whole quest.",
+    "why": "Putting a feeling into words can take a little of the sting out of it.",
+    "evidence": [
+      "Lieberman et al. 2007 (affect labeling)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0015",
+    "realm": "care",
+    "level": "flame",
+    "minutes": 15,
+    "title": "Write for 15 minutes about something that's been weighing on you. No one else has to read it.",
+    "why": "Writing about hard things helps you make sense of them.",
+    "insightId": "i-expressive-writing",
+    "evidence": [
+      "Pennebaker & Beall 1986"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0016",
+    "realm": "care",
+    "level": "flame",
+    "minutes": 20,
+    "title": "Move for 20 minutes in a way you actually enjoy: a dance video, a bike ride, a brisk walk.",
+    "why": "Regular movement is one of the most reliable mood lifts there is.",
+    "insightId": "i-exercise-mood",
+    "evidence": [
+      "Chekroud et al. 2018"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0017",
+    "realm": "care",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Cook yourself a simple meal with a vegetable in it, and eat it without a screen.",
+    "why": "Eating more fruit and veg is linked to better days, and cooking for yourself is care.",
+    "evidence": [
+      "Conner et al. 2015 (fruit, vegetables and well-being)"
+    ],
+    "tags": [
+      "solo"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 8
+    }
+  },
+  {
+    "id": "q-care-0018",
+    "realm": "care",
+    "level": "flame",
+    "minutes": 15,
+    "title": "Write a kind letter to yourself about something you've been hard on yourself for.",
+    "why": "Self-kindness after a setback makes people more likely to try again.",
+    "insightId": "i-self-compassion",
+    "evidence": [
+      "Neff 2003",
+      "Breines & Chen 2012"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0019",
+    "realm": "care",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Turn on do-not-disturb for 30 minutes and do something slow: read, stretch or just sit.",
+    "why": "Real switching off is how energy comes back.",
+    "insightId": "i-detachment",
+    "evidence": [
+      "Sonnentag & Fritz 2007"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0020",
+    "realm": "care",
+    "level": "flame",
+    "minutes": 20,
+    "title": "Spend 20 minutes in the nearest park or green space. Sit, stroll or just look at trees.",
+    "why": "Time in green places adds up to better well-being.",
+    "insightId": "i-nature-dose",
+    "evidence": [
+      "White et al. 2019"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "safety": {
+      "night": "daylight",
+      "cost": 0
+    }
+  },
+  {
+    "id": "q-care-0021",
+    "realm": "care",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Pack a picnic and a book and spend an afternoon outdoors somewhere green.",
+    "why": "A long stretch in nature gets you most of a week's recommended dose in one go.",
+    "insightId": "i-nature-dose",
+    "groupable": true,
+    "evidence": [
+      "White et al. 2019"
+    ],
+    "safety": {
+      "night": "daylight",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-care-0022",
+    "realm": "care",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Plan a fully offline evening: phone off at 7, a good meal, a book or a bath, early to bed.",
+    "why": "Detaching from screens and demands is how your mind recovers.",
+    "insightId": "i-detachment",
+    "evidence": [
+      "Sonnentag & Fritz 2007"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0023",
+    "realm": "care",
+    "level": "wildfire",
+    "minutes": 120,
+    "title": "Take a two-hour walk somewhere green, no podcast, no destination.",
+    "why": "Walks in nature quiet the thoughts that keep replaying.",
+    "insightId": "i-green-walk",
+    "evidence": [
+      "Bratman et al. 2015"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "safety": {
+      "night": "daylight",
+      "cost": 0
+    }
+  },
+  {
+    "id": "q-care-0024",
+    "realm": "care",
+    "level": "wildfire",
+    "minutes": 240,
+    "title": "Have a slow reset morning: sleep in, long breakfast, fresh sheets, no inbox until noon.",
+    "why": "Choosing how you spend your time is a key part of recovery.",
+    "insightId": "i-detachment",
+    "evidence": [
+      "Sonnentag & Fritz 2007"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-care-0025",
+    "realm": "care",
+    "level": "wildfire",
+    "minutes": 120,
+    "title": "Try a beginner yoga, swim or dance class you've been curious about.",
+    "why": "New movement brings a mood lift plus the fun of learning something.",
+    "insightId": "i-exercise-mood",
+    "groupable": true,
+    "evidence": [
+      "Chekroud et al. 2018",
+      "Sonnentag & Fritz 2007 (mastery)"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 15
+    }
+  },
+  {
+    "id": "q-care-0026",
+    "realm": "care",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Spend an afternoon making something with your hands just for you: bake, knit, build or paint.",
+    "why": "Making things calms the body, whatever your skill level.",
+    "insightId": "i-art-stress",
+    "evidence": [
+      "Kaimal et al. 2016"
+    ],
+    "tags": [
+      "solo"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-care-0027",
+    "realm": "care",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Spend an afternoon making your space feel good: open windows, fresh sheets, one cleared surface.",
+    "why": "A home that feels restful is linked to lower day-to-day stress.",
+    "evidence": [
+      "Saxbe & Repetti 2010 (home and mood)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
   }
 ]

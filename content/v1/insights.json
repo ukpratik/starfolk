@@ -46,5 +46,137 @@
     "title": "Talk to yourself like a friend.",
     "body": "Treating yourself with the kindness you'd offer a friend is linked to less anxiety and more resilience. It doesn't make you lazy; it makes you more likely to try again.",
     "cite": "Neff, 2003; Breines & Chen, 2012"
+  },
+  {
+    "id": "i-active-constructive",
+    "title": "Celebrate their good news.",
+    "body": "How you respond when someone shares good news matters a lot. Enthusiastic, curious replies (“That's huge, tell me everything!”) are linked to closer, more satisfying relationships.",
+    "cite": "Gable, Reis, Impett & Asher, Journal of Personality and Social Psychology, 2004"
+  },
+  {
+    "id": "i-deep-talk",
+    "title": "Go deeper than small talk.",
+    "body": "People expect deep conversations to feel awkward and less enjoyable than shallow ones. In practice, they feel more connected and enjoy them more than they predicted. The other person usually wants to go deeper too.",
+    "cite": "Kardas, Kumar & Epley, Journal of Personality and Social Psychology, 2022"
+  },
+  {
+    "id": "i-strangers",
+    "title": "Strangers are friendlier than you think.",
+    "body": "Commuters asked to talk to a stranger expected a worse ride. They actually had a more pleasant one, and nobody got rebuffed. We underestimate how much others want to chat.",
+    "cite": "Epley & Schroeder, Journal of Experimental Psychology: General, 2014"
+  },
+  {
+    "id": "i-weak-ties",
+    "title": "Small hellos count.",
+    "body": "On days when people chatted with more acquaintances, like a barista, a classmate or a neighbor, they felt happier and more like they belonged. Light ties matter, not just close ones.",
+    "cite": "Sandstrom & Dunn, Personality and Social Psychology Bulletin, 2014"
+  },
+  {
+    "id": "i-ask-for-help",
+    "title": "People want to say yes.",
+    "body": "When people ask strangers for small favors, they underestimate how many will agree, often by about half. Asking feels bigger to you than it does to them.",
+    "cite": "Flynn & Lake, Journal of Personality and Social Psychology, 2008"
+  },
+  {
+    "id": "i-compliments",
+    "title": "Say the nice thing.",
+    "body": "People who give compliments underestimate how good they make the other person feel, and overestimate how awkward it will be. The warm thought in your head is worth saying out loud.",
+    "cite": "Boothby & Bohns, Personality and Social Psychology Bulletin, 2021"
+  },
+  {
+    "id": "i-kindness",
+    "title": "Kindness comes back to you.",
+    "body": "Across dozens of studies, doing kind things for others gave a real, if modest, lift to the well-being of the person being kind. Small acts count.",
+    "cite": "Curry et al., Journal of Experimental Social Psychology, 2018"
+  },
+  {
+    "id": "i-familiar-faces",
+    "title": "Proximity makes friends.",
+    "body": "In a classic study of student housing, people were most likely to become friends with whoever lived closest. Seeing the same faces again and again is how strangers turn into friends.",
+    "cite": "Festinger, Schachter & Back, Social Pressures in Informal Groups, 1950"
+  },
+  {
+    "id": "i-novelty",
+    "title": "New places, brighter days.",
+    "body": "Tracking people's movements for months, researchers found that on days with more variety in where people went, they felt happier. Novelty and good mood travel together.",
+    "cite": "Heller et al., Nature Neuroscience, 2020"
+  },
+  {
+    "id": "i-nature-dose",
+    "title": "Two hours a week outside.",
+    "body": "In a study of about 20,000 people, those who spent at least 120 minutes a week in nature were more likely to report good health and high well-being. It didn't matter how they split it up.",
+    "cite": "White et al., Scientific Reports, 2019"
+  },
+  {
+    "id": "i-green-walk",
+    "title": "Green walks quiet the loop.",
+    "body": "People who took a 90-minute walk in nature replayed negative thoughts less afterward than people who walked along a busy road. The setting of a walk matters.",
+    "cite": "Bratman, Hamilton, Hahn, Daily & Gross, PNAS, 2015"
+  },
+  {
+    "id": "i-in-sync",
+    "title": "Moving together bonds people.",
+    "body": "Dancing or singing in time with others raises feelings of closeness. Groups who sang together bonded faster than groups doing crafts or writing.",
+    "cite": "Tarr, Launay, Cohen & Dunbar, Biology Letters, 2015; Pearce, Launay & Dunbar, Royal Society Open Science, 2015"
+  },
+  {
+    "id": "i-savoring",
+    "title": "Stay with the good part.",
+    "body": "Savoring means noticing a good moment and letting it last a little longer. On days people savored their good experiences, those experiences lifted their mood more.",
+    "cite": "Jose, Lim & Bryant, Journal of Positive Psychology, 2012"
+  },
+  {
+    "id": "i-exercise-mood",
+    "title": "Movement lifts mood.",
+    "body": "In data from over a million Americans, people who exercised reported about 1.5 fewer bad mental-health days a month. Team sports, cycling and gym workouts showed the strongest links, and any movement helped.",
+    "cite": "Chekroud et al., The Lancet Psychiatry, 2018"
+  },
+  {
+    "id": "i-expressive-writing",
+    "title": "Write it out.",
+    "body": "People who wrote about upsetting experiences for about 15 minutes, four days in a row, had better health and mood in the months after. Getting it on paper helps make sense of it.",
+    "cite": "Pennebaker & Beall, Journal of Abnormal Psychology, 1986"
+  },
+  {
+    "id": "i-small-wins",
+    "title": "Small wins add up.",
+    "body": "In about 12,000 work diary entries, the biggest boost to people's mood and motivation was simply making progress on something meaningful, even a small step.",
+    "cite": "Amabile & Kramer, The Progress Principle, 2011"
+  },
+  {
+    "id": "i-flow",
+    "title": "Find your flow.",
+    "body": "Flow is that state where time disappears because you're absorbed. It shows up when a task is a stretch, but not too much of one, for your skills. Those moments are clues to what fits you.",
+    "cite": "Csikszentmihalyi, Flow: The Psychology of Optimal Experience, 1990"
+  },
+  {
+    "id": "i-three-good-things",
+    "title": "Notice what went right.",
+    "body": "Writing down three things that went well each day, and why, for one week, left people happier for up to six months.",
+    "cite": "Seligman, Steen, Park & Peterson, American Psychologist, 2005"
+  },
+  {
+    "id": "i-detachment",
+    "title": "Switch off to recharge.",
+    "body": "Recovery from a demanding week comes from four things: mentally detaching, relaxing, learning something new and choosing how you spend your time. Rest is a skill.",
+    "cite": "Sonnentag & Fritz, Journal of Occupational Health Psychology, 2007"
+  },
+  {
+    "id": "i-values",
+    "title": "Remember what matters to you.",
+    "body": "Writing for a few minutes about a value that matters to you, and why, helps people stay steadier under stress and pressure. It reminds you that you're bigger than one hard moment.",
+    "cite": "Cohen & Sherman, Annual Review of Psychology, 2014"
+  },
+  {
+    "id": "i-art-stress",
+    "title": "Making art calms the body.",
+    "body": "After 45 minutes of making art, most participants had lower levels of the stress hormone cortisol, whatever their skill or experience. Talent not required.",
+    "cite": "Kaimal, Ray & Muniz, Art Therapy, 2016"
+  },
+  {
+    "id": "i-volunteer",
+    "title": "Helping helps the helper.",
+    "body": "Volunteers report more happiness, life satisfaction and sense of control. The link runs both ways: giving time lifts well-being, and feeling good makes people give more.",
+    "cite": "Thoits & Hewitt, Journal of Health and Social Behavior, 2001"
   }
 ]

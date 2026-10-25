@@ -201,5 +201,376 @@
       "night": "daylight",
       "cost": 30
     }
+  },
+  {
+    "id": "q-adventure-0013",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Step outside and find one thing that's blooming, ripening or falling.",
+    "why": "Noticing the season change is a tiny, free hit of wonder.",
+    "insightId": "i-awe",
+    "evidence": [
+      "Sturm et al. 2022 (awe walks)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 0
+  },
+  {
+    "id": "q-adventure-0014",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Play a song from a genre you never listen to. Give it one full minute.",
+    "why": "Small doses of novelty make ordinary days feel fuller.",
+    "insightId": "i-novelty",
+    "evidence": [
+      "Heller et al. 2020"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 2
+  },
+  {
+    "id": "q-adventure-0015",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Taste something new today: a fruit, a spice, a snack from the shelf you always skip.",
+    "why": "New experiences, even tiny ones, travel with brighter moods.",
+    "insightId": "i-novelty",
+    "evidence": [
+      "Heller et al. 2020"
+    ],
+    "tags": [
+      "solo"
+    ],
+    "stamp": 3,
+    "safety": {
+      "night": "ok",
+      "cost": 3
+    }
+  },
+  {
+    "id": "q-adventure-0016",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Find some water nearby, like a fountain, rain on a window or a puddle's reflection, and watch it for a minute.",
+    "why": "Watching moving water is a small, calm kind of awe.",
+    "evidence": [
+      "White et al. 2020 (blue space)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 1
+  },
+  {
+    "id": "q-adventure-0017",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Take a photo of something beautiful you'd normally walk right past.",
+    "why": "Looking for a shot makes you notice more, and enjoy the moment more.",
+    "insightId": "i-savoring",
+    "evidence": [
+      "Diehl et al. 2016 (photos and enjoyment)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 5
+  },
+  {
+    "id": "q-adventure-0018",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Put on one song and dance to it, as badly as you like. Kitchen floors count.",
+    "why": "Moving to music is one of the fastest energy lifts there is.",
+    "insightId": "i-exercise-mood",
+    "evidence": [
+      "Karageorghis & Priest 2012 (music and exercise)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 6
+  },
+  {
+    "id": "q-adventure-0019",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Tonight, from a window or your doorstep, find the moon. Notice its shape.",
+    "why": "The night sky is everyday awe, and it's right outside.",
+    "insightId": "i-awe",
+    "evidence": [
+      "Keltner & Haidt 2003"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 7
+  },
+  {
+    "id": "q-adventure-0020",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Open a map and save a place within an hour of home you've never been.",
+    "why": "Looking forward to a trip lifts mood. Anticipation is half the fun.",
+    "evidence": [
+      "Nawijn et al. 2010 (anticipation and vacations)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 4
+  },
+  {
+    "id": "q-adventure-0021",
+    "realm": "adventure",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Stand outside for one minute and count every different sound you hear.",
+    "why": "Paying full attention to the world outside pulls you into the present.",
+    "insightId": "i-awe",
+    "evidence": [
+      "Sturm et al. 2022 (awe walks)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ],
+    "stamp": 0
+  },
+  {
+    "id": "q-adventure-0022",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 25,
+    "title": "Find a free gallery, mural or public sculpture near you and spend 20 minutes with one piece.",
+    "why": "Art you stop and really look at is a reliable source of awe.",
+    "insightId": "i-awe",
+    "groupable": true,
+    "evidence": [
+      "Keltner & Haidt 2003",
+      "Fancourt & Finn 2019 (WHO arts review)"
+    ],
+    "tags": [
+      "free"
+    ],
+    "stamp": 5
+  },
+  {
+    "id": "q-adventure-0023",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Swim, paddle or wade somewhere new. Pick a lifeguarded pool, lake or beach.",
+    "why": "Time in and near water is consistently linked to calmer moods.",
+    "groupable": true,
+    "evidence": [
+      "White et al. 2020 (blue space)"
+    ],
+    "stamp": 1,
+    "safety": {
+      "night": "daylight",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-adventure-0024",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Go to an open mic, a busker spot or a free outdoor gig. Stay for three acts.",
+    "why": "Live music shared with strangers builds a quiet sense of connection.",
+    "insightId": "i-in-sync",
+    "groupable": true,
+    "evidence": [
+      "Tarr et al. 2014 (music and social bonding)"
+    ],
+    "tags": [
+      "free"
+    ],
+    "stamp": 2
+  },
+  {
+    "id": "q-adventure-0025",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Walk a 30-minute loop through a neighborhood you've never explored. Find one hidden detail.",
+    "why": "Variety in where you go is linked to happier days.",
+    "insightId": "i-novelty",
+    "evidence": [
+      "Heller et al. 2020"
+    ],
+    "tags": [
+      "free"
+    ],
+    "stamp": 4,
+    "safety": {
+      "night": "daylight",
+      "cost": 0
+    }
+  },
+  {
+    "id": "q-adventure-0026",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Shoot hoops, kick a ball or join a pickup game at a public court or park.",
+    "why": "Playing a sport is one of the moves most strongly linked to better mood.",
+    "insightId": "i-exercise-mood",
+    "groupable": true,
+    "evidence": [
+      "Chekroud et al. 2018"
+    ],
+    "tags": [
+      "free"
+    ],
+    "stamp": 6
+  },
+  {
+    "id": "q-adventure-0027",
+    "realm": "adventure",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Visit a busy, well-lit night market, food truck or late bakery and try one thing you've never had.",
+    "why": "Night has its own flavor of novelty, best found where people are.",
+    "insightId": "i-novelty",
+    "groupable": true,
+    "evidence": [
+      "Heller et al. 2020"
+    ],
+    "stamp": 7,
+    "safety": {
+      "night": "ok",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-adventure-0028",
+    "realm": "adventure",
+    "level": "wildfire",
+    "minutes": 240,
+    "title": "Hike a trail you've never done. Share your route with someone, bring water and finish in daylight.",
+    "why": "A long stretch in nature is a big, free well-being boost.",
+    "insightId": "i-nature-dose",
+    "groupable": true,
+    "evidence": [
+      "White et al. 2019 (nature dose)"
+    ],
+    "tags": [
+      "free"
+    ],
+    "stamp": 0,
+    "safety": {
+      "night": "daylight",
+      "cost": 0
+    }
+  },
+  {
+    "id": "q-adventure-0029",
+    "realm": "adventure",
+    "level": "wildfire",
+    "minutes": 150,
+    "title": "Take a one-off beginner art class: pottery, printmaking, life drawing, whatever calls.",
+    "why": "Making art lowers stress, no talent required.",
+    "insightId": "i-art-stress",
+    "groupable": true,
+    "evidence": [
+      "Kaimal et al. 2016"
+    ],
+    "stamp": 5,
+    "safety": {
+      "night": "ok",
+      "cost": 30
+    }
+  },
+  {
+    "id": "q-adventure-0030",
+    "realm": "adventure",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Go to a stargazing night, late museum opening or night market in a busy, well-lit public place.",
+    "why": "Night adventures feel big, and with people around they stay easy.",
+    "insightId": "i-awe",
+    "groupable": true,
+    "evidence": [
+      "Keltner & Haidt 2003"
+    ],
+    "stamp": 7,
+    "safety": {
+      "night": "ok",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-adventure-0031",
+    "realm": "adventure",
+    "level": "wildfire",
+    "minutes": 240,
+    "title": "Spend half a day by the coast, a lake or a river. Swim only where it's lifeguarded, or walk the shore.",
+    "why": "Blue spaces are some of the most restorative places people know.",
+    "groupable": true,
+    "evidence": [
+      "White et al. 2020 (blue space)"
+    ],
+    "stamp": 1,
+    "safety": {
+      "night": "daylight",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-adventure-0032",
+    "realm": "adventure",
+    "level": "wildfire",
+    "minutes": 150,
+    "title": "Cook a dish from a country you've never been to, from a recipe you've never tried.",
+    "why": "A new cuisine is travel you can do from your own kitchen.",
+    "insightId": "i-novelty",
+    "groupable": true,
+    "evidence": [
+      "Heller et al. 2020"
+    ],
+    "stamp": 3,
+    "safety": {
+      "night": "ok",
+      "cost": 15
+    }
+  },
+  {
+    "id": "q-adventure-0033",
+    "realm": "adventure",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Sign up for a fun run, charity walk or rec-league game, and show up on the day.",
+    "why": "Group sport adds people and purpose to the mood lift of moving.",
+    "insightId": "i-exercise-mood",
+    "groupable": true,
+    "evidence": [
+      "Chekroud et al. 2018"
+    ],
+    "stamp": 6,
+    "safety": {
+      "night": "daylight",
+      "cost": 20
+    }
   }
 ]

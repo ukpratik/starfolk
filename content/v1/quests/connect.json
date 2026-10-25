@@ -198,5 +198,351 @@
     "tags": [
       "free"
     ]
+  },
+  {
+    "id": "q-connect-0013",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Reply to a friend's good news with real enthusiasm and one follow-up question.",
+    "why": "How you respond to good news shapes closeness, often more than how you respond to bad news.",
+    "insightId": "i-active-constructive",
+    "namesStar": true,
+    "evidence": [
+      "Gable et al. 2004 (active-constructive responding)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0014",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Give one person a specific compliment today. Say it out loud or send it.",
+    "why": "Compliments land warmer, and feel less awkward, than the giver expects.",
+    "insightId": "i-compliments",
+    "namesStar": true,
+    "evidence": [
+      "Boothby & Bohns 2021"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0015",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Learn the name of a barista, neighbor or front-desk person you see often. Use it next time.",
+    "why": "Small chats with familiar faces add real belonging to an ordinary day.",
+    "insightId": "i-weak-ties",
+    "namesStar": true,
+    "evidence": [
+      "Sandstrom & Dunn 2014 (weak ties)"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0016",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Ask a friend for a small recommendation you actually want: a book, a show, a lunch spot.",
+    "why": "People like being asked, and they say yes far more often than we predict.",
+    "insightId": "i-ask-for-help",
+    "namesStar": true,
+    "evidence": [
+      "Flynn & Lake 2008"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0017",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Send a friend a photo of a memory you share, with one line about why it still makes you smile.",
+    "why": "Revisiting good times together keeps a bond warm, and it takes seconds.",
+    "insightId": "i-savoring",
+    "namesStar": true,
+    "evidence": [
+      "Bryant & Veroff 2007 (reminiscence)",
+      "Oswald et al. 2004"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0018",
+    "realm": "connect",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Write the names of five people you'd like to see more of. Pick one to reach out to this week.",
+    "why": "Knowing who matters to you makes the next small step obvious.",
+    "insightId": "i-fifty-hours",
+    "namesStar": true,
+    "evidence": [
+      "Hall 2018"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0019",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 20,
+    "title": "On your next call or coffee, ask one deeper question: “What's been on your mind lately?”",
+    "why": "Deep talk feels less awkward and more rewarding than people expect, on both sides.",
+    "insightId": "i-deep-talk",
+    "namesStar": true,
+    "evidence": [
+      "Kardas et al. 2022"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0020",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 25,
+    "title": "Write a short thank-you note to someone who helped you, then send it or read it to them.",
+    "why": "Thanks lands far harder than the thanker expects, and lifts you both.",
+    "insightId": "i-gratitude-underestimate",
+    "namesStar": true,
+    "evidence": [
+      "Kumar & Epley 2018",
+      "Seligman et al. 2005 (gratitude visit)"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0021",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 10,
+    "title": "Start a friendly chat with someone new at a café, class or queue. One easy question is enough.",
+    "why": "Talking to strangers is usually more pleasant than we predict, for both people.",
+    "insightId": "i-strangers",
+    "evidence": [
+      "Epley & Schroeder 2014"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0022",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 30,
+    "title": "Make or pick up a simple meal and share it with a roommate, neighbor or friend.",
+    "why": "Sharing food is one of the oldest ways humans bond.",
+    "groupable": true,
+    "namesStar": true,
+    "evidence": [
+      "Dunbar 2017 (social eating)"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-connect-0023",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 20,
+    "title": "Do one small, unasked-for kindness for someone you know: a coffee, a ride, a hand with a chore.",
+    "why": "Being kind to others gives the kind person a lift too.",
+    "insightId": "i-kindness",
+    "namesStar": true,
+    "evidence": [
+      "Curry et al. 2018"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 5
+    }
+  },
+  {
+    "id": "q-connect-0024",
+    "realm": "connect",
+    "level": "flame",
+    "minutes": 20,
+    "title": "Video-call a faraway friend for 20 minutes. No agenda, just catching up.",
+    "why": "Distance doesn't end friendships. Going quiet does, and a call fixes that.",
+    "insightId": "i-voice-over-text",
+    "namesStar": true,
+    "evidence": [
+      "Kumar & Epley 2021",
+      "Oswald et al. 2004"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0025",
+    "realm": "connect",
+    "level": "wildfire",
+    "minutes": 120,
+    "title": "Go to week one of something weekly: a run club, choir, board-game night or volunteer crew.",
+    "why": "Familiar faces, week after week, are how strangers become friends.",
+    "insightId": "i-familiar-faces",
+    "namesStar": true,
+    "evidence": [
+      "Festinger et al. 1950 (propinquity)",
+      "Hall 2018"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-connect-0026",
+    "realm": "connect",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Throw a potluck: invite four people and ask each to bring one dish.",
+    "why": "Shared meals turn a group of people into a group of friends.",
+    "insightId": "i-fifty-hours",
+    "groupable": true,
+    "namesStar": true,
+    "evidence": [
+      "Dunbar 2017 (social eating)",
+      "Hall 2018"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 15
+    }
+  },
+  {
+    "id": "q-connect-0027",
+    "realm": "connect",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Spend a few hours helping a friend with something big: a move, a project, a messy apartment.",
+    "why": "Showing up for the hard stuff builds trust fast.",
+    "insightId": "i-kindness",
+    "namesStar": true,
+    "evidence": [
+      "Curry et al. 2018",
+      "Hall 2018"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0028",
+    "realm": "connect",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Host a game night: cards, board games or a quiz, three or more people, snacks optional.",
+    "why": "Play is an easy way to rack up the hours friendships are built from.",
+    "insightId": "i-fifty-hours",
+    "groupable": true,
+    "namesStar": true,
+    "evidence": [
+      "Hall 2018"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-connect-0029",
+    "realm": "connect",
+    "level": "wildfire",
+    "minutes": 240,
+    "title": "Visit a friend or relative you haven't seen in person for over a year.",
+    "why": "Time face to face is what turns old ties back into close ones.",
+    "insightId": "i-fifty-hours",
+    "namesStar": true,
+    "evidence": [
+      "Hall 2018",
+      "Oswald et al. 2004"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 30
+    }
+  },
+  {
+    "id": "q-connect-0030",
+    "realm": "connect",
+    "level": "wildfire",
+    "minutes": 120,
+    "title": "Take a group singing or dance class, with a friend or solo, and chat with someone after.",
+    "why": "Moving and singing in time with others bonds people surprisingly fast.",
+    "insightId": "i-in-sync",
+    "groupable": true,
+    "namesStar": true,
+    "evidence": [
+      "Pearce et al. 2015",
+      "Tarr et al. 2015"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 15
+    }
+  },
+  {
+    "id": "q-connect-0031",
+    "realm": "connect",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Volunteer for a few hours with a friend: a food bank, a park cleanup, an animal shelter.",
+    "why": "Doing good side by side is a double win: for the cause and the friendship.",
+    "insightId": "i-volunteer",
+    "groupable": true,
+    "namesStar": true,
+    "evidence": [
+      "Thoits & Hewitt 2001",
+      "Hall 2018"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-connect-0032",
+    "realm": "connect",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Host a “bring someone” hangout: each friend brings one person the others haven't met.",
+    "why": "New faces widen your circle, and even light ties make days brighter.",
+    "insightId": "i-weak-ties",
+    "groupable": true,
+    "namesStar": true,
+    "evidence": [
+      "Sandstrom & Dunn 2014",
+      "Hall 2018"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 15
+    }
   }
 ]

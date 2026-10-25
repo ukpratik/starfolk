@@ -89,5 +89,354 @@
       "solo",
       "free"
     ]
+  },
+  {
+    "id": "q-purpose-0007",
+    "realm": "purpose",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Write down one thing you made progress on today, however small.",
+    "why": "Noticing progress, even tiny progress, is a big source of motivation.",
+    "insightId": "i-small-wins",
+    "evidence": [
+      "Amabile & Kramer 2011 (progress principle)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0008",
+    "realm": "purpose",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Name your top three values in one word each. Circle the one you lived least this week.",
+    "why": "Knowing your values makes the next meaningful choice easier to spot.",
+    "insightId": "i-values",
+    "evidence": [
+      "Cohen & Sherman 2014",
+      "Hayes et al. 2006 (ACT values)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0009",
+    "realm": "purpose",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Finish this sentence: “On a free Saturday with nobody watching, I'd…”",
+    "why": "Your answers when nobody's grading point at what truly matters to you.",
+    "evidence": [
+      "Sheldon & Elliot 1999 (self-concordant goals)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0010",
+    "realm": "purpose",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Pick a goal you care about and do a first step so small it takes 2 minutes. Then do it.",
+    "why": "Tiny starts lower the barrier, and progress fuels the next step.",
+    "insightId": "i-small-wins",
+    "evidence": [
+      "Amabile & Kramer 2011",
+      "Bandura 1997 (self-efficacy)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0011",
+    "realm": "purpose",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Ask yourself: “When did I last lose track of time?” Write down the answer.",
+    "why": "The moments you get absorbed in are clues to what fits you.",
+    "insightId": "i-flow",
+    "evidence": [
+      "Csikszentmihalyi 1990 (flow)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0012",
+    "realm": "purpose",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Message someone whose work you admire and tell them one thing it taught you.",
+    "why": "Saying it means more to them than you'd guess, and it sharpens your own direction.",
+    "insightId": "i-compliments",
+    "evidence": [
+      "Boothby & Bohns 2021"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0013",
+    "realm": "purpose",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Write the headline you'd love to read about yourself one year from now.",
+    "why": "Imagining a future where things went well makes it feel more reachable.",
+    "insightId": "i-best-possible-self",
+    "evidence": [
+      "King 2001"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0014",
+    "realm": "purpose",
+    "level": "spark",
+    "minutes": 2,
+    "title": "Cross one thing off your list that doesn't matter to you. Drop it, delay it or hand it off.",
+    "why": "Room for what matters often starts with a small no to what doesn't.",
+    "evidence": [
+      "Sheldon & Elliot 1999"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0015",
+    "realm": "purpose",
+    "level": "flame",
+    "minutes": 15,
+    "title": "Write for 15 minutes about your best possible life five years from now. Be specific.",
+    "why": "Picturing your best possible self lifts mood and makes goals feel more real.",
+    "insightId": "i-best-possible-self",
+    "evidence": [
+      "King 2001"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0016",
+    "realm": "purpose",
+    "level": "flame",
+    "minutes": 25,
+    "title": "Set a 25-minute timer and work on the project you keep postponing. Stop when it rings.",
+    "why": "A short, defined burst makes starting easier, and starting is the hard part.",
+    "insightId": "i-small-wins",
+    "evidence": [
+      "Amabile & Kramer 2011",
+      "Steel 2007 (procrastination)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0017",
+    "realm": "purpose",
+    "level": "flame",
+    "minutes": 10,
+    "title": "Write for 10 minutes about a value you care about and a time you lived it.",
+    "why": "Reflecting on your values helps you stay steady when things get stressful.",
+    "insightId": "i-values",
+    "evidence": [
+      "Cohen & Sherman 2014"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0018",
+    "realm": "purpose",
+    "level": "flame",
+    "minutes": 20,
+    "title": "Teach a friend something you know well, in 20 minutes or less.",
+    "why": "Explaining what you know shows you how much you've grown, and deepens it.",
+    "groupable": true,
+    "evidence": [
+      "Fiorella & Mayer 2013 (learning by teaching)"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0019",
+    "realm": "purpose",
+    "level": "flame",
+    "minutes": 20,
+    "title": "Take a 20-minute walk with one question in mind: “What do I want more of this year?”",
+    "why": "Walking gets ideas moving. People think more creatively on their feet.",
+    "evidence": [
+      "Oppezzo & Schwartz 2014 (walking and creativity)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0020",
+    "realm": "purpose",
+    "level": "flame",
+    "minutes": 25,
+    "title": "Look back at your week: list what gave you energy and what drained it. Plan one more of the first.",
+    "why": "Your energy is data about what suits you.",
+    "insightId": "i-flow",
+    "evidence": [
+      "Csikszentmihalyi 1990",
+      "Hayes et al. 2006"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0021",
+    "realm": "purpose",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Volunteer for a half day with a cause you care about.",
+    "why": "Giving time to something bigger than you is one of the surest sources of meaning.",
+    "insightId": "i-volunteer",
+    "groupable": true,
+    "evidence": [
+      "Thoits & Hewitt 2001"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0022",
+    "realm": "purpose",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Finish one small creative project in an afternoon: a zine, a short song, a series of sketches.",
+    "why": "Starting and finishing a whole thing in one go feels great, and it's flow fuel.",
+    "insightId": "i-flow",
+    "evidence": [
+      "Csikszentmihalyi 1990"
+    ],
+    "tags": [
+      "solo"
+    ]
+  },
+  {
+    "id": "q-purpose-0023",
+    "realm": "purpose",
+    "level": "wildfire",
+    "minutes": 180,
+    "title": "Spend three hours on a skill you want. Find the hardest part and practice just that.",
+    "why": "Focused practice on the hard parts is how skill really grows.",
+    "evidence": [
+      "Ericsson et al. 1993 (deliberate practice)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0024",
+    "realm": "purpose",
+    "level": "wildfire",
+    "minutes": 120,
+    "title": "Interview someone who has a job you're curious about. Bring three questions.",
+    "why": "Talking to people who do the thing beats guessing from the outside.",
+    "insightId": "i-ask-for-help",
+    "evidence": [
+      "Flynn & Lake 2008"
+    ],
+    "tags": [
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0025",
+    "realm": "purpose",
+    "level": "wildfire",
+    "minutes": 120,
+    "title": "Plan your next three months on one page: one goal, three steps, a date for each.",
+    "why": "Clear goals with set times are far likelier to happen.",
+    "insightId": "i-if-then",
+    "evidence": [
+      "Gollwitzer 1999",
+      "Locke & Latham 2002 (goal setting)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0026",
+    "realm": "purpose",
+    "level": "wildfire",
+    "minutes": 150,
+    "title": "Put one thing out there: enter a contest, publish a post, send a pitch or an application.",
+    "why": "Sharing your work is how it becomes real, and each try builds confidence.",
+    "evidence": [
+      "Bandura 1997 (self-efficacy)"
+    ],
+    "tags": [
+      "solo",
+      "free"
+    ]
+  },
+  {
+    "id": "q-purpose-0027",
+    "realm": "purpose",
+    "level": "wildfire",
+    "minutes": 150,
+    "title": "Go to a talk, workshop or meetup in a field you're curious about, and ask one question.",
+    "why": "New people in new fields are where surprising opportunities come from.",
+    "insightId": "i-weak-ties",
+    "groupable": true,
+    "evidence": [
+      "Granovetter 1973 (weak ties)"
+    ],
+    "safety": {
+      "night": "ok",
+      "cost": 10
+    }
+  },
+  {
+    "id": "q-purpose-0028",
+    "realm": "purpose",
+    "level": "wildfire",
+    "minutes": 150,
+    "title": "Set up a skill swap: you teach a friend one thing, they teach you one thing back.",
+    "why": "Teaching and learning side by side grows both people.",
+    "groupable": true,
+    "evidence": [
+      "Fiorella & Mayer 2013"
+    ],
+    "tags": [
+      "free"
+    ]
   }
 ]
