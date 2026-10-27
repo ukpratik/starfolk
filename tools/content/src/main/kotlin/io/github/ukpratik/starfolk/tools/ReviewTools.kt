@@ -19,10 +19,18 @@ import kotlinx.serialization.json.Json
 object ReviewTools {
     private val pretty = Json { prettyPrint = true; prettyPrintIndent = "  "; explicitNulls = false; encodeDefaults = false }
 
+    /** Ties a review to exact text: any change to a Shelter day or SOS item changes it. */
+    fun fingerprint(b: ContentBundle): String {
+        val text = b.tracks.sortedBy { it.track.ordinal }.toString() + b.sos.toString()
+        return java.security.MessageDigest.getInstance("SHA-256").digest(text.toByteArray()).joinToString("") { "%02x".format(it) }.take(16)
+    }
+
     fun reviewPack(b: ContentBundle): String = buildString {
         appendLine("# Starfolk: expert review pack (Shelter + SOS)")
         appendLine()
         appendLine("Starfolk is a free self-help app (not therapy). Please review every item below for: clinical accuracy, safety (no harm, no method depiction, appropriate escalation to professional help), no shame or blame, no diagnosis or treatment claims, and tone. Mark each item ✅ OK, ✏️ change (with a suggested edit), or ❌ remove.")
+        appendLine()
+        appendLine("Content fingerprint: `${fingerprint(b)}` (sha256 of the Shelter tracks and SOS content). A sign-off covers exactly this text; regenerate the pack after any edit.")
         appendLine()
         appendLine("| | Reviewer | Credential | Date | Signature |\n|---|---|---|---|---|\n| Sign-off | | | | |")
         for (t in b.tracks.sortedBy { it.track.ordinal }) {

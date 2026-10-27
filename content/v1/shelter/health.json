@@ -8,7 +8,7 @@
       "id": "s-health-01",
       "day": 1,
       "title": "Waiting is its own kind of hard.",
-      "insight": "Not knowing about your health can feel worse than bad news. Your mind fills the gap with worst cases, because that's how brains handle the unknown. You can't make the waiting shorter, but you can make it a little smaller by writing down what you actually know, apart from what you fear.",
+      "insight": "Not knowing about your health can feel worse than bad news. Your mind fills the gap with worst cases, because that's how brains handle the unknown. You can't make the waiting shorter, but you can make it a little smaller by writing down what you actually know, apart from what you fear. One thing not to wait on: if you get new symptoms, or something feels worse or urgent, contact a doctor, a health line or emergency services straight away. These tools are for the worry, not for symptoms.",
       "step": {
         "title": "Fold a page in two: “What I know” and “What I'm afraid of”. Fill both sides.",
         "detail": "Seeing them apart often makes the first column feel steadier."
@@ -41,7 +41,7 @@
       "insight": "Worry tends to spread across the whole day. Setting aside a short, fixed time for it, and gently putting worries off until then, helps many people feel less consumed by them. It isn't about ignoring your fears. It's about giving them a place to go.",
       "step": {
         "title": "Choose a 15-minute worry time for today. When a worry pops up before then, jot it down and save it.",
-        "detail": "At worry time, go through the list. Afterwards, do something calming."
+        "detail": "At worry time, go through the list. Afterwards, do something calming. This is for worries, not symptoms: if something new or worse happens in your body, contact a doctor or health line now. Don't save it for worry time."
       },
       "journalPrompt": "Which worry keeps coming back the most?",
       "evidence": [

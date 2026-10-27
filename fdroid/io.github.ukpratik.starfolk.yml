@@ -1,5 +1,9 @@
-# Draft F-Droid metadata (ADR-011, D-028). Submitted to fdroiddata at the release candidate, once the repo is public.
+AntiFeatures:
+  NonFreeAssets:
+    en-US: The quests and Shelter texts are licensed CC BY-NC-ND 4.0 (shareable, not
+      for commercial use or edits).
 Categories:
+  - Mental Health
   - Sports & Health
 License: GPL-3.0-or-later
 AuthorName: Pratik Ukey
@@ -9,11 +13,6 @@ IssueTracker: https://github.com/ukpratik/starfolk/issues
 Changelog: https://github.com/ukpratik/starfolk/releases
 
 AutoName: Starfolk
-
-# The written content (content/) is CC BY-NC-ND 4.0 (ADR-015, D-030).
-AntiFeatures:
-  NonFreeAssets:
-    en-US: The quests and Shelter texts are licensed CC BY-NC-ND 4.0 (shareable, not for commercial use or edits).
 
 RepoType: git
 Repo: https://github.com/ukpratik/starfolk.git
@@ -25,8 +24,6 @@ Builds:
     subdir: app
     gradle:
       - fdroid
-    # The fdroid flavour never links Play code (CI gate 6). Strip the play-only dependencies and sources anyway,
-    # so the scanner sees no non-free libraries in the build files.
     rm:
       - app/src/play
     prebuild:

@@ -1,6 +1,10 @@
 {
   "templates": [
     {
+      "id": "sos-reach-04",
+      "text": "I'm not okay right now and I don't feel safe on my own. Can you call me or come over now?"
+    },
+    {
       "id": "sos-reach-01",
       "text": "Hey, I'm having a rough time. Can you call me when you're free?"
     },
