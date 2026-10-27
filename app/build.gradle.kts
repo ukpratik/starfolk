@@ -62,6 +62,8 @@ android {
         }
         create("fdroid") {
             dimension = "store"
+            // Local test builds only: F-Droid's build server has no upload key, so it builds unsigned and signs with its own.
+            signingConfigs.findByName("upload")?.let { signingConfig = it }
             buildConfigField("boolean", "ANALYTICS_AVAILABLE", "false")
             buildConfigField("String", "APTABASE_KEY", "\"\"")
             buildConfigField("String", "STORE_URL", "\"https://f-droid.org/packages/io.github.ukpratik.starfolk/\"")

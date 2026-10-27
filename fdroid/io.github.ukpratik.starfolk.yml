@@ -25,6 +25,13 @@ Builds:
     subdir: app
     gradle:
       - fdroid
+    # The fdroid flavour never links Play code (CI gate 6). Strip the play-only dependencies and sources anyway,
+    # so the scanner sees no non-free libraries in the build files.
+    rm:
+      - app/src/play
+    prebuild:
+      - sed -i -e '/"playImplementation"/d' build.gradle.kts
+      - sed -i -e '/^play-/d' ../gradle/libs.versions.toml
 
 AutoUpdateMode: Version
 UpdateCheckMode: Tags
