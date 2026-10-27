@@ -171,7 +171,9 @@ private fun HoldToTear(committed: Boolean, onCommit: () -> Unit, modifier: Modif
     val scope = rememberCoroutineScope()
     val haptics = LocalHapticFeedback.current
     val hapticsOn = io.github.ukpratik.starfolk.ui.theme.LocalHaptics.current
-    var done by remember(committed) { mutableStateOf(committed) }
+    // One state for the gesture's lifetime, following [committed]: a dismissed "When?" sheet un-tears the ticket (BUG-011).
+    var done by remember { mutableStateOf(committed) }
+    LaunchedEffect(committed) { done = committed; if (!committed) progress.snapTo(0f) }
     val label = stringResource(R.string.hold_to_tear)
     fun commit() { if (!done) { done = true; if (hapticsOn) haptics.performHapticFeedback(HapticFeedbackType.LongPress); onCommit() } }
     Box(

@@ -63,6 +63,17 @@ class RemindersTest {
         assertThat(all.single().source).isEqualTo("notification")
     }
 
+    @Test fun `a restored reminder setting is scheduled on launch, and an existing job is kept (BUG-008)`() {
+        val wm = androidx.work.WorkManager.getInstance(app)
+        fun daily() = wm.getWorkInfosForUniqueWork(Reminders.WORK_DAILY).get().filter { !it.state.isFinished }
+        Reminders.ensureDaily(app, null)
+        assertThat(daily()).isEmpty()
+        Reminders.ensureDaily(app, "19:00")
+        val first = daily().single().id
+        Reminders.ensureDaily(app, "19:00")
+        assertThat(daily().single().id).isEqualTo(first)
+    }
+
     @Test fun `a commit reminder from another app-day never posts`() = runBlocking {
         val worker = TestListenableWorkerBuilder<CommitReminderWorker>(app)
             .setInputData(workDataOf(DoneReceiver.EXTRA_QUEST to "q-connect-0001", DoneReceiver.EXTRA_DAY to 1L)).build()

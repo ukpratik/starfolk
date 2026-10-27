@@ -39,7 +39,10 @@ interface ShelterPrivateDao {
     @Query("SELECT * FROM letter WHERE track = :track ORDER BY createdAt DESC")
     fun letters(track: String): Flow<List<LetterEntity>>
 
-    @Upsert suspend fun upsertLetter(letter: LetterEntity): Long
+    @Insert suspend fun insertLetter(letter: LetterEntity): Long
+
+    @Query("UPDATE letter SET body = :body, updatedAt = :now WHERE id = :id")
+    suspend fun updateLetter(id: Long, body: String, now: Long)
 
     /** "Release" a letter: it's gone for good (US-013). */
     @Query("DELETE FROM letter WHERE id = :id")

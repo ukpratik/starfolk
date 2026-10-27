@@ -89,9 +89,9 @@ fun WhatsSent() {
 /** Share a quest (S10, US-018): a preview of the card, a WhatsApp button when installed, and the system sheet. */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ShareSheet(quest: Quest, seed: Long, sky: List<CompletionLite>, today: AppDay, onShared: () -> Unit, onDismiss: () -> Unit) {
+fun ShareSheet(quest: Quest, seed: Long, palette: Int, sky: List<CompletionLite>, today: AppDay, onShared: () -> Unit, onDismiss: () -> Unit) {
     val context = LocalContext.current
-    val uri by produceState<android.net.Uri?>(null, quest.id) { value = ShareCard.render(context, quest, seed, sky, today) }
+    val uri by produceState<android.net.Uri?>(null, quest.id) { value = ShareCard.render(context, quest, seed, palette, sky, today) }
     ModalBottomSheet(onDismissRequest = onDismiss, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true), containerColor = Tokens.Paper100) {
         Column(Modifier.padding(horizontal = 22.dp).navigationBarsPadding().padding(bottom = 16.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             Text(stringResource(R.string.share_title), style = StarfolkType.HandL.copy(color = Tokens.Ink900))

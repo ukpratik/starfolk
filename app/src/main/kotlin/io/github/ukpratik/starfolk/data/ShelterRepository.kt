@@ -64,9 +64,12 @@ class ShelterRepository(
     }
 
     fun letters(track: TrackId) = personal.letters(track.name)
-    suspend fun saveLetter(track: TrackId, id: Long?, body: String) {
+    /** The first save creates the letter and returns its id; later saves (autosave, "Keep it") update it and keep its date. */
+    suspend fun saveLetter(track: TrackId, id: Long?, body: String): Long {
         val now = nowMillis()
-        personal.upsertLetter(LetterEntity(id = id ?: 0, track = track.name, body = body, createdAt = now, updatedAt = now))
+        if (id == null) return personal.insertLetter(LetterEntity(track = track.name, body = body, createdAt = now, updatedAt = now))
+        personal.updateLetter(id, body, now)
+        return id
     }
     suspend fun releaseLetter(id: Long) = personal.releaseLetter(id)
 

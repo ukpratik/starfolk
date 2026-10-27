@@ -4,6 +4,7 @@ package io.github.ukpratik.starfolk.data.core
 import androidx.room.Dao
 import androidx.room.Entity
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.Upsert
@@ -46,6 +47,6 @@ interface ShelterDao {
     suspend fun tracksNow(): List<ShelterTrackEntity>
 
     @Upsert suspend fun upsert(tracks: List<ShelterTrackEntity>)
-    @Insert suspend fun insertDone(done: ShelterDayDoneEntity)
+    @Insert(onConflict = OnConflictStrategy.IGNORE) suspend fun insertDone(done: ShelterDayDoneEntity)
     @Insert suspend fun insertSlip(slip: SlipEntity)
 }

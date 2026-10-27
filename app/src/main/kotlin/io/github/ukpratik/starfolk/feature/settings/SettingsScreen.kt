@@ -7,9 +7,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -89,7 +92,8 @@ fun SettingsScreen(container: AppContainer, onBack: () -> Unit, onSos: () -> Uni
                 scope.launch { container.settings.setReminderTime(time) }
                 Reminders.scheduleDaily(context, time)
             }
-            if (s.reminderTime != null) Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            // FlowRows wrap at large text sizes (NFR-008, BUG-007).
+            if (s.reminderTime != null) FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 for (t in listOf("08:00", "12:30", "19:00", "21:00")) Chip(t, s.reminderTime == t) {
                     scope.launch { container.settings.setReminderTime(t) }; Reminders.scheduleDaily(context, t)
                 }
@@ -99,8 +103,8 @@ fun SettingsScreen(container: AppContainer, onBack: () -> Unit, onSos: () -> Uni
             }.border(1.dp, Tokens.Ink500).padding(12.dp))
 
             Section(stringResource(R.string.set_comfort))
-            Row(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(R.string.set_motion), style = StarfolkType.Body.copy(color = Tokens.Ink900), modifier = Modifier.weight(1f))
+            Text(stringResource(R.string.set_motion), style = StarfolkType.Body.copy(color = Tokens.Ink900), modifier = Modifier.padding(top = 4.dp))
+            FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 for ((key, label) in listOf("system" to R.string.set_motion_system, "on" to R.string.set_motion_on)) Chip(stringResource(label), s.reducedMotion == key) {
                     scope.launch { container.settings.setReducedMotion(key) }
                 }
@@ -161,17 +165,16 @@ fun SettingsScreen(container: AppContainer, onBack: () -> Unit, onSos: () -> Uni
 
 /** About (US-021): the disclaimer, privacy policy, content sources and licences, the expert reviewer credit. */
 @Composable
-fun AboutScreen(onBack: () -> Unit, onSos: () -> Unit) {
-    val context = LocalContext.current
+fun AboutScreen(onBack: () -> Unit, onSos: () -> Unit, onPrivacy: () -> Unit, onLicences: () -> Unit) {
     Box(Modifier.fillMaxSize().background(Tokens.Paper100).grain()) {
         Column(Modifier.fillMaxSize().verticalScroll(rememberScrollState()).statusBarsPadding().navigationBarsPadding().padding(22.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
             Text("← " + stringResource(R.string.back), style = StarfolkType.Body.copy(color = Tokens.Ink700), modifier = Modifier.heightIn(min = 48.dp).clickable(role = Role.Button, onClick = onBack).padding(vertical = 12.dp))
             Text(stringResource(R.string.about), style = StarfolkType.Display.copy(color = Tokens.Ink900), modifier = Modifier.semantics { heading() })
             Text(stringResource(R.string.disclaimer), style = StarfolkType.Body.copy(color = Tokens.Ink900), modifier = Modifier.border(1.5.dp, Tokens.Ink700).padding(14.dp))
-            PaperButton(stringResource(R.string.about_privacy), { runCatching { context.startActivity(Intent(Intent.ACTION_VIEW, PRIVACY_URL.toUri())) } }, Modifier.fillMaxWidth())
+            PaperButton(stringResource(R.string.about_privacy), onPrivacy, Modifier.fillMaxWidth())
             Text(stringResource(R.string.about_content), style = StarfolkType.Body.copy(color = Tokens.Ink700))
             Text(stringResource(R.string.about_reviewer), style = StarfolkType.Body.copy(color = Tokens.Ink700))
-            Text(stringResource(R.string.about_licences), style = StarfolkType.Body.copy(color = Tokens.Ink700))
+            PaperButton(stringResource(R.string.about_oss), onLicences, Modifier.fillMaxWidth())
             Text(io.github.ukpratik.starfolk.core.safety.Who5.ATTRIBUTION, style = StarfolkType.Body.copy(color = Tokens.Ink500))
         }
         StatusBarScrim(Tokens.Paper100)
@@ -187,7 +190,7 @@ private fun Section(title: String) {
 @Composable
 private fun Toggle(title: String, subtitle: String?, checked: Boolean, onChange: (Boolean) -> Unit) {
     Row(
-        Modifier.fillMaxWidth().heightIn(min = 56.dp).background(Tokens.Paper50, RoundedCornerShape(6.dp)).clickable(role = Role.Switch) { onChange(!checked) }.padding(horizontal = 14.dp, vertical = 8.dp),
+        Modifier.fillMaxWidth().heightIn(min = 56.dp).background(Tokens.Paper50, RoundedCornerShape(6.dp)).toggleable(checked, role = Role.Switch, onValueChange = onChange).padding(horizontal = 14.dp, vertical = 8.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Column(Modifier.weight(1f)) {
@@ -203,6 +206,6 @@ private fun Chip(text: String, selected: Boolean, onClick: () -> Unit) {
     Text(
         text, style = StarfolkType.Label.copy(color = if (selected) Tokens.Paper50 else Tokens.Ink900),
         modifier = Modifier.heightIn(min = 44.dp).background(if (selected) Tokens.Ink900 else Tokens.Paper50, RoundedCornerShape(22.dp))
-            .border(1.5.dp, Tokens.Ink900, RoundedCornerShape(22.dp)).clickable(role = Role.Button, onClick = onClick).padding(horizontal = 14.dp, vertical = 14.dp),
+            .border(1.5.dp, Tokens.Ink900, RoundedCornerShape(22.dp)).selectable(selected, role = Role.RadioButton, onClick = onClick).padding(horizontal = 14.dp, vertical = 14.dp),
     )
 }

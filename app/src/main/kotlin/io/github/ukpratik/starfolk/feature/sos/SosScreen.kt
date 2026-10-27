@@ -2,6 +2,22 @@
 package io.github.ukpratik.starfolk.feature.sos
 
 import android.content.Intent
+import androidx.activity.compose.BackHandler
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
+import io.github.ukpratik.starfolk.ui.theme.LocalHaptics
+import io.github.ukpratik.starfolk.ui.theme.LocalReducedMotion
+import kotlinx.coroutines.delay
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -58,6 +74,8 @@ fun SosScreen(container: AppContainer, onClose: () -> Unit) {
     var step by remember { mutableIntStateOf(0) }
     val context = LocalContext.current
     val scope = rememberCoroutineScope()
+    // System Back from a sub-screen returns to the hub, like "← back" (BUG-010).
+    BackHandler(enabled = view != SosView.HUB) { view = SosView.HUB }
     Column(
         Modifier.fillMaxSize().background(Tokens.Linen).verticalScroll(rememberScrollState()).statusBarsPadding().navigationBarsPadding().padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(14.dp),
@@ -83,6 +101,7 @@ fun SosScreen(container: AppContainer, onClose: () -> Unit) {
                 Text("CALM MY BODY · ${step + 1} OF ${g.size}", style = StarfolkType.Label.copy(color = Tokens.PencilSoft))
                 Text(s.title, style = StarfolkType.ShelterTitle.copy(color = Tokens.Pencil))
                 Text(s.body, style = StarfolkType.BodyL.copy(color = Tokens.Pencil))
+                BreathingRing(Modifier.align(Alignment.CenterHorizontally).padding(vertical = 8.dp))
                 if (step < g.lastIndex) Option("Next") { step++ } else Option("Back to start") { view = SosView.HUB }
             }
             SosView.REACH -> {
@@ -149,6 +168,45 @@ private fun countryName(code: String?): String =
 /** ACTION_DIAL only: opens the dialer with the number filled in, needs no permission (US-015). */
 private fun dial(context: android.content.Context, number: String) =
     context.startActivity(Intent(Intent.ACTION_DIAL, "tel:${number.replace(" ", "")}".toUri()))
+
+/**
+ * The breathing ring (S15, US-014, BUG-004): in for 4 s, out for 4 s, beside every grounding step, with an optional
+ * haptic tick on each turn. Reduced motion keeps the words and the haptics but drops the scaling.
+ */
+@Composable
+private fun BreathingRing(modifier: Modifier = Modifier) {
+    val reduced = LocalReducedMotion.current
+    val hapticsOn = LocalHaptics.current
+    val haptics = LocalHapticFeedback.current
+    val scale = remember { Animatable(BREATH_OUT) }
+    var inhale by remember { mutableStateOf(true) }
+    LaunchedEffect(reduced, hapticsOn) {
+        while (true) {
+            for (breathIn in listOf(true, false)) {
+                inhale = breathIn
+                if (hapticsOn) haptics.performHapticFeedback(HapticFeedbackType.SegmentTick)
+                val target = if (breathIn) 1f else BREATH_OUT
+                if (reduced) { scale.snapTo(1f); delay(BREATH_MS.toLong()) }
+                else scale.animateTo(target, tween(BREATH_MS, easing = FastOutSlowInEasing))
+            }
+        }
+    }
+    val label = stringResource(R.string.sos_breathe_a11y)
+    Box(modifier.size(168.dp).clearAndSetSemantics { contentDescription = label }, contentAlignment = Alignment.Center) {
+        Canvas(Modifier.fillMaxSize()) {
+            val r = size.minDimension / 2 * scale.value
+            drawCircle(Tokens.LinenCard, radius = r)
+            drawCircle(Tokens.Pencil, radius = r, style = Stroke(width = 2.dp.toPx()))
+        }
+        Text(
+            stringResource(if (inhale) R.string.sos_breathe_in else R.string.sos_breathe_out),
+            style = StarfolkType.Hand.copy(color = Tokens.Pencil),
+        )
+    }
+}
+
+private const val BREATH_MS = 4_000
+private const val BREATH_OUT = 0.7f
 
 @Composable
 private fun Option(text: String, onClick: () -> Unit) {

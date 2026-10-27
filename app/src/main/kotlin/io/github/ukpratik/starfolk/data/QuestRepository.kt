@@ -52,7 +52,8 @@ class QuestRepository(
     suspend fun ensureToday(): DailyPickEntity = mutex.withLock {
         val today = appDayClock.today()
         core.dailyPick(today.epochDay) ?: run {
-            val quest = pick(today, exclude = emptySet()) ?: error("no quests in the content bundle")
+            val first = core.picksSince(Long.MIN_VALUE).isEmpty()
+            val quest = pick(today, exclude = emptySet(), firstQuest = first) ?: error("no quests in the content bundle")
             DailyPickEntity(today.epochDay, quest.id, swapsUsed = 0, shownIds = quest.id).also { core.upsertPick(it) }
         }
     }
@@ -95,7 +96,7 @@ class QuestRepository(
         personal.deleteName(completionId)
     }
 
-    private suspend fun pick(today: AppDay, exclude: Set<String>): Quest? {
+    private suspend fun pick(today: AppDay, exclude: Set<String>, firstQuest: Boolean = false): Quest? {
         val s = settings.current()
         val since = (today - QuestPicker.NO_REPEAT_DAYS).epochDay
         val shown = core.picksSince(since).flatMap { p -> p.shownIds.split(',').filter { it.isNotEmpty() }.map { Shown(it, AppDay(p.appDay)) } } +
@@ -106,6 +107,7 @@ class QuestRepository(
                 appDay = today, seed = s.skySeed, quests = content.bundle().quests, recent = shown,
                 preferredRealm = s.preferredRealm, energy = s.energy, lastMood = personal.recentMoods().firstOrNull(),
                 lastCompletion = last, excludeToday = exclude, shelterActive = shelterActive(),
+                firstQuest = firstQuest,
             ),
         )
     }

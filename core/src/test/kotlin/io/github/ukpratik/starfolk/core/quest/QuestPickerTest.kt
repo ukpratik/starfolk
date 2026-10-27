@@ -31,6 +31,14 @@ class QuestPickerTest {
         assertThat(days.toSet().size).isGreaterThan(10)
     }
 
+    @Test fun `the first quest is a Spark from the chosen realm, whatever the energy (US-001, BUG-003)`() {
+        for (realm in Realm.entries) for (energy in Energy.entries) repeat(20) { i ->
+            val first = QuestPicker.pick(input(day = today + i, energy = energy, preferred = realm).copy(firstQuest = true))!!
+            assertThat(first.level).isEqualTo(Level.SPARK)
+            assertThat(first.realm).isEqualTo(realm)
+        }
+    }
+
     @Test fun `low mood or Low energy only ever gets a Spark, never Wildfire`() {
         repeat(200) { i ->
             assertThat(QuestPicker.pick(input(day = today + i, mood = 2))!!.level).isEqualTo(Level.SPARK)

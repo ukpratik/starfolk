@@ -28,6 +28,8 @@ data class PickInput(
     val excludeToday: Set<String> = emptySet(),
     /** D-031: while a Shelter track is active, the optional daily ticket is Spark only, Care-weighted. */
     val shelterActive: Boolean = false,
+    /** US-001: the very first ticket after onboarding is a Spark from [preferredRealm]. */
+    val firstQuest: Boolean = false,
 )
 
 /**
@@ -53,6 +55,10 @@ object QuestPicker {
         // The courage rule is never relaxed (D-031); only the repetition window is.
         val base = input.quests.filter { it.level in levels && it.id !in input.excludeToday }.sortedBy { it.id }
         if (base.isEmpty()) return null
+        if (input.firstQuest) {
+            val first = base.filter { it.level == Level.SPARK && it.realm == input.preferredRealm }
+            if (first.isNotEmpty()) return first[rng.nextInt(first.size)]
+        }
 
         val lastSeen = input.recent.groupBy { it.questId }.mapValues { (_, v) -> v.maxOf { it.appDay } }
         fun fresh(window: Int) = base.filter { q -> lastSeen[q.id]?.let { input.appDay.daysSince(it) >= window } ?: true }

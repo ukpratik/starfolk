@@ -41,6 +41,7 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.heading
 import androidx.compose.ui.semantics.semantics
@@ -62,6 +63,7 @@ import io.github.ukpratik.starfolk.feature.sos.ShelterSosPill
 import io.github.ukpratik.starfolk.ui.theme.LocalRegister
 import io.github.ukpratik.starfolk.ui.theme.Register
 import io.github.ukpratik.starfolk.ui.theme.StarfolkType
+import kotlinx.coroutines.delay
 
 /**
  * The Shelter (S11–S14, US-011…017), in the quiet register: no stamps, no confetti, no streaks, no red. First entry
@@ -87,7 +89,7 @@ fun ShelterScreen(container: AppContainer, onSos: () -> Unit, onLetters: (TrackI
                     s == null -> Unit
                     graduated != null -> Graduation(graduated!!.first, graduated!!.second, l) { vm.dismissGraduation(); onBackToQuests() }
                     !s.introSeen -> Intro(l, onContinue = vm::introSeen, onSos = onSos)
-                    s.active == null || picking -> Picker(s, l, onPick = { vm.start(it); picking = false })
+                    s.active == null || picking -> Picker(s, l, onPick = { vm.start(it); picking = false }, onSos = onSos)
                     else -> Day(s, vm, l, onLetters = onLetters, onSwitch = { picking = true })
                 }
             }
@@ -108,7 +110,7 @@ private fun ColumnScope.Intro(l: Linen, onContinue: () -> Unit, onSos: () -> Uni
 }
 
 @Composable
-private fun ColumnScope.Picker(s: ShelterUiState, l: Linen, onPick: (TrackId) -> Unit) {
+private fun ColumnScope.Picker(s: ShelterUiState, l: Linen, onPick: (TrackId) -> Unit, onSos: () -> Unit) {
     var confirm by remember { mutableStateOf<TrackId?>(null) }
     Text(stringResource(R.string.shelter_title), style = StarfolkType.ShelterTitle.copy(color = l.pencil), modifier = Modifier.semantics { heading() })
     Text(stringResource(R.string.shelter_body), style = StarfolkType.BodyL.copy(color = l.pencil))
@@ -129,6 +131,8 @@ private fun ColumnScope.Picker(s: ShelterUiState, l: Linen, onPick: (TrackId) ->
             )
         }
     }
+    // US-011: the fourth way in, straight to SOS (BUG-020).
+    QuietButton(stringResource(R.string.shelter_help_now), l, Modifier.fillMaxWidth(), onClick = onSos)
     confirm?.let { next ->
         val current = s.activeTrack!!
         AlertDialog(
@@ -158,7 +162,7 @@ private fun ColumnScope.Day(s: ShelterUiState, vm: ShelterViewModel, l: Linen, o
         style = StarfolkType.ShelterTitle.copy(color = l.pencil, textAlign = TextAlign.Center), modifier = Modifier.fillMaxWidth().semantics { heading() },
     )
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-        Tally(active.daysWalked, l, Modifier.semantics { contentDescription = "${active.daysWalked} days walked" })
+        Tally(active.daysWalked, l, Modifier.clearAndSetSemantics { }) // decorative: the plural text beside it is read (BUG-021)
         Text("  " + pluralStringResource(R.plurals.shelter_days_walked, active.daysWalked, active.daysWalked), style = StarfolkType.Hand.copy(color = l.soft))
     }
     if (day != null && !s.doneToday) Text(day.insight, style = StarfolkType.BodyL.copy(color = l.pencil))
@@ -238,6 +242,8 @@ private fun JournalSheet(track: Track, day: Int, prompt: String, vm: ShelterView
     val saved by vm.journal(track.track, day).collectAsStateWithLifecycle(initialValue = null)
     var text by rememberSaveable { mutableStateOf<String?>(null) }
     LaunchedEffect(saved) { if (text == null && saved != null) text = saved!!.body }
+    // Saved as it's written (BUG-002): Home or a swipe from recents never loses an entry. The upsert is keyed by day.
+    LaunchedEffect(text) { text?.let { delay(600); vm.saveJournal(track.track, day, it) } }
     ModalBottomSheet(onDismissRequest = { text?.let { vm.saveJournal(track.track, day, it) }; onClose() }, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true), containerColor = l.card) {
         Column(Modifier.padding(horizontal = 22.dp).navigationBarsPadding().padding(bottom = 16.dp)) {
             Text(prompt, style = StarfolkType.HandL.copy(color = l.pencil))

@@ -9,6 +9,8 @@ import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import androidx.navigation.NavGraph.Companion.findStartDestination
@@ -28,6 +30,8 @@ import io.github.ukpratik.starfolk.feature.shelter.linen
 import io.github.ukpratik.starfolk.feature.shelter.ShelterScreen
 import io.github.ukpratik.starfolk.feature.who5.Who5Screen
 import io.github.ukpratik.starfolk.feature.settings.AboutScreen
+import io.github.ukpratik.starfolk.feature.settings.LicencesScreen
+import io.github.ukpratik.starfolk.feature.settings.PrivacyScreen
 import io.github.ukpratik.starfolk.feature.settings.SettingsScreen
 import io.github.ukpratik.starfolk.core.content.TrackId
 import io.github.ukpratik.starfolk.feature.sky.SkyScreen
@@ -47,13 +51,15 @@ fun StarfolkNavHost(container: AppContainer, skyDemo: Int) {
         io.github.ukpratik.starfolk.ui.theme.LocalReducedMotion provides reduced,
         io.github.ukpratik.starfolk.ui.theme.LocalHaptics provides loaded.haptics,
     ) {
+    val appContext = LocalContext.current.applicationContext
+    LaunchedEffect(Unit) { io.github.ukpratik.starfolk.notify.Reminders.ensureDaily(appContext, loaded.reminderTime) }
     val entry by nav.currentBackStackEntryAsState()
     val route = entry?.destination?.route
     val openSos = { nav.navigate(Routes.SOS) }
     // Light status-bar icons over night paper (Today, Sky); dark icons over day paper and linen.
     val view = LocalView.current
-    // Dark linen (Shelter, SOS, letters) in system dark mode also needs light icons.
-    val darkLinen = linen().dark && (route == Routes.SHELTER || route == Routes.LETTERS || route == Routes.SOS)
+    // Dark linen (Shelter, letters) in system dark mode also needs light icons. SOS always stays light linen (BUG-022).
+    val darkLinen = linen().dark && (route == Routes.SHELTER || route == Routes.LETTERS)
     val nightTop = route == Routes.TODAY || route == Routes.SKY || darkLinen
     if (!view.isInEditMode) {
         SideEffect {
@@ -85,7 +91,11 @@ fun StarfolkNavHost(container: AppContainer, skyDemo: Int) {
             }
             composable(Routes.LETTERS) { LettersScreen(container, TrackId.BREAKUP, onBack = { nav.popBackStack() }, onSos = openSos) }
             composable(Routes.SETTINGS) { SettingsScreen(container, onBack = { nav.popBackStack() }, onSos = openSos, onAbout = { nav.navigate(Routes.ABOUT) }) }
-            composable(Routes.ABOUT) { AboutScreen(onBack = { nav.popBackStack() }, onSos = openSos) }
+            composable(Routes.ABOUT) {
+                AboutScreen(onBack = { nav.popBackStack() }, onSos = openSos, onPrivacy = { nav.navigate(Routes.PRIVACY) }, onLicences = { nav.navigate(Routes.LICENCES) })
+            }
+            composable(Routes.PRIVACY) { PrivacyScreen(onBack = { nav.popBackStack() }, onSos = openSos) }
+            composable(Routes.LICENCES) { LicencesScreen(onBack = { nav.popBackStack() }, onSos = openSos) }
             composable(Routes.WHO5) {
                 Who5Screen(container, onClose = { nav.popBackStack() }, onSos = openSos, onShelter = { nav.popBackStack(); goTab(Routes.SHELTER) })
             }

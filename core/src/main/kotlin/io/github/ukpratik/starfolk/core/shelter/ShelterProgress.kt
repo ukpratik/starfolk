@@ -59,15 +59,18 @@ object ShelterProgress {
         }
     }
 
-    /** "Day 1 again is still progress." RESTART goes back to day 1; KEEP changes nothing. Days walked stay either way. */
+    /**
+     * "Day 1 again is still progress." RESTART goes back to day 1; KEEP changes nothing. Days walked stay either way.
+     * Today's step stays done, so a restart after today's step opens day 1 tomorrow (one step per app-day).
+     */
     fun slip(state: TrackState, choice: SlipChoice): TrackState = when (choice) {
-        SlipChoice.RESTART -> state.copy(currentDay = 1, lastDoneDay = null)
+        SlipChoice.RESTART -> state.copy(currentDay = 1)
         SlipChoice.KEEP -> state
     }
 
-    /** The day whose content to show: the one just done when it's done today, else the current one. */
+    /** The day whose content to show: the one just done when it's done today (day 1 after a same-day restart), else the current one. */
     fun dayToShow(state: TrackState, today: AppDay): Int =
-        if (doneToday(state, today) && state.status != TrackStatus.DONE) state.currentDay - 1 else state.currentDay
+        if (doneToday(state, today) && state.status != TrackStatus.DONE) (state.currentDay - 1).coerceAtLeast(1) else state.currentDay
 
     fun noContactDays(state: TrackState, today: AppDay): Int? = state.noContactSince?.let { today.daysSince(it).coerceAtLeast(0) }
 }

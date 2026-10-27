@@ -32,6 +32,8 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -85,13 +87,19 @@ fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShel
     val settingsLabel = stringResource(R.string.settings)
     // US-005/010: the permission is asked only in context (a reminder time was chosen).
     val permission = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { }
-    fun askPermissionIfNeeded() {
-        if (Build.VERSION.SDK_INT >= 33 && !Reminders.canPost(context)) permission.launch(Manifest.permission.POST_NOTIFICATIONS)
+    // At commit the system dialog comes only after our one-line rationale (BUG-006); the nudge sheet is its own rationale.
+    var rationale by remember { mutableStateOf(false) }
+    fun askPermissionIfNeeded(withRationale: Boolean = false) {
+        if (Build.VERSION.SDK_INT >= 33 && !Reminders.canPost(context)) {
+            if (withRationale) rationale = true else permission.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
     }
     LaunchedEffect(askReview) {
         if (askReview) { (context as? android.app.Activity)?.let { Flavour.askForReview(it) }; vm.reviewShown() }
     }
     var choosingTime by remember { mutableStateOf(false) }
+    // Torn but no time picked yet; cleared if the "When?" sheet is dismissed (BUG-011).
+    var tearing by remember(state?.day, state?.quest?.id) { mutableStateOf(false) }
     val snackbar = remember { SnackbarHostState() }
     val undoLabel = stringResource(R.string.undo)
     val doneLabel = stringResource(R.string.quest_done)
@@ -159,8 +167,8 @@ fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShel
                 Ticket(
                     quest = s.quest,
                     number = s.quest.id.takeLast(4).toIntOrNull() ?: 0,
-                    committed = s.commit != null,
-                    onCommit = { choosingTime = true },
+                    committed = s.commit != null || tearing,
+                    onCommit = { choosingTime = true; tearing = true },
                     onDone = { vm.done(s.quest) },
                     commitLabel = s.commit?.let { commitLabel(it.slot, it.remindAt) },
                     stampedOn = done?.let { s.day.date.format(STAMP_DATE).uppercase() },
@@ -181,7 +189,7 @@ fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShel
 
     if (sharing && state != null) {
         val s = state!!
-        ShareSheet(s.quest, s.seed, s.sky, s.day, onShared = { vm.shared(s.quest); sharing = false }, onDismiss = { sharing = false })
+        ShareSheet(s.quest, s.seed, s.palette, s.sky, s.day, onShared = { vm.shared(s.quest); sharing = false }, onDismiss = { sharing = false })
     }
     if (moment !is Moment.Reflect && stamped?.insight == null) when (ask) {
         Ask.NUDGE -> NudgeSheet { time ->
@@ -202,10 +210,26 @@ fun TodayScreen(container: AppContainer, skyDemo: Int, onSos: () -> Unit, onShel
                 val s = state!!
                 vm.commit(s.quest.id, choice.slot, choice.remindAt) { at ->
                     Reminders.scheduleCommit(context, s.quest.id, s.day.epochDay, at)
-                    askPermissionIfNeeded()
+                    askPermissionIfNeeded(withRationale = true)
                 }
             },
-            onDismiss = { choosingTime = false },
+            onDismiss = { choosingTime = false; tearing = false },
+        )
+    }
+    if (rationale) {
+        // Asked here, so the "Want a nudge tomorrow?" ask is skipped later (US-010, BUG-013).
+        fun answer(allow: Boolean) {
+            rationale = false
+            vm.notificationsAsked()
+            if (allow && Build.VERSION.SDK_INT >= 33) permission.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+        AlertDialog(
+            onDismissRequest = { answer(false) },
+            title = { Text(stringResource(R.string.notif_rationale_title), style = StarfolkType.H2.copy(color = Tokens.Ink900)) },
+            text = { Text(stringResource(R.string.notif_rationale_body), style = StarfolkType.Body.copy(color = Tokens.Ink700)) },
+            confirmButton = { TextButton({ answer(true) }) { Text(stringResource(R.string.notif_rationale_allow)) } },
+            dismissButton = { TextButton({ answer(false) }) { Text(stringResource(R.string.not_now)) } },
+            containerColor = Tokens.Paper100,
         )
     }
 }

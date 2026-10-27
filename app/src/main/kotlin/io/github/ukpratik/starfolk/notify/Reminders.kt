@@ -35,7 +35,7 @@ import java.util.concurrent.TimeUnit
 object Reminders {
     const val CHANNEL_DAILY = "daily"
     const val CHANNEL_COMMIT = "commit"
-    private const val WORK_DAILY = "daily-spark"
+    @androidx.annotation.VisibleForTesting internal const val WORK_DAILY = "daily-spark"
     private const val WORK_COMMIT = "commit-reminder"
     const val ID_DAILY = 1
     const val ID_COMMIT = 2
@@ -49,8 +49,16 @@ object Reminders {
     fun canPost(context: Context) = Build.VERSION.SDK_INT < 33 ||
         ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
 
+    /**
+     * On every launch: schedules the daily Spark if the setting is on but no job exists, e.g. after a backup restore
+     * to a new phone (BUG-008). An existing job is kept as it is.
+     */
+    fun ensureDaily(context: Context, time: String?) {
+        if (time != null) scheduleDaily(context, time, ExistingWorkPolicy.KEEP)
+    }
+
     /** Daily Spark at [time] ("HH:mm"), or cancel when null. */
-    fun scheduleDaily(context: Context, time: String?) {
+    fun scheduleDaily(context: Context, time: String?, policy: ExistingWorkPolicy = ExistingWorkPolicy.REPLACE) {
         val wm = WorkManager.getInstance(context)
         if (time == null) { wm.cancelUniqueWork(WORK_DAILY); return }
         val (h, m) = time.split(':').map { it.toInt() }
@@ -58,7 +66,7 @@ object Reminders {
         var next = now.with(LocalTime.of(h, m))
         if (!next.isAfter(now)) next = next.plusDays(1)
         wm.enqueueUniqueWork(
-            WORK_DAILY, ExistingWorkPolicy.REPLACE,
+            WORK_DAILY, policy,
             OneTimeWorkRequestBuilder<DailySparkWorker>().setInitialDelay(Duration.between(now, next).toMillis(), TimeUnit.MILLISECONDS).build(),
         )
     }

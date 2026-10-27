@@ -14,6 +14,7 @@ import android.text.Layout
 import android.text.StaticLayout
 import android.text.TextPaint
 import androidx.compose.ui.graphics.asAndroidBitmap
+import androidx.compose.ui.graphics.toArgb
 import androidx.core.content.FileProvider
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.graphics.createBitmap
@@ -24,6 +25,7 @@ import io.github.ukpratik.starfolk.core.content.Quest
 import io.github.ukpratik.starfolk.core.sky.SkyLayout
 import io.github.ukpratik.starfolk.core.time.AppDay
 import io.github.ukpratik.starfolk.core.sky.CompletionLite
+import io.github.ukpratik.starfolk.ui.sky.SkyPalettes
 import io.github.ukpratik.starfolk.ui.sky.StickerAtlas
 import java.io.File
 import kotlinx.coroutines.Dispatchers
@@ -37,15 +39,16 @@ object ShareCard {
     private const val W = 1080
     private const val H = 1350
 
-    suspend fun render(context: Context, quest: Quest, seed: Long, sky: List<CompletionLite>, today: AppDay): Uri = withContext(Dispatchers.Default) {
+    suspend fun render(context: Context, quest: Quest, seed: Long, palette: Int, sky: List<CompletionLite>, today: AppDay): Uri = withContext(Dispatchers.Default) {
         val bmp = createBitmap(W, H)
         val c = Canvas(bmp)
         val scale = 3f
         // Night paper, top 55%.
         c.drawColor(0xFFF3EBDD.toInt())
         val skyH = H * 0.55f
+        val p = SkyPalettes[palette.coerceIn(0, SkyPalettes.lastIndex)]
         c.drawRect(0f, 0f, W.toFloat(), skyH, Paint().apply {
-            shader = RadialGradient(W * 0.7f, skyH * 0.1f, W.toFloat(), intArrayOf(0xFF24336A.toInt(), 0xFF16213F.toInt(), 0xFF0F1730.toInt()), null, Shader.TileMode.CLAMP)
+            shader = RadialGradient(W * 0.7f, skyH * 0.1f, W.toFloat(), intArrayOf(p.light.toArgb(), p.mid.toArgb(), p.deep.toArgb()), null, Shader.TileMode.CLAMP)
         })
         val model = SkyLayout.compute(seed, sky, today, W / scale, skyH / scale, maxStars = 10, maxStamps = 0, showClusters = false)
         val atlas = StickerAtlas.forDensity(scale)
@@ -65,13 +68,12 @@ object ShareCard {
         val body = ResourcesCompat.getFont(context, R.font.courier_prime_400)
         val label = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { typeface = display; textSize = 34f; color = 0xFF1F5FCC.toInt(); letterSpacing = 0.2f }
         c.withTranslation(left + 105, bottom - 40) { rotate(-90f); drawText("ADMIT ONE · ${quest.realm.name}", 0f, 0f, label) }
-        val titlePaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { typeface = display; textSize = 72f; color = 0xFF1D1B22.toInt() }
+        // Title and "why" always fit inside the ticket (BUG-018): shrink the title, then the why, then ellipsize the why.
         val textWidth = (right - left - 230).toInt()
-        val title = StaticLayout.Builder.obtain(quest.title, 0, quest.title.length, titlePaint, textWidth).setAlignment(Layout.Alignment.ALIGN_NORMAL).setLineSpacing(0f, 0.95f).build()
+        val room = (bottom - 40) - (top + 70) - WHY_GAP
+        val (title, why) = fitText(quest, display, body, textWidth, room)
         c.withTranslation(left + 210, top + 70) { title.draw(this) }
-        val whyPaint = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { typeface = body; textSize = 36f; color = 0xFF4A4550.toInt() }
-        val why = StaticLayout.Builder.obtain(quest.why, 0, quest.why.length, whyPaint, textWidth).build()
-        c.withTranslation(left + 210, top + 90 + title.height) { why.draw(this) }
+        c.withTranslation(left + 210, top + 70 + WHY_GAP + title.height) { why.draw(this) }
         // Footer.
         val brand = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { typeface = display; textSize = 44f; color = 0xFF1D1B22.toInt(); letterSpacing = 0.25f }
         c.drawText("STARFOLK", left, H - 70f, brand)
@@ -83,6 +85,24 @@ object ShareCard {
         file.outputStream().use { bmp.compress(Bitmap.CompressFormat.JPEG, 88, it) }
         bmp.recycle()
         FileProvider.getUriForFile(context, "${context.packageName}.share", file)
+    }
+
+    private const val WHY_GAP = 20f
+
+    private fun fitText(quest: Quest, display: android.graphics.Typeface?, body: android.graphics.Typeface?, width: Int, room: Float): Pair<StaticLayout, StaticLayout> {
+        fun titleAt(size: Float) = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { typeface = display; textSize = size; color = 0xFF1D1B22.toInt() }
+            .let { StaticLayout.Builder.obtain(quest.title, 0, quest.title.length, it, width).setAlignment(Layout.Alignment.ALIGN_NORMAL).setLineSpacing(0f, 0.95f).build() }
+        fun whyPaint(size: Float) = TextPaint(Paint.ANTI_ALIAS_FLAG).apply { typeface = body; textSize = size; color = 0xFF4A4550.toInt() }
+        fun whyAt(size: Float, maxLines: Int = Int.MAX_VALUE) = StaticLayout.Builder.obtain(quest.why, 0, quest.why.length, whyPaint(size), width)
+            .setMaxLines(maxLines).setEllipsize(android.text.TextUtils.TruncateAt.END).build()
+        for (t in listOf(72f, 64f, 56f)) for (w in listOf(36f, 32f)) {
+            val title = titleAt(t); val why = whyAt(w)
+            if (title.height + why.height <= room) return title to why
+        }
+        val title = titleAt(56f)
+        val probe = whyAt(32f)
+        val lines = ((room - title.height) / (probe.height.toFloat() / probe.lineCount)).toInt().coerceAtLeast(0)
+        return title to whyAt(32f, lines)
     }
 
     /** The invite text (US-018). Play links carry a referrer so shares can be counted (opt-in); F-Droid links don't. */

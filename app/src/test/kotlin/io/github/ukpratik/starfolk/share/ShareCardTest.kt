@@ -22,7 +22,7 @@ class ShareCardTest {
     @Test fun `renders the card and builds the invite`() = runBlocking {
         val quest = app.container.content.bundle().quests.first { it.groupable }
         val today = app.container.appDayClock.today()
-        val uri = ShareCard.render(app, quest, 7L, listOf(CompletionLite(1, Realm.CONNECT, today)), today)
+        val uri = ShareCard.render(app, quest, 7L, 0, listOf(CompletionLite(1, Realm.CONNECT, today)), today)
         assertThat(uri.authority).isEqualTo("${app.packageName}.share")
         val opts = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         app.contentResolver.openInputStream(uri)!!.use { BitmapFactory.decodeStream(it, null, opts) }

@@ -77,6 +77,8 @@ object Routes {
     const val WHO5 = "who5"
     const val SETTINGS = "settings"
     const val ABOUT = "about"
+    const val PRIVACY = "about/privacy"
+    const val LICENCES = "about/licences"
     /** The SOS flow is a full-screen modal with no tabs (S15). */
     const val SOS = "sos"
 }

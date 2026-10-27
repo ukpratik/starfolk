@@ -73,6 +73,26 @@ class ShelterRepositoryTest {
         assertThat(repo.active()!!.daysWalked).isEqualTo(4)
     }
 
+    @Test fun `done, slip and restart, then done again the same day does not crash (BUG-001)`() = runTest {
+        repo.start(TrackId.BREAKUP)
+        repo.markDone(TrackId.BREAKUP, 21)
+        repo.slip(TrackId.BREAKUP, SlipChoice.RESTART, reachedOut = false)
+        assertThat(repo.markDone(TrackId.BREAKUP, 21)).isFalse()
+        assertThat(repo.active()!!.currentDay).isEqualTo(1)
+        nextDay()
+        repo.markDone(TrackId.BREAKUP, 21)
+        assertThat(repo.active()!!.currentDay).isEqualTo(2)
+    }
+
+    @Test fun `saving a letter again updates it and keeps its date (BUG-002 autosave)`() = runTest {
+        val id = repo.saveLetter(TrackId.BREAKUP, null, "Dear you")
+        now = now.plus(Duration.ofMinutes(5))
+        assertThat(repo.saveLetter(TrackId.BREAKUP, id, "Dear you, I miss the walks.")).isEqualTo(id)
+        val letter = repo.letters(TrackId.BREAKUP).first().single()
+        assertThat(letter.body).isEqualTo("Dear you, I miss the walks.")
+        assertThat(letter.updatedAt).isGreaterThan(letter.createdAt)
+    }
+
     @Test fun `letters and journal live in private db, and release deletes for good`() = runTest {
         repo.start(TrackId.BREAKUP)
         repo.saveLetter(TrackId.BREAKUP, null, "Dear you, I miss the Sunday walks.")

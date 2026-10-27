@@ -21,6 +21,9 @@
     <string name="sos_title">You don\'t have to get through this alone.</string>
     <string name="sos_question">What would help most right now?</string>
     <string name="sos_calm">Calm my body (60 s)</string>
+    <string name="sos_breathe_in">breathe in…</string>
+    <string name="sos_breathe_out">breathe out…</string>
+    <string name="sos_breathe_a11y">Breathing guide: in for 4 seconds, out for 4 seconds.</string>
     <string name="sos_reach">Reach someone I know</string>
     <string name="sos_lines">Talk to a crisis line</string>
     <string name="sos_danger">If you\'re in immediate danger, call your local emergency number.</string>
@@ -92,6 +95,7 @@
     <string name="shelter_switch_yes">Pause and switch</string>
     <string name="shelter_done_today" tools:ignore="PluralsCandidate">Done for today. Day %1$d opens tomorrow.</string>
     <string name="shelter_missing_day">Take today gently. This day is still being written.</string>
+    <string name="shelter_help_now">Just need help now</string>
     <plurals name="shelter_days_walked">
         <item quantity="one">%1$d day walked</item>
         <item quantity="other">%1$d days walked</item>
@@ -173,6 +177,9 @@
     <string name="share_more">More apps</string>
     <string name="share_note">The card shows the quest only. Never names, notes or how you felt.</string>
     <string name="nudge_title">Want a nudge tomorrow?</string>
+    <string name="notif_rationale_title">Allow the nudge?</string>
+    <string name="notif_rationale_body">So Starfolk can remind you at the time you picked. On the lock screen it only says “A quest is waiting.”</string>
+    <string name="notif_rationale_allow">Allow</string>
     <string name="nudge_body">One gentle reminder a day with your Spark. Nothing else, and never anything private on the lock screen.</string>
     <string name="nudge_morning">Morning · 8:00</string>
     <string name="nudge_evening">Evening · 19:00</string>
@@ -217,6 +224,8 @@
     <string name="del_type">Type DELETE</string>
     <string name="del_confirm">Delete</string>
     <string name="about_privacy">Privacy policy</string>
+    <string name="about_oss">Open-source licences</string>
+    <string name="privacy_online">Also online: ukpratik.github.io/starfolk-site/privacy</string>
     <string name="about_content">Quests and Shelter content are written from published research in psychology; every quest lists its sources. Content © Starfolk, CC BY-NC-ND 4.0. Code is open source (GPL-3.0).</string>
     <string name="about_reviewer">Shelter and SOS content: expert review pending before release.</string>
     <string name="about_licences">Fonts: Bricolage Grotesque, Courier Prime and Caveat (SIL Open Font License 1.1). Icons: Material Symbols (Apache 2.0).</string>

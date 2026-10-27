@@ -165,6 +165,9 @@ class TodayViewModel(private val c: AppContainer, private val skyDemo: Int) : Vi
         _moment.value = Moment.Reflect(id, quest)
     }
 
+    /** The notification permission was asked at commit (US-005), so the first check-in won't ask again (US-010). */
+    fun notificationsAsked() = viewModelScope.launch { c.settings.notificationsAsked() }
+
     fun nudgeAnswered(time: String?) = viewModelScope.launch {
         c.settings.notificationsAsked()
         c.settings.setReminderTime(time)

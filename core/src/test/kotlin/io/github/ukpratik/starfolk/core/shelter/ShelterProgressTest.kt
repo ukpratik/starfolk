@@ -36,6 +36,16 @@ class ShelterProgressTest {
         assertThat(ShelterProgress.slip(s, SlipChoice.KEEP)).isEqualTo(s)
     }
 
+    @Test fun `restarting after today's step keeps today done (BUG-001)`() {
+        var s = ShelterProgress.markDone(startBreakup(), d0, 21).state
+        s = ShelterProgress.slip(s, SlipChoice.RESTART)
+        assertThat(s.currentDay).isEqualTo(1)
+        assertThat(ShelterProgress.canMarkDone(s, d0)).isFalse()
+        assertThat(ShelterProgress.dayToShow(s, d0)).isEqualTo(1)
+        assertThat(ShelterProgress.canMarkDone(s, d0 + 1)).isTrue()
+        assertThat(ShelterProgress.markDone(s, d0 + 1, 21).state.currentDay).isEqualTo(2)
+    }
+
     @Test fun `the last day graduates`() {
         var s = startBreakup()
         var graduated = false
