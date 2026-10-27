@@ -14,8 +14,8 @@ android {
     defaultConfig {
         applicationId = "io.github.ukpratik.starfolk" // permanent after the first upload (ADR-010)
         // versionCode = MAJOR × 10000 + MINOR × 100 + PATCH (ADR-011).
-        versionCode = 100
-        versionName = "0.1.0"
+        versionCode = 9901 // 1.0.0-rc1: release candidates sit just below 1.0.0 (10000)
+        versionName = "1.0.0-rc1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 

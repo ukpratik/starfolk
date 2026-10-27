@@ -10,6 +10,7 @@
       }
     ],
     "emergency": "911",
+    "verified_on": "2026-10-27",
     "source": "https://988lifeline.org"
   },
   {
@@ -23,6 +24,7 @@
       }
     ],
     "emergency": "911",
+    "verified_on": "2026-10-27",
     "source": "https://988.ca"
   },
   {
@@ -40,6 +42,7 @@
       }
     ],
     "emergency": "999",
+    "verified_on": "2026-10-27",
     "source": "https://www.samaritans.org"
   },
   {
@@ -57,6 +60,7 @@
       }
     ],
     "emergency": "112",
+    "verified_on": "2026-10-27",
     "source": "https://www.samaritans.org/ireland"
   },
   {
@@ -70,6 +74,7 @@
       }
     ],
     "emergency": "000",
+    "verified_on": "2026-10-27",
     "source": "https://www.lifeline.org.au"
   },
   {
@@ -83,6 +88,7 @@
       }
     ],
     "emergency": "111",
+    "verified_on": "2026-10-27",
     "source": "https://1737.org.nz"
   },
   {
@@ -95,6 +101,7 @@
       }
     ],
     "emergency": "112",
+    "verified_on": "2026-10-27",
     "source": "https://telemanas.mohfw.gov.in"
   },
   {
@@ -119,6 +126,7 @@
       }
     ],
     "emergency": "112",
+    "verified_on": "2026-10-27",
     "source": "https://www.sadag.org"
   },
   {
@@ -135,9 +143,16 @@
   },
   {
     "country": "NG",
-    "lines": [],
+    "lines": [
+      {
+        "name": "SURPIN Suicide Prevention Helpline",
+        "phone": "0800 078 7746",
+        "hours": "24/7"
+      }
+    ],
     "emergency": "112",
-    "source": "https://findahelpline.com/countries/ng"
+    "verified_on": "2026-10-27",
+    "source": "https://www.surpinng.com"
   },
   {
     "country": "KE",
