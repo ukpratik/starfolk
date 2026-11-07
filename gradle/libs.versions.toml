@@ -1,7 +1,7 @@
 [versions]
 # Baseline is the Lantern Sudoku catalog (solution overview). Dependabot opens monthly upgrade PRs.
 agp = "9.4.1"
-kotlin = "2.4.20"
+kotlin = "2.4.21"
 ksp = "2.3.12"
 # Android (PRD §4)
 compileSdk = "37"
