@@ -7,10 +7,10 @@ Categories:
   - Sports & Health
 License: GPL-3.0-or-later
 AuthorName: Pratik Ukey
-WebSite: https://ukpratik.github.io/starfolk-site/
+AuthorEmail: pratikuk99@gmail.com
 SourceCode: https://github.com/ukpratik/starfolk
 IssueTracker: https://github.com/ukpratik/starfolk/issues
-Changelog: https://github.com/ukpratik/starfolk/releases
+Changelog: https://github.com/ukpratik/starfolk/tree/HEAD/fastlane/metadata/android/en-US/changelogs
 
 AutoName: Starfolk
 
@@ -20,7 +20,7 @@ Repo: https://github.com/ukpratik/starfolk.git
 Builds:
   - versionName: 1.0.0
     versionCode: 10000
-    commit: v1.0.0
+    commit: 1aa7d6adc8aa4f1ed40bb62193fd8d2fe189ee9b
     subdir: app
     gradle:
       - fdroid
@@ -31,6 +31,6 @@ Builds:
       - sed -i -e '/^play-/d' ../gradle/libs.versions.toml
 
 AutoUpdateMode: Version
-UpdateCheckMode: Tags
+UpdateCheckMode: Tags ^v[0-9]+\.[0-9]+\.[0-9]+$
 CurrentVersion: 1.0.0
 CurrentVersionCode: 10000
