@@ -1,7 +1,7 @@
 # Releasing Starfolk
 
 Decisions: ADR-011 (distribution, signing, versioning), ADR-013 (gates), ADR-015 (licences), D-028, D-030.
-Checklist: [product/08-release/launch-checklist.md](../product/08-release/launch-checklist.md).
+Checklist and product docs: in the maintainer's private `starfolk-product` repo.
 
 ## 1. Signing key (once; Play upload key)
 ```sh
@@ -21,7 +21,7 @@ Back up the `.jks` and passwords offline (password manager + one offline copy). 
 
 ## 2. Content gates (must pass)
 ```sh
-./gradlew :tools:content:run --args="review-pack content/v1 product/08-release/expert-review-pack.md"
+./gradlew :tools:content:run --args="review-pack content/v1 expert-review-pack.md"
 ./gradlew :tools:content:run --args="sign-review content/v1 --by=\"Name, credential\" --on=YYYY-MM-DD all"
 ./gradlew :tools:content:run --args="verify-helpline content/v1 GB --on=YYYY-MM-DD"   # each of the 12 countries
 ./gradlew :tools:content:validateContent -Pstarfolk.release=true
@@ -45,5 +45,5 @@ From the repo root, per `~/Desktop/PersonalProjects/builds/README.md`:
 Then add `RELEASE.md` in that folder and update the Apps table in `builds/README.md`.
 
 ## 5. Stores
-- **Play:** upload the AAB to a closed test (12+ testers × 14 days for a new personal account), Data safety / Health apps / content rating per `product/08-release/data-safety.md`, then production.
-- **F-Droid:** make the repo public, then submit `fdroid/io.github.ukpratik.starfolk.yml` to fdroiddata (expect the NonFreeAssets anti-feature).
+- **Play:** upload the AAB to a closed test (12+ testers × 14 days for a new personal account), Data safety / Health apps / content rating per the data-safety notes in the product repo, then production.
+- **F-Droid:** submitted from the public repo: `fdroid/io.github.ukpratik.starfolk.yml` to fdroiddata (expect the NonFreeAssets anti-feature).

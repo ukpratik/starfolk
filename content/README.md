@@ -1,7 +1,6 @@
 # Starfolk content (v1)
 
-Licensed CC BY-NC-ND 4.0 (see [LICENSE](LICENSE) and [../NOTICE](../NOTICE)). Format and rules: LLD §3 in
-`product/05-architecture/LLD.md`. Writing rules: PRD §5 (evidence-based, warm, never clinical, never "should").
+Licensed CC BY-NC-ND 4.0 (see [LICENSE](LICENSE) and [../NOTICE](../NOTICE)). Format and rules: `core/src/main/kotlin/io/github/ukpratik/starfolk/core/content/ContentRules.kt`. Writing rules: evidence-based, warm, never clinical, never "should".
 
 | Path | What |
 |---|---|
