@@ -1,6 +1,6 @@
 # Starfolk privacy policy
 
-Effective: [release date]. Applies to Starfolk for Android (Google Play and F-Droid builds).
+Effective: 7 November 2026. Applies to Starfolk for Android (Google Play and F-Droid builds).
 
 Short version: no account, no ads, no tracking. Everything you write or feel stays on your phone. The Google Play build can send a few anonymous usage events, but only if you say yes. The F-Droid build sends nothing at all.
 
@@ -40,6 +40,13 @@ Starfolk is intended for adults (18+).
 
 Starfolk is for wellbeing and self-help. It is not a medical device and does not diagnose, treat, cure, or prevent any medical condition. If you are in immediate danger, call your local emergency number.
 
+## Disclaimer: use at your own risk
+
+- The information in Starfolk (quests, Shelter texts, insights, calming exercises and crisis-line numbers) is general self-help information. It may be incomplete, out of date or wrong. Don't trust it fully, and don't use it as your only source of help.
+- Crisis-line numbers were checked against public sources on the date shown in the app, but numbers and hours change. Always confirm a number with a trusted local source. In an emergency, call your local emergency number.
+- Starfolk is not a substitute for a doctor, therapist or other professional. If you're struggling, please reach out to one.
+- You use Starfolk at your own risk. It is provided "as is", without any warranty, as its licence (GNU GPL version 3, sections 15 and 16) also states.
+
 ## Contact
 
-[contact email] · Source code: github.com/ukpratik/starfolk
+pratikuk99@gmail.com · Source code: github.com/ukpratik/starfolk

@@ -157,6 +157,8 @@
     <string name="who5_neutral">This is a wellbeing check, not a diagnosis. It moves up and down with life.</string>
     <string name="who5_low">The last two weeks sound really hard. It may help to talk to a professional, or to someone you trust.</string>
     <string name="sos_no_lines">We don\'t have a verified crisis line for your country yet. findahelpline.com lists lines in 170+ countries.</string>
+    <string name="sos_verify_warning_dated">Please double-check these numbers. We last checked them against public sources on %1$s, but numbers and hours change, and we can make mistakes. Don\'t rely on this list alone: confirm with a trusted local source, such as your health service or emergency number.</string>
+    <string name="sos_verify_warning">Please double-check these numbers. Numbers and hours change, and we can make mistakes. Don\'t rely on this list alone: confirm with a trusted local source, such as your health service or emergency number.</string>
     <string name="sos_findahelpline">Find a helpline: findahelpline.com (needs internet)</string>
     <string name="sos_country">Showing lines for: %1$s</string>
     <string name="sos_change_country">Not right? Change country</string>
@@ -227,6 +229,6 @@
     <string name="about_oss">Open-source licences</string>
     <string name="privacy_online">Also online: ukpratik.github.io/starfolk-site/privacy</string>
     <string name="about_content">Quests and Shelter content are written from published research in psychology; every quest lists its sources. Content © Starfolk, CC BY-NC-ND 4.0. Code is open source (GPL-3.0).</string>
-    <string name="about_reviewer">Shelter and SOS content: expert review pending before release.</string>
+    <string name="about_reviewer">Shelter and SOS content hasn\'t been reviewed by a mental-health professional yet. Read it as general self-help, not professional advice.</string>
     <string name="about_licences">Fonts: Bricolage Grotesque, Courier Prime and Caveat (SIL Open Font License 1.1). Icons: Material Symbols (Apache 2.0).</string>
 </resources>

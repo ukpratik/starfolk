@@ -106,4 +106,14 @@ class ContentRulesTest {
         val result = runCatching { ContentJson.decodeFromString(Spark.serializer(), json) }
         assertThat(result.isFailure).isTrue()
     }
+
+    @Test fun `the D-039 review waiver makes missing sign-off a warning only inside its window`() {
+        val b = bundle(days = listOf(day(1, reviewed = false), day(2, reviewed = false)))
+        fun reviewErrors(on: String) = ContentRules.validate(b, lockOf(b), banned, Mode.RELEASE, LocalDate.parse(on))
+            .filter { it.severity == Severity.ERROR && "reviewed_by" in it.message }
+        assertThat(reviewErrors("2026-11-07")).isEmpty()
+        assertThat(reviewErrors("2027-02-05")).isEmpty()
+        assertThat(reviewErrors("2026-11-06")).isNotEmpty()
+        assertThat(reviewErrors("2027-02-06")).isNotEmpty()
+    }
 }

@@ -108,13 +108,24 @@
     "country": "PH",
     "lines": [
       {
-        "name": "NCMH Crisis Hotline",
+        "name": "NCMH Crisis Hotline (landline)",
         "phone": "1553",
+        "hours": "24/7"
+      },
+      {
+        "name": "NCMH Crisis Hotline (Globe/TM)",
+        "phone": "0917 899 8727",
+        "hours": "24/7"
+      },
+      {
+        "name": "NCMH Crisis Hotline (Smart/TNT)",
+        "phone": "0919 057 1553",
         "hours": "24/7"
       }
     ],
     "emergency": "911",
-    "source": "https://ncmh.gov.ph"
+    "source": "https://ncmh.gov.ph/contact-us/",
+    "verified_on": "2026-11-07"
   },
   {
     "country": "ZA",
@@ -139,7 +150,8 @@
       }
     ],
     "emergency": "995",
-    "source": "https://www.sos.org.sg"
+    "source": "https://www.sos.org.sg/contact-us/",
+    "verified_on": "2026-11-07"
   },
   {
     "country": "NG",
@@ -158,6 +170,7 @@
     "country": "KE",
     "lines": [],
     "emergency": "999",
-    "source": "https://findahelpline.com/countries/ke"
+    "source": "https://findahelpline.com/countries/ke",
+    "verified_on": "2026-11-07"
   }
 ]

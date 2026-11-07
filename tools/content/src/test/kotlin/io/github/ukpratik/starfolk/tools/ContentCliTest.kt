@@ -25,11 +25,12 @@ class ContentCliTest {
         assertThat(out.last()).startsWith("draft validation: 0 error(s)")
     }
 
-    @Test fun `release validation fails until reviews and helplines are done`() {
-        val (code, _, err) = run("validate", content.path, "--release", "--date=2026-10-25")
+    @Test fun `release validation fails until reviews are done and while helpline checks are stale`() {
+        // A build date well past the 90-day window: every helpline stamp is stale by then.
+        val (code, _, err) = run("validate", content.path, "--release", "--date=2027-12-31")
         assertThat(code).isEqualTo(1)
         assertThat(err.any { "reviewed_by" in it }).isTrue()
-        assertThat(err.any { "not verified" in it }).isTrue()
+        assertThat(err.any { "more than 90 days" in it }).isTrue()
     }
 
     @Test fun `pack is deterministic and the manifest hashes match the files`() {

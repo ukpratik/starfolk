@@ -20,6 +20,18 @@ object ContentRules {
 
     /** The 12 launch countries (D-011). */
     val LAUNCH_COUNTRIES = setOf("US", "CA", "GB", "IE", "AU", "NZ", "IN", "PH", "NG", "ZA", "SG", "KE")
+    /**
+     * Launch countries that ship with the emergency number and findahelpline.com only, because no crisis line could be
+     * confirmed with its operator (KE, 2026-11-07: see helpline-verification.md). A warning, not a release error.
+     */
+    val EMERGENCY_ONLY_COUNTRIES = setOf("KE")
+    /**
+     * D-039: the user chose to ship 1.0.0 before the expert review of the Shelter and SOS texts (rule 6). Inside this
+     * window a missing sign-off is a warning, not a release error. It expires on its own, so a later release can't
+     * quietly ship unreviewed: get the review signed, or take a new decision and move the dates.
+     */
+    val REVIEW_WAIVER_FROM: LocalDate = LocalDate.parse("2026-11-07")
+    val REVIEW_WAIVER_UNTIL: LocalDate = LocalDate.parse("2027-02-05")
     const val HELPLINE_MAX_AGE_DAYS = 90L
     const val MIN_QUESTS_PER_CELL = 6
 
@@ -41,6 +53,10 @@ object ContentRules {
         fun error(id: String, msg: String) = issues.add(Issue(Severity.ERROR, id, msg))
         fun releaseError(id: String, msg: String) =
             issues.add(Issue(if (mode == Mode.RELEASE) Severity.ERROR else Severity.WARNING, id, msg))
+        val reviewWaived = !buildDate.isBefore(REVIEW_WAIVER_FROM) && !buildDate.isAfter(REVIEW_WAIVER_UNTIL)
+        fun reviewMissing(id: String) =
+            if (reviewWaived) issues.add(Issue(Severity.WARNING, id, "needs reviewed_by and reviewed_on (waived until $REVIEW_WAIVER_UNTIL, D-039)"))
+            else releaseError(id, "needs reviewed_by and reviewed_on")
 
         // Rule 2: IDs: pattern, unique across packs, recorded in ids.lock.
         val allIds = buildList {
@@ -88,11 +104,11 @@ object ContentRules {
                 if (d.evidence.isEmpty()) error(d.id, "needs at least one evidence entry")
                 if (words(d.insight) > 120) error(d.id, "insight is ${words(d.insight)} words (max 120)")
                 // Rule 6: Shelter content needs expert sign-off (D-015, US-026).
-                if (d.reviewedBy.isNullOrBlank() || d.reviewedOn.isNullOrBlank()) releaseError(d.id, "needs reviewed_by and reviewed_on")
+                if (d.reviewedBy.isNullOrBlank() || d.reviewedOn.isNullOrBlank()) reviewMissing(d.id)
             }
         }
         if (bundle.sos.reviewedBy.isNullOrBlank() || bundle.sos.reviewedOn.isNullOrBlank()) {
-            releaseError("sos", "needs reviewed_by and reviewed_on")
+            reviewMissing("sos")
         }
 
         // Rule 7: banned phrases, whole-phrase and case-insensitive; an override needs a reviewer.
@@ -128,7 +144,13 @@ object ContentRules {
                 line.phone?.let { if (!PHONE.matches(it)) error(id, "${line.name}: phone '$it' isn't plausible") }
                 line.sms?.let { if (!PHONE.matches(it)) error(id, "${line.name}: sms '$it' isn't plausible") }
             }
-            if (h.lines.isEmpty()) releaseError(id, "no helpline lines (users get the emergency fallback only)")
+            if (h.lines.isEmpty()) {
+                if (h.country in EMERGENCY_ONLY_COUNTRIES) {
+                    issues.add(Issue(Severity.WARNING, id, "no helpline lines: emergency number and findahelpline.com only (by decision)"))
+                } else {
+                    releaseError(id, "no helpline lines (users get the emergency fallback only)")
+                }
+            }
             val verified = h.verifiedOn?.let { runCatching { LocalDate.parse(it) }.getOrNull() }
             when {
                 h.verifiedOn != null && verified == null -> error(id, "verified_on '${h.verifiedOn}' isn't an ISO date")

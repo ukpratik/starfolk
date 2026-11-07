@@ -129,6 +129,12 @@ fun SosScreen(container: AppContainer, onClose: () -> Unit) {
                 } else {
                     Text(stringResource(R.string.sos_no_lines), style = StarfolkType.Body.copy(color = Tokens.Pencil))
                 }
+                Text(
+                    entry?.verifiedOn?.let { stringResource(R.string.sos_verify_warning_dated, it) }
+                        ?: stringResource(R.string.sos_verify_warning),
+                    style = StarfolkType.Body.copy(color = Tokens.Pencil),
+                    modifier = Modifier.fillMaxWidth().border(1.dp, Tokens.PencilSoft).padding(14.dp),
+                )
                 val emergency = entry?.emergency
                 Text(
                     if (emergency != null) "In immediate danger, call $emergency." else stringResource(R.string.sos_danger),
