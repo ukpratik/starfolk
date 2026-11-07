@@ -17,6 +17,8 @@ A quieter space for a breakup (21 days), a work storm or burnout (14 days), or a
 ★ PRIVATE BY DESIGN
 • No account. No ads. Free.
 • Your moods, notes, names, letters and journal stay on your phone. They're never sent anywhere, never analysed, and not even included in phone backups.
-• Anonymous usage stats are off unless you say yes, and the app shows exactly what would be sent.
+• Google Play build: anonymous usage stats are off unless you say yes, and the app shows exactly what would be sent. The F-Droid build has no internet permission at all.
 
 Starfolk is for wellbeing and self-help. It is not a medical device and does not diagnose, treat, cure, or prevent any medical condition. If you're struggling, please talk to a professional. If you're in immediate danger, call your local emergency number.
+
+Please note: the Shelter and SOS texts haven't been reviewed by a mental-health professional yet, and crisis-line numbers can change, so double-check them with a trusted local source. Use the app at your own risk.
